@@ -1,6 +1,7 @@
 # EMQ - Electronic Retail Store
 
 Emmanuel Mendoza, Frederic Murry, David Navarro, Michael Nguyen, Ha Nguyen
+
 San Jose State University - Fall 2016 - CS 160 - Software Engineering
 
 ## Where to place the repository
@@ -18,13 +19,16 @@ This needs to be done if it's your first time pulling the repository.
 You'll need to create the database that will be used in laravel.
 
 Start XAMPP with Apache and MySQL activated then visit this site on your browser.
-[http://localhost/phpmyadmin/](http://localhost/phpmyadmin/).
+
+[http://localhost/phpmyadmin/](http://localhost/phpmyadmin/)
+
 On the left hand side you should see a small database icon with a green/white plus sign and the word New. Click it.
-Then create a database with the name "emqdb"
+
+Then create a database with the name "**emqdb**"
 
 Next you will open a console within your emq directory and run the following command
 
-php artisan migrate:refresh --seed
+**php artisan migrate:refresh --seed**
 
 Everything should now be setup.
 
