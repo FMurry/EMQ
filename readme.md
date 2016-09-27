@@ -30,6 +30,10 @@ Next you will open a console within your emq directory and run the following com
 
 **php artisan migrate:refresh --seed**
 
-Everything should now be setup. Test by visiting the link below.
+Everything should now be setup. Test by visiting the link below and creating a user.
 
 [http://localhost/emq/public/](http://localhost/emq/public)
+
+Also, test to see if you are able to see the mock products json api.
+
+[http://localhost/emq/public/api?data=products](http://localhost/emq/public/api?data=products)
