@@ -6,11 +6,17 @@ San Jose State University - Fall 2016 - CS 160 - Software Engineering
 
 ## Where to place the repository
 
-Assuming that your on Windows.
+For Windows:
 
 Place this repository into your C:/xampp/htdocs folder
 
 When complete, you should have all our repository files within C:/xampp/htdocs/emq folder
+
+For Mac:
+
+Place this repository into your Applications/XAMPP/htdocs folder
+
+When complete, you should have all our repository files within Applications/XAMPP/htdocs/emq folder
 
 ## Setting up the database
 
