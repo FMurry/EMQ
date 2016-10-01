@@ -38,3 +38,5 @@ Route::get('/edit', function () {
 //testing
 //Route::post('/change', ['uses' => 'ProductsController@changeName']);
 Route::post('/change', 'ProductsController@changeName');
+
+Route::get('/addtocart/{product_id}', 'CartController@addToCart');//testing route

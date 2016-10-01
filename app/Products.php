@@ -12,4 +12,12 @@ class Products extends Model
      * @var string
      */
     protected $table = 'products';
+
+
+    public function ifAvailable(){
+    	if( $this->quantity > 0 ){
+    		$this->quantity--;
+    		return true;
+    	}
+    }
 }
