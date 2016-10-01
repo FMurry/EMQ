@@ -1,5 +1,19 @@
 @extends('layouts.app')
 
+
+@section('scripts-head')
+    <!-- Start of Scripts Added to Head Section -->
+
+    <!-- End of Scripts Added to Head Section -->
+@endsection
+
+@section('scripts-body')
+    <!-- Start of Scripts Added to Body Section -->
+
+    <!-- End of Scripts Added to Body Section -->
+@endsection
+
+
 @section('content')
 <div class="container">
     <div class="row">

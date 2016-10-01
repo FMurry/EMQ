@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>EMQ</title>
-    <!-- Angular -->
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    @yield('scripts-head')
 
 
     <!-- Fonts -->
@@ -76,14 +75,7 @@
         </div>
     </nav>
 
-        <script>
-var app = angular.module('myApp', []);
-app.controller('customersCtrl', function($scope, $http) {
-    $http.get("http://localhost/emq/public/api?data=products")
-    .then(function (response) {$scope.names = response.data.products;});
-});
-</script>
-
+    @yield('scripts-body')
     @yield('content')
 
     <!-- JavaScripts -->
