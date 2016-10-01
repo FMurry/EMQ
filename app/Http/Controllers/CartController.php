@@ -74,12 +74,9 @@ class CartController extends Controller
                 $cart->delete();
             }
 
-            //Code to store Products quantity +1
-
+            //Restore Products quantity +1
             $product = Products::find($product_id);
-            echo "Before: ".$product->quantity;
             $product->increment('quantity');
-            echo "After: ".$product->quantity;
             $product->save();
             return "Item Successfully Removed from Cart.";
         }
