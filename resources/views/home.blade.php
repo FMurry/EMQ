@@ -1,5 +1,27 @@
 @extends('layouts.app')
 
+@section('scripts-head')
+    <!-- Start of Scripts Added to Head Section -->
+    <!-- Angular -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <!-- End of Scripts Added to Head Section -->
+@endsection
+
+
+
+@section('scripts-body')
+    <!-- Start of Scripts Added to Body Section -->
+  <script>
+  var app = angular.module('myApp', []);
+  app.controller('customersCtrl', function($scope, $http) {
+      $http.get("http://localhost/emq/public/api?data=products")
+      .then(function (response) {$scope.names = response.data.products;});
+  });
+  </script>
+    <!-- End of Scripts Added to Body Section -->
+@endsection
+
+
 @section('content')
 <div class="container">
     <div class="row">
