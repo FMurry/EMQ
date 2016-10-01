@@ -23,10 +23,13 @@ class CartController extends Controller
     	if($product){
     		if( $product->ifAvailable() ){
     			echo "item exists, item decremented<br>";//testing
-    			$cartExist = DB::table('cart')->where('user_id', $user_id )->where('products_id', $product_id )->get();
-    			echo var_dump($cartExist);
+    			$cartExist = DB::table('cart')->where('user_id', $user_id )->where('products_id', $product_id )->first();
+
+    			echo "cart id: "+$cartExist->id+"<br>";
+    			
     			if($cartExist){
-    				$cartExist = Cart::find( $cartExist->id )->incrementCartProductQuantity();
+    				$cart = Cart::find( $cartExist['id'] );
+    				$cart->$incrementCartProductQuantity();
     				echo "cart quantity incremented to:"+ $cartExist->quantity + "<br>";//testing
     			}else{
     				echo "cart entry doesn't exist. Creating entry.<br>";//testing
