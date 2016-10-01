@@ -14,10 +14,14 @@ class Products extends Model
     protected $table = 'products';
 
 
-    public function ifAvailable(){
-    	if( $this->quantity > 0 ){
-    		$this->quantity--;
-    		return true;
-    	}
+    public function isAvailable(){
+        if( $this->quantity > 0 ){
+            $this->quantity--;
+            $this->save(); //Need to always save changes.
+            return true;
+        }
+        return false;
     }
+
+
 }
