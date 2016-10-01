@@ -18,7 +18,7 @@ class Cart extends Model
     public function exists($userId, $productId){
     	$query = DB::table('cart')->where('user_id', $userId)->where('product_id', $productId)->exist();
     	if($query){
-    		DB::table('cart')->where('user_id', $userId)->where('product_id',$productId)->increment('quantity')
+    		DB::table('cart')->where('user_id', $userId)->where('product_id',$productId)->increment('quantity');
     	}
     	else{
     		DB::table('cart')->insert([
@@ -28,6 +28,11 @@ class Cart extends Model
     		]);
     	}
     }
+
+    public function incrementCartProductQuantity(){
+        $this->increment('quantity');
+    }
+
 
 
 }
