@@ -42,3 +42,7 @@ Route::post('/change', 'ProductsController@changeName');
 Route::get('/addtocart/{product_id}', 'CartController@addToCart');
 Route::get('/removefromcart/{product_id}', 'CartController@removeFromCart');
 
+
+Route::get('/cart', function () {
+    return view('cart');
+});
