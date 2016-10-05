@@ -46,3 +46,5 @@ Route::get('/removefromcart/{product_id}', 'CartController@removeFromCart');
 Route::get('/cart', function () {
     return view('cart');
 });
+
+Route::get('cart2', 'CartController@getCart');

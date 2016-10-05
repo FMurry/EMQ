@@ -8,12 +8,19 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Products; //Import Products to Controller
-use App\Cart; //Import Products to Controller
+use App\Cart; //Import Cart to Controller
 use Illuminate\Support\Facades\Auth;//Needed to use Auth::
 use Illuminate\Support\Facades\DB;//Needed to use DB::
 
 class CartController extends Controller
 {
+    public function getCart()
+    {
+        $cart = Cart::where('user_id', Auth::user()->id )->get();
+        return view('cart2', ['cart' => $cart]);
+    }
+
+
     /*
     *   Checks if cart entry with product exists in users cart.
     *   If it exists, increment Cart Quantity
@@ -46,11 +53,17 @@ class CartController extends Controller
                     $cart->quantity = 1;
                     $cart->save();//ALWAYS SAVE CHANGES
                 }
-                return "Successfully Added to Cart.";
+                $status = "Successfully Added to Cart.";
+                return redirect()->action('CartController@getCart')->with('status', $status);
+                //return "Successfully Added to Cart.";
             }
-            return "Sorry, This Item is Temporarily Unavailable.";
+            //return "Sorry, This Item is Temporarily Unavailable.";
+            $status = "Sorry, This Item is Temporarily Unavailable.";
+            return redirect()->action('CartController@getCart')->with('status', $status);
         }
-        return "Error, This Product Doesn't Exist.";
+        //return "Error, This Product Doesn't Exist.";
+        $status = "Error, This Product Doesn't Exist.";
+        return redirect()->action('CartController@getCart')->with('status', $status);
     }
 
     /*
@@ -78,8 +91,12 @@ class CartController extends Controller
             $product = Products::find($product_id);
             $product->increment('quantity');
             $product->save();
-            return "Item Successfully Removed from Cart.";
+            //return "Item Successfully Removed from Cart.";
+            $status = "Successfully Removed from Cart.";
+            return redirect()->action('CartController@getCart')->with('status', $status);
         }
-        return "Item Not In Cart.";
+        //return "Item Not In Cart.";
+        $status = "Item Not In Cart.";
+        return redirect()->action('CartController@getCart')->with('status', $status);
     }
 }

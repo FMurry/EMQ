@@ -16,5 +16,9 @@ class Cart extends Model
 
 
 
+    public function product(){
+    	//Relation (Foreign Object, Foreign ID, Local ID)
+    	return $this->hasOne('App\Products', 'id', 'product_id');
+    }
 
 }
