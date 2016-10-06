@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\DB;//Needed to use DB::
 
 class PaymentController extends Controller
 {
+	    public function getPaymentMethods()
+    {
+        $paymentMethods = Payment::where('user_id', Auth::user()->id )->get();
+        return view('account.payment', ['paymentMethods' => $paymentMethods]);
+    }
     /*
     * Testing to see if Form can Update Database
     */
@@ -33,7 +38,25 @@ class PaymentController extends Controller
         $paymentMethod->expYear = $expYear;
         $paymentMethod->save();//ALWAYS SAVE CHANGES
 	
-    	return view('/home');
+		$status = "Successfully Added New Payment Method.";
+        return redirect()->action('PaymentController@getPaymentMethods')->with('status', $status);
 
+
+    }
+
+    public function deletePaymentMethod($id){
+    	$paymentMethod = Payment::find( $id );
+
+    	if( $paymentMethod ){
+
+    		$paymentMethod->delete();
+    		$status = "Successfully Removed Payment Method.";
+            return redirect()->action('PaymentController@getPaymentMethods')->with('status', $status);
+
+    	}else{
+
+    		$status = "Error: Payment Method Does Not Exist.";
+            return redirect()->action('PaymentController@getPaymentMethods')->with('status', $status);
+    	}
     }
 }
