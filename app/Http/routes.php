@@ -56,7 +56,7 @@ Route::get('/cart', 'CartController@getCart');
 //});
 
 
-
+Route::get('/account', 'HomeController@getAccount');
 
 Route::get('/account/address', 'AddressController@getAddress');
 Route::get('/account/address/add', 'AddressController@addAddressView');
