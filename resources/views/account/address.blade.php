@@ -47,7 +47,7 @@
                         <a href="{{ action('AddressController@removeAddress', ['id' => $address->id]) }}" class="btn btn-danger">delete</a>
                         </li>
                     @endforeach
-                    <a href="./address/add" class="btn btn-success">Add an Address</a>
+                    <a href="./address/add" class="btn btn-success">Add New Address</a>
 
                 </div>
 
