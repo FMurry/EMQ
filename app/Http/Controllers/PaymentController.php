@@ -12,7 +12,12 @@ use Illuminate\Support\Facades\DB;//Needed to use DB::
 
 class PaymentController extends Controller
 {
-	    public function getPaymentMethods()
+
+	public function addPaymentView(){
+		return view('account.add_payment');
+	}
+	
+	public function getPaymentMethods()
     {
         $paymentMethods = Payment::where('user_id', Auth::user()->id )->get();
         return view('account.payment', ['paymentMethods' => $paymentMethods]);

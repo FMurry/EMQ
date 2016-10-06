@@ -11,7 +11,15 @@ use Illuminate\Support\Facades\DB;
 
 class AddressController extends Controller
 {
-    
+    /* Authenticate User IF not Authenticated */
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
+    public function addAddressView(){
+        return view('account.add_address');
+    }
+
     public function getAddress(){
     	$addresses = Address::where('user_id', Auth::user()->id )->get();
     	return view('account.address', ['addresses' => $addresses]);

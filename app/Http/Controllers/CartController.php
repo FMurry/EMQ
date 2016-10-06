@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\DB;//Needed to use DB::
 
 class CartController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function getCart()
     {
         $cart = Cart::where('user_id', Auth::user()->id )->get();
