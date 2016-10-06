@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\DB;
 class AddressController extends Controller
 {
     
+    public function getAddress(){
+    	$addresses = Address::where('user_id', Auth::user()->id )->get();
+    	return view('account.address', ['addresses' => $addresses]);
+
+    }
     public function addAddress(Request $request){
 
 
@@ -35,7 +40,22 @@ class AddressController extends Controller
     	$address->phone = $newPhone;
     	$address->save();
 
-    	return view('/home');
+    	$status = "Successfully added Address";
+    	return redirect()->action("AddressController@getAddress")->with('status',$status);
 
     }
+
+    public function removeAddress($id){
+    	$address = Address::find($id);
+    	if($address){
+    		$address->delete();
+    		$status = "Successfully removed Address";
+    		return redirect()->action("AddressController@getAddress")->with('status',$status);
+    	}
+    	else{
+    		$status = "Error: Address Not removed";
+    		return redirec()->action("AddressController@getAddress")->with('status',$status);
+    	}
+    }
+
 }
