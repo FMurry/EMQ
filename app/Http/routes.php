@@ -50,7 +50,6 @@ Route::get('/cart', function () {
     return view('cart');
 });
 
-Route::get('cart2', 'CartController@getCart');
 
 
 Route::get('/account/address/add', function () {
@@ -59,3 +58,8 @@ Route::get('/account/address/add', function () {
 Route::get('/account/payment/add', function () {
     return view('account.add_payment');
 });
+
+
+Route::get('/account/address', 'AddressController@getAddress');
+Route::get('/account/address/{id}', 'AddressController@removeAddress');
+
