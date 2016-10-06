@@ -12,7 +12,16 @@ class CreatePaymentTable extends Migration
      */
     public function up()
     {
-        //
+       Schema::create('payment', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id');
+            $table->string('nameOnCard');
+            $table->string('cardNumber')->unique();
+            $table->integer('lastFour');
+            $table->integer('expMonth');
+            $table->integer('expYear');
+            $table->nullableTimestamps();
+        });
     }
 
     /**
@@ -22,6 +31,6 @@ class CreatePaymentTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('payment');
     }
 }
