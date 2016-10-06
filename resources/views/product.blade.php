@@ -34,7 +34,7 @@
 Product ID: {{ $product->id }} <br>
 Product Name: {{ $product->productName }} <br>
 Inventory Quantity: {{ $product->quantity }} <br>
-
+<a href="{{ action('CartController@addToCart', ['id' => $product->id]) }}" class="btn btn-default">Add to Cart</a><br>
 
 
 <!-- Stuff I added -->
