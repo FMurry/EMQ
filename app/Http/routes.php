@@ -48,3 +48,11 @@ Route::get('/cart', function () {
 });
 
 Route::get('cart2', 'CartController@getCart');
+
+
+Route::get('/account/address/add', function () {
+    return view('account.add_address');
+});
+Route::get('/account/payment/add', function () {
+    return view('account.add_payment');
+});
