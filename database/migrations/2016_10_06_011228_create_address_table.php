@@ -12,7 +12,19 @@ class CreateAddressTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('address', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id');
+            $table->string('fullName');
+            $table->string('address');
+            $table->string('address2');
+            $table->string('city');
+            $table->string('state');
+            $table->integer('zip');
+            $table->string('country');
+            $table->integer('phone');
+            $table->nullableTimestamps();
+        });
     }
 
     /**
@@ -22,6 +34,6 @@ class CreateAddressTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('address');
     }
 }
