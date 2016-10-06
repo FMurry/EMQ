@@ -12,7 +12,11 @@ use Illuminate\Support\Facades\DB;//Needed to use DB::
 
 class PaymentController extends Controller
 {
-
+    /* Authenticate User IF not Authenticated */
+    public function __construct(){
+        $this->middleware('auth');
+    }
+    
 	public function addPaymentView(){
 		return view('account.add_payment');
 	}
