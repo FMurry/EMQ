@@ -22,7 +22,7 @@ class CreateAddressTable extends Migration
             $table->string('state');
             $table->integer('zip');
             $table->string('country');
-            $table->integer('phone');
+            $table->string('phone');
             $table->nullableTimestamps();
         });
     }
