@@ -17,16 +17,23 @@ class PaymentController extends Controller
     */
     public function addPaymentMethod(Request $request){
 
-    	return $request;
-    	/*
-    	Auth::user()->name = $newFullName; //Update cached variable
+    	$nameOnCard = $request['nameOnCard'];
+		$cardNumber = $request['cardNumber'];
+		$lastFour = substr($cardNumber, -4);
+		$cardHash = sha1($cardNumber);
+		$expMonth = $request['expMonth'];
+		$expYear = $request['expYear'];
 
-
-    	DB::table('users')
-    		->where('id', Auth::user()->id)
-    		->update(['name' => $newFullName]); //Update database entry
+        $paymentMethod = new Payment;
+        $paymentMethod->user_id = Auth::user()->id;
+        $paymentMethod->nameOnCard = $nameOnCard;
+        $paymentMethod->cardNumber = $cardHash;
+        $paymentMethod->lastFour = $lastFour;
+        $paymentMethod->expMonth = $expMonth;
+        $paymentMethod->expYear = $expYear;
+        $paymentMethod->save();//ALWAYS SAVE CHANGES
 	
-    	return view('/home');*/
+    	return view('/home');
 
     }
 }
