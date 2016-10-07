@@ -68,3 +68,6 @@ Route::get('/account/payment', 'PaymentController@getPaymentMethods');
 Route::get('/account/payment/add', 'PaymentController@addPaymentView');
 
 Route::get('/account/payment/delete/{id}', 'PaymentController@deletePaymentMethod');
+
+/* temporary, will eventually reference to OrderController@startProcessOrderForm */
+Route::get('/process/start', 'CartController@startProcessOrderForm');
