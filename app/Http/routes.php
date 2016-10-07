@@ -71,3 +71,8 @@ Route::get('/account/payment/delete/{id}', 'PaymentController@deletePaymentMetho
 
 /* temporary, will eventually reference to OrderController@startProcessOrderForm */
 Route::get('/process/start', 'CartController@startProcessOrderForm');
+
+/* Davids Welcome testing view */
+Route::get('/welcome', function () {
+    return view('welcome2');
+});
