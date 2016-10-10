@@ -27,7 +27,19 @@ class AddressController extends Controller
     }
     public function addAddress(Request $request){
 
+         $this->validate($request, [
+            'newFullName' => 'required|max:255',
+            'newAddress' => 'required|max:255',
+            'newAddress2' => 'max:255',
+            'newCity' => 'required|max:255',
+            'newState' => 'required|max:255',
+            'newCountry' => 'required|max:255',
+            'newZip' => 'required|digits:5',
+            'newPhone' => 'required|digits:10',
+            //'body' => 'required',
+        ]);
 
+        
     	$newFullName = $request['newFullName'];
     	$newAddress = $request['newAddress'];
     	$newAddress2 = $request['newAddress2'];

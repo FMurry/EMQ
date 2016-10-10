@@ -60,7 +60,7 @@ Route::get('/account', 'HomeController@getAccount');
 
 Route::get('/account/address', 'AddressController@getAddress');
 Route::get('/account/address/add', 'AddressController@addAddressView');
-Route::get('/account/address/{id}', 'AddressController@removeAddress');
+Route::get('/account/address/delete/{id}', 'AddressController@removeAddress');
 
 
 
