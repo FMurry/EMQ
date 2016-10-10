@@ -12,7 +12,16 @@ use Illuminate\Support\Facades\DB;//Needed to use DB::
 
 class PaymentController extends Controller
 {
-	    public function getPaymentMethods()
+    /* Authenticate User IF not Authenticated */
+    public function __construct(){
+        $this->middleware('auth');
+    }
+    
+	public function addPaymentView(){
+		return view('account.add_payment');
+	}
+	
+	public function getPaymentMethods()
     {
         $paymentMethods = Payment::where('user_id', Auth::user()->id )->get();
         return view('account.payment', ['paymentMethods' => $paymentMethods]);
@@ -22,12 +31,32 @@ class PaymentController extends Controller
     */
     public function addPaymentMethod(Request $request){
 
-    	$nameOnCard = $request['nameOnCard'];
+
+
+        $this->validate($request, [
+            'fullNameOnCard' => 'required|max:255',
+            'cardNumber' => 'required|digits:16',
+            'expirationMonth' => 'required|digits_between:1,12',
+            'expirationYear' => 'required|integer|between:2016,2025',
+            //'body' => 'required',
+        ]);
+
+        /* Convert Card Number to Hash to Check Uniqueness on database with Validate */
+        if($request['cardNumber']){
+            $lastFour = substr( $request['cardNumber'] , -4);
+            $request['cardNumber'] = sha1($request['cardNumber']);
+        }
+
+        $this->validate($request, [
+            'cardNumber' => 'unique:payment',
+        ]);
+
+    	$nameOnCard = $request['fullNameOnCard'];
 		$cardNumber = $request['cardNumber'];
-		$lastFour = substr($cardNumber, -4);
-		$cardHash = sha1($cardNumber);
-		$expMonth = $request['expMonth'];
-		$expYear = $request['expYear'];
+		//$lastFour = substr($cardNumber, -4);
+		$cardHash = $cardNumber;//sha1($cardNumber);
+		$expMonth = $request['expirationMonth'];
+		$expYear = $request['expirationYear'];
 
         $paymentMethod = new Payment;
         $paymentMethod->user_id = Auth::user()->id;

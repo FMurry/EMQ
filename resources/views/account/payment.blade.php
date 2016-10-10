@@ -45,7 +45,7 @@
                     </li>
                 @endforeach
 
-                <a href="./payment/add" class="btn btn-success">Add New Payment Method</a>
+                <a href="{{ action('PaymentController@addPaymentView') }}" class="btn btn-success">Add New Payment Method</a>
                 </div>
 
             </div>

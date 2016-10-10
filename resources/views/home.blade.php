@@ -54,7 +54,8 @@ table tr:nth-child(even) {
   <tr ng-repeat="x in names">
     <!--<td>@{{ $index + 1 }}</td>-->
     <td>@{{ x.quantity }}</td>
-    <td>@{{ x.productName }}</td>
+    <td><a href="./product/@{{ x.id }}" >@{{ x.productName }}</a></td>
+    <!--<td>@{{ x.productName }}</td>-->
   </tr>
 </table>
 
