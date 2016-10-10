@@ -31,7 +31,7 @@ Route::get('/edit', function () {
 	if(Auth::guest()){
 		return view('welcome');
 	}else{
-		return view('edit');
+		return view('account.edit');
 	}
 });
 
@@ -46,25 +46,33 @@ Route::get('/addtocart/{product_id}', 'CartController@addToCart');
 Route::get('/removefromcart/{product_id}', 'CartController@removeFromCart');
 
 
-Route::get('/cart', function () {
-    return view('cart');
-});
+
+Route::get('/cart', 'CartController@getCart');
 
 
 
-Route::get('/account/address/add', function () {
-    return view('account.add_address');
-});
-Route::get('/account/payment/add', function () {
-    return view('account.add_payment');
-});
+//Route::get('/account/address/add', function () {
+//    return view('account.add_address');
+//});
 
 
+Route::get('/account', 'HomeController@getAccount');
 
 Route::get('/account/address', 'AddressController@getAddress');
-Route::get('/account/address/{id}', 'AddressController@removeAddress');
+Route::get('/account/address/add', 'AddressController@addAddressView');
+Route::get('/account/address/delete/{id}', 'AddressController@removeAddress');
 
 
 
 Route::get('/account/payment', 'PaymentController@getPaymentMethods');
+Route::get('/account/payment/add', 'PaymentController@addPaymentView');
+
 Route::get('/account/payment/delete/{id}', 'PaymentController@deletePaymentMethod');
+
+/* temporary, will eventually reference to OrderController@startProcessOrderForm */
+Route::get('/process/start', 'CartController@startProcessOrderForm');
+
+/* Davids Welcome testing view */
+Route::get('/welcome', function () {
+    return view('welcome2');
+});

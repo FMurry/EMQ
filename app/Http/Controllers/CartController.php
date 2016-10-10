@@ -9,11 +9,21 @@ use App\Http\Controllers\Controller;
 
 use App\Products; //Import Products to Controller
 use App\Cart; //Import Cart to Controller
+
+use App\Payment;
+use App\Address;
+
 use Illuminate\Support\Facades\Auth;//Needed to use Auth::
 use Illuminate\Support\Facades\DB;//Needed to use DB::
 
 class CartController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function getCart()
     {
         $cart = Cart::where('user_id', Auth::user()->id )->get();
@@ -98,5 +108,12 @@ class CartController extends Controller
         //return "Item Not In Cart.";
         $status = "Item Not In Cart.";
         return redirect()->action('CartController@getCart')->with('status', $status);
+    }
+
+    /* temporarily placed here, will eventually be moved to OrderController */
+    public function startProcessOrderForm(){
+        $addresses = Address::where('user_id', Auth::user()->id )->get();
+        $paymentMethods = Payment::where('user_id', Auth::user()->id )->get();
+        return view('process.start', ['paymentMethods' => $paymentMethods, 'addresses' => $addresses]);
     }
 }

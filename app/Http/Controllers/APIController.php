@@ -25,18 +25,6 @@ class APIController extends Controller
                 return response()->json(['products' => $products]);
 
 			/*
-			*	Returns Users Cart in JSON encoded format
-			*/
-			case "cart":
-				if(Auth::guest()){
-					return "You must be authenticated.";
-				}else{
-					$cart = Cart::where('user_id', Auth::user()->id )->get();
-					return response()->json(['cart' => $cart]);
-				}
-				return "Cart Empty.";
-
-			/*
 			*	Returns NULL as no data path was referenced
 			*/
             default:

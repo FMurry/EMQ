@@ -46,6 +46,7 @@
                 </div>
 
             </div>
+                                    <a href="{{ action('CartController@startProcessOrderForm') }}" class="btn btn-default">Process Order</a><br><br><br>
         </div>
     </div>
 </div>

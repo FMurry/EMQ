@@ -15,6 +15,8 @@
 
 
 @section('content')
+
+
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
@@ -24,10 +26,10 @@
                         {{ session('status') }}
                     </div>
                 @endif
-
+                <h1> Under Construction </h1>
             <div class="panel panel-default">
 
-                <div class="panel-heading">Address Management</div>
+                <div class="panel-heading">Select Shipping Address</div>
 
                 <div class="panel-body">
                     JSON Encoded String Data<br>
@@ -44,10 +46,34 @@
                         Zip: {{ $address->zip }} <br>
                         Country: {{ $address->country }} <br>
                         Phone: {{ $address->phone }} <br>
-                        <a href="{{ action('AddressController@removeAddress', ['id' => $address->id]) }}" class="btn btn-danger">delete</a>
+  
                         </li>
                     @endforeach
-                    <a href="{{ action('AddressController@addAddressView') }}" class="btn btn-success">Add New Address</a>
+
+
+                </div>
+
+            </div>
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading">Select Payment Option</div>
+
+                <div class="panel-body">
+                    JSON Encoded String Data<br>
+                    {{ $paymentMethods }}
+                    <br><br><br>
+
+                @foreach($paymentMethods as $item)
+                    <li>
+                    ID: {{ $item->id }} <br>
+                    Name On Card: {{ $item->nameOnCard }} <br>
+                    Last Four: {{ $item->lastFour }} <br>
+                    Expiration Month: {{ $item->expMonth }} <br>
+                    Expiration Year: {{ $item->expYear }} <br>
+
+                    </li>
+                @endforeach
 
                 </div>
 
