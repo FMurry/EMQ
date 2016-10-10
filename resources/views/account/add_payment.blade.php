@@ -11,20 +11,31 @@
                     
 
 <!-- Stuff I added -->
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+
  <form method="POST" action="{{ action('PaymentController@addPaymentMethod') }}">
  	{!! csrf_field() !!}
   <div class="form-group">
     <label for="newFullName">Full Name on Card:</label>
-    <input type="text" class="form-control" id="newFullName" name="nameOnCard">
+    <input type="text" class="form-control" id="newFullName" name="fullNameOnCard">
     
     <label for="newFullName">Card Number:</label>
     <input type="text" class="form-control" id="newFullName" name="cardNumber">
 
     <label for="newFullName">Expiration Month:</label>
-    <input type="text" class="form-control" id="newFullName" name="expMonth">
+    <input type="text" class="form-control" id="newFullName" name="expirationMonth">
 
     <label for="newFullName">Expiration Year:</label>
-    <input type="text" class="form-control" id="newFullName" name="expYear">
+    <input type="text" class="form-control" id="newFullName" name="expirationYear">
   </div>
   
   <button type="submit" class="btn btn-default">Submit</button>
