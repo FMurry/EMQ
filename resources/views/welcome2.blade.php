@@ -17,6 +17,7 @@
     <script type="text/javascript">
         $(document).ready(function(){
           $('.promo-items-slick').slick({
+            slidesToShow: 3,
             infinite: true,
             autoplay: true,
             autoplaySpeed: 2000
@@ -40,12 +41,11 @@
 
                     <div class="slide-wrapper" style="text-align: center">
                         <div class="promo-items-slick" style="width: 90%; margin: 0px auto;">
-                          <div><h3>1</h3></div>
-                          <div><h3>2</h3></div>
-                          <div><h3>3</h3></div>
-                          <div><h3>4</h3></div>
-                          <div><h3>5</h3></div>
-                          <div><h3>6</h3></div>
+                          <img src="http://image.flaticon.com/icons/svg/214/214337.svg" alt="Rocket" style="width:200px; height:200px;">
+                          <img src="http://image.flaticon.com/icons/svg/214/214299.svg" alt="Globe" style="width:200px; height:200px;">
+                          <img src="http://image.flaticon.com/icons/svg/214/214273.svg" alt="Box" style="width:200px; height:200px;">
+                          <img src="http://image.flaticon.com/icons/svg/214/214298.svg" alt="Donut" style="width:200px; height:200px;">
+                          <img src="http://image.flaticon.com/icons/svg/214/214320.svg" alt="Map" style="width:200px; height:200px;">
                         </div>                        
                     </div>
 
