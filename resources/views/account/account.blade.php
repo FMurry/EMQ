@@ -15,7 +15,7 @@
 <a href="{{ action('CartController@getCart') }}" class="btn btn-default">Manage Shopping Cart</a><br>
 <a href="{{ action('AddressController@getAddress') }}" class="btn btn-default">Manage Shipping Addresses</a><br>
 <a href="{{ action('PaymentController@getPaymentMethods') }}" class="btn btn-default">Manage Payment Methods</a><br>
-
+<a href="{{ url('/map') }}" class="btn btn-default">Map</a><br>
 
 <!-- Stuff I added -->
 

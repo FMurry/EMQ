@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
-use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 
 class HomeController extends Controller
 {
@@ -25,8 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $mapper = Mapper::map(37.3, -121.8);
-        return view('home')->with('mapper', $mapper);
+        return view('home');
     }
 
     public function getAccount()
