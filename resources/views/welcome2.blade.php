@@ -43,10 +43,39 @@
                         <div class="promo-items-slick" style="width: 90%; margin: 0px auto;">
                           <img src="http://image.flaticon.com/icons/svg/214/214337.svg" alt="Rocket" style="width:200px; height:200px;">
                           <img src="http://image.flaticon.com/icons/svg/214/214299.svg" alt="Globe" style="width:200px; height:200px;">
-                          <img src="http://image.flaticon.com/icons/svg/214/214273.svg" alt="Box" style="width:200px; height:200px;">
                           <img src="http://image.flaticon.com/icons/svg/214/214298.svg" alt="Donut" style="width:200px; height:200px;">
                           <img src="http://image.flaticon.com/icons/svg/214/214320.svg" alt="Map" style="width:200px; height:200px;">
                         </div>                        
+                    </div>
+
+                    <div class="row" style="width: 100%; text-align: center;">
+                        <div class="col-md-4">
+                            <div class="panel panel-warning" style="margin: 10px;">
+                                <div class="panel-heading">This is a box</div>
+                                <div class="panel-body">
+                                    <img src="http://image.flaticon.com/icons/svg/214/214273.svg" alt="Box" style="width:200px; height:200px; margin: 5px;">
+                                    <button class="btn btn-default">Add to Cart</button>
+                                </div>
+                            </div>                            
+                        </div>
+                        <div class="col-md-4">
+                            <div class="panel panel-warning" style="margin: 10px;">
+                                <div class="panel-heading">This is another box</div>
+                                <div class="panel-body">
+                                    <img src="http://image.flaticon.com/icons/svg/214/214273.svg" alt="Box" style="width:200px; height:200px; margin: 5px;">
+                                    <button class="btn btn-default">Add to Cart</button>                                
+                                </div>
+                            </div>                            
+                        </div>
+                        <div class="col-md-4">
+                            <div class="panel panel-warning" style="margin: 10px;">
+                                <div class="panel-heading">We sell boxes</div>
+                                <div class="panel-body">
+                                    <img src="http://image.flaticon.com/icons/svg/214/214273.svg" alt="Box" style="width:200px; height:200px; margin: 5px;">
+                                    <button class="btn btn-default">Add to Cart</button>                                
+                                </div>
+                            </div>                            
+                        </div>
                     </div>
 
 
