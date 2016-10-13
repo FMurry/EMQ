@@ -156,6 +156,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         'Cornford\Googlmapper\MapperServiceProvider',
+        'GoogleMaps\ServiceProvider\GoogleMapsServiceProvider',
 
     ],
 
@@ -185,6 +186,7 @@ return [
         'Event' => Illuminate\Support\Facades\Event::class,
         'File' => Illuminate\Support\Facades\File::class,
         'Gate' => Illuminate\Support\Facades\Gate::class,
+        'GoogleMaps' => 'GoogleMaps\Facade\GoogleMapsFacade',
         'Hash' => Illuminate\Support\Facades\Hash::class,
         'Lang' => Illuminate\Support\Facades\Lang::class,
         'Log' => Illuminate\Support\Facades\Log::class,

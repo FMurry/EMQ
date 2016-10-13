@@ -4,7 +4,6 @@
     <!-- Start of Scripts Added to Head Section -->
     <!-- Angular -->
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-   
     <!-- End of Scripts Added to Head Section -->
 @endsection
 
@@ -14,7 +13,10 @@
     <!-- Start of Scripts Added to Body Section -->
   <script>
   var app = angular.module('myApp', []);
-  
+  app.controller('customersCtrl', function($scope, $http) {
+      $http.get("http://localhost/emq/public/api?data=products")
+      .then(function (response) {$scope.names = response.data.products;});
+  });
   </script>
     <!-- End of Scripts Added to Body Section -->
 @endsection
@@ -28,8 +30,7 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    <b>Map</b>
-                    <div style="height: 500px; width: 500px;">{!! Mapper::render () !!}</div>
+                    <b>Inventory</b>
 
 <!-- Stuff I added -->
 <style>
@@ -48,6 +49,15 @@ table tr:nth-child(even) {
 
 <div ng-app="myApp" ng-controller="customersCtrl"> 
 
+<table>
+    <tr><!--<th>#</th>--><th>Qty</th><th>Product</th></tr>
+  <tr ng-repeat="x in names">
+    <!--<td>@{{ $index + 1 }}</td>-->
+    <td>@{{ x.quantity }}</td>
+    <td><a href="./product/@{{ x.id }}" >@{{ x.productName }}</a></td>
+    <!--<td>@{{ x.productName }}</td>-->
+  </tr>
+</table>
 
 </div>
 
