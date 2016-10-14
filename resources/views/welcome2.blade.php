@@ -17,7 +17,7 @@
     <script type="text/javascript">
         $(document).ready(function(){
           $('.promo-items-slick').slick({
-            slidesToShow: 3,
+            slidesToShow: 2,
             infinite: true,
             autoplay: true,
             autoplaySpeed: 2000
@@ -37,7 +37,8 @@
                 <div class="panel-heading">Welcome</div>
 
                 <div class="panel-body">
-                    Welcome to EMQ - Your Electronic Retail Store!
+                    
+                    <h1 style="width: 100%; text-align: center;">Checkout these great deals!</h1>
 
                     <div class="slide-wrapper" style="text-align: center">
                         <div class="promo-items-slick" style="width: 90%; margin: 0px auto;">
