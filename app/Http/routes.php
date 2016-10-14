@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome2');
 });
 
 
@@ -29,7 +29,7 @@ Route::get('api', 'APIController@main');
 //testing
 Route::get('/edit', function () {
 	if(Auth::guest()){
-		return view('welcome');
+		return view('welcome2');
 	}else{
 		return view('account.edit');
 	}

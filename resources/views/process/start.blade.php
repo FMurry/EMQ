@@ -35,20 +35,27 @@
                     JSON Encoded String Data<br>
                     {{ $addresses }}
                     <br><br><br>
-                    @foreach($addresses as $address)
-                        <li>
-                        ID: {{ $address->id }} <br>
-                        Name: {{ $address->fullName }} <br>
-                        Address: {{ $address->address }} <br>
-                        Address Line 2: {{ $address->address2 }} <br>
-                        City: {{ $address->city }} <br>
-                        State: {{ $address->state }} <br>
-                        Zip: {{ $address->zip }} <br>
-                        Country: {{ $address->country }} <br>
-                        Phone: {{ $address->phone }} <br>
-  
-                        </li>
-                    @endforeach
+                    @if( count($addresses) > 0 )
+
+                        @foreach($addresses as $address)
+                            <li>
+                            ID: {{ $address->id }} <br>
+                            Name: {{ $address->fullName }} <br>
+                            Address: {{ $address->address }} <br>
+                            Address Line 2: {{ $address->address2 }} <br>
+                            City: {{ $address->city }} <br>
+                            State: {{ $address->state }} <br>
+                            Zip: {{ $address->zip }} <br>
+                            Country: {{ $address->country }} <br>
+                            Phone: {{ $address->phone }} <br>
+      
+                            </li>
+                        @endforeach
+
+                    @else
+                        Please add a shipping address to your account.<br>
+                        <a href="{{ action('AddressController@getAddress') }}" class="btn btn-default">Manage Shipping Addresses</a><br>
+                    @endif
 
 
                 </div>
@@ -63,18 +70,22 @@
                     JSON Encoded String Data<br>
                     {{ $paymentMethods }}
                     <br><br><br>
+                    @if( count($paymentMethods) > 0 )
 
-                @foreach($paymentMethods as $item)
-                    <li>
-                    ID: {{ $item->id }} <br>
-                    Name On Card: {{ $item->nameOnCard }} <br>
-                    Last Four: {{ $item->lastFour }} <br>
-                    Expiration Month: {{ $item->expMonth }} <br>
-                    Expiration Year: {{ $item->expYear }} <br>
+                        @foreach($paymentMethods as $item)
+                            <li>
+                            ID: {{ $item->id }} <br>
+                            Name On Card: {{ $item->nameOnCard }} <br>
+                            Last Four: {{ $item->lastFour }} <br>
+                            Expiration Month: {{ $item->expMonth }} <br>
+                            Expiration Year: {{ $item->expYear }} <br>
 
-                    </li>
-                @endforeach
-
+                            </li>
+                        @endforeach
+                    @else
+                        Please add a payment option to your account.<br>
+                        <a href="{{ action('PaymentController@getPaymentMethods') }}" class="btn btn-default">Manage Payment Methods</a><br>
+                    @endif
                 </div>
 
             </div>
