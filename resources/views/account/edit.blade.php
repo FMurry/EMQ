@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+<ol class="breadcrumb">
+  <li><a href="http://localhost/emq/public/account">Account Management</a></li>
+  <li class="active">Add New Address</li>
+</ol>
+
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
