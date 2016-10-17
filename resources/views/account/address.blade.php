@@ -15,6 +15,11 @@
 
 
 @section('content')
+<ol class="breadcrumb">
+  <li><a href="http://localhost/emq/public/account">Account Management</a></li>
+  <li class="active">Address Book</li>
+</ol>
+
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
@@ -27,7 +32,7 @@
 
             <div class="panel panel-default">
 
-                <div class="panel-heading">Address Management</div>
+                <div class="panel-heading">Address Book</div>
 
                 <div class="panel-body">
                     JSON Encoded String Data<br>
