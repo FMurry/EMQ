@@ -16,6 +16,12 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('productName');
             $table->integer('quantity');
+            $table->string('category');
+            $table->string('brand');
+            $table->string('image');
+            $table->text('description');
+            $table->decimal('price',10,2);
+            $table->boolean('available');
             $table->nullableTimestamps();
         });
     }
