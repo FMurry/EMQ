@@ -33,16 +33,19 @@
                     JSON Encoded String Data<br>
                     {{ $cart }}
                     <br><br><br>
+                    <?php $price=0 ?>
                     @foreach($cart as $item)
                         <li>
                         ID: {{ $item->product_id }} <br>
                         Product: {{ $item->product->productName }} <br>
                         Inventory: {{ $item->product->quantity }} <br>
+                        Price: ${{ $item->product->price }} <br> <?php $price += $item->product->price * $item->quantity ?>
                         quantity: {{ $item->quantity }} <br>
                         <a href="{{ action('CartController@addToCart', ['id' => $item->product_id]) }}" class="btn btn-success"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span></a>
                         <a href="{{ action('CartController@removeFromCart', ['id' => $item->product_id]) }}" class="btn btn-danger"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></a>
                         </li>
                     @endforeach
+                    <br><b>Total: ${{ $price }}</b>
                 </div>
 
             </div>
