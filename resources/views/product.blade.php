@@ -31,9 +31,14 @@
 <!-- Stuff I added -->
 <b>Inventory</b>
 <br>
-Product ID: {{ $product->id }} <br>
-Product Name: {{ $product->productName }} <br>
-Inventory Quantity: {{ $product->quantity }} <br>
+<img src="{{asset('product_images/' . $product->image)}}" width=60%><br>
+Product ID: {{ $product->id }} <br> <!-- Displayed For Debugging - Remove Later -->
+Inventory Quantity: {{ $product->quantity }} <br> <!-- Displayed For Debugging - Remove Later -->
+Product Name: {{ stripslashes($product->productName) }} <br>
+Brand: {{ stripslashes($product->brand) }} <br>
+Category: {{ stripslashes($product->category) }} <br>
+Price: ${{ $product->price }} <br>
+Description:<br> {!! stripslashes($product->description) !!} <br>
 <a href="{{ action('CartController@addToCart', ['id' => $product->id]) }}" class="btn btn-default">Add to Cart</a><br>
 
 
