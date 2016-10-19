@@ -110,6 +110,7 @@
 
     <label for="newPhone">Phone</label>
     <input type="text" class="form-control" id="newPhone" name="newPhone" placeholder="Enter Phone Number">
+    <span id="helpBlock" class="help-block"><em>Ex: 1234567890, etc.</em></span>
   </div>
   
   <button type="submit" class="btn btn-primary">Submit</button>
