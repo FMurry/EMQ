@@ -38,22 +38,28 @@
                     JSON Encoded String Data<br>
                     {{ $addresses }}
                     <br><br><br>
-                    @foreach($addresses as $address)
-                        <li>
-                        ID: {{ $address->id }} <br>
-                        Name: {{ $address->fullName }} <br>
-                        Address: {{ $address->address }} <br>
-                        Address Line 2: {{ $address->address2 }} <br>
-                        City: {{ $address->city }} <br>
-                        State: {{ $address->state }} <br>
-                        Zip: {{ $address->zip }} <br>
-                        Country: {{ $address->country }} <br>
-                        Phone: {{ $address->phone }} <br>
-                        <a href="{{ action('AddressController@removeAddress', ['id' => $address->id]) }}" class="btn btn-danger">delete</a>
-                        </li>
-                    @endforeach
-                    <a href="{{ action('AddressController@addAddressView') }}" class="btn btn-success">Add New Address</a>
+                    <div class="container-fluid">
+                    <div class="row">
 
+                    @foreach($addresses as $address)
+
+                            <div class="col-md-4">
+                            <address>
+                            <strong>Name: {{ $address->fullName }} </strong><br>
+                            {{ $address->address }}, {{ $address->address2 }} <br>
+                            {{ $address->city }}, {{ $address->state }} {{ $address->zip }} <br>
+                            {{ $address->country }} <br>
+                            Phone: {{ $address->phone }} <br>
+                            </address>
+                            <a href="{{ action('AddressController@removeAddress', ['id' => $address->id]) }}" class="btn btn-danger">delete</a>
+                            </div>
+
+                    @endforeach
+                    </div>
+                    </div>
+                    <br>
+                    
+                    <a href="{{ action('AddressController@addAddressView') }}" class="btn btn-success">Add New Address</a>
                 </div>
 
             </div>
