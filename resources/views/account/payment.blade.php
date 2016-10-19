@@ -39,17 +39,23 @@
                     {{ $paymentMethods }}
                     <br><br><br>
 
-                @foreach($paymentMethods as $item)
-                    <li>
-                    ID: {{ $item->id }} <br>
-                    Name On Card: {{ $item->nameOnCard }} <br>
-                    Last Four: {{ $item->lastFour }} <br>
-                    Expiration Month: {{ $item->expMonth }} <br>
-                    Expiration Year: {{ $item->expYear }} <br>
-                    <a href="{{ action('PaymentController@deletePaymentMethod', ['id' => $item->id]) }}" class="btn btn-danger">delete</a>
-                    </li>
-                @endforeach
+                    <div class="container-fluid">
+                    <div class="row">
+                    
+                        @foreach($paymentMethods as $item)
 
+                        <div class="col-md-4">
+                        Cardholder Name: {{ $item->nameOnCard }} <br>
+                        Creditcard Number: ****{{ $item->lastFour }} <br>
+                        Exp: {{ $item->expMonth }}/{{ $item->expYear }} <br>
+                        <a href="{{ action('PaymentController@deletePaymentMethod', ['id' => $item->id]) }}" class="btn btn-danger">delete</a>
+                        </div>
+
+                        @endforeach
+
+                    </div>
+                    </div>
+                <br>
                 <a href="{{ action('PaymentController@addPaymentView') }}" class="btn btn-success">Add New Payment Method</a>
                 </div>
 
