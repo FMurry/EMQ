@@ -11,7 +11,7 @@ class Address extends Model
      *
      * @var string
      */
-    protected $table = 'Address';
+    protected $table = 'address';
 
     
 }
