@@ -27,7 +27,8 @@ class CartController extends Controller
     public function getCart()
     {
         $cart = Cart::where('user_id', Auth::user()->id )->get();
-        return view('cart2', ['cart' => $cart]);
+        $total = CartController::cartTotal();
+        return view('cart2', ['cart' => $cart, 'total_price' => $total['price'], 'total_quantity' => $total['quantity'] ]);
     }
 
 
@@ -115,5 +116,22 @@ class CartController extends Controller
         $addresses = Address::where('user_id', Auth::user()->id )->get();
         $paymentMethods = Payment::where('user_id', Auth::user()->id )->get();
         return view('process.start', ['paymentMethods' => $paymentMethods, 'addresses' => $addresses]);
+    }
+
+    public function cartTotal(){
+        $cart = Cart::where('user_id', Auth::user()->id )->get();
+        $total_price = 0;
+        $total_items = 0;
+        foreach ($cart as $item){
+            $total_items += $item->quantity;
+            $total_price += $item->product->price * $item->quantity;
+        }
+        if($total_items > 1){
+            $total_items = $total_items." items";
+        }else{
+            $total_items = $total_items." item";
+        }
+        $total = array("price" => $total_price,"quantity"=> $total_items);
+        return $total;
     }
 }
