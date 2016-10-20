@@ -63,8 +63,12 @@
                                 @{{ x.productName }}
                                 </div>
                                 <div class="panel-body">
-                                    <img src="http://localhost/emq/public/product_images/@{{ x.image }}" alt="How do I dynamically put images here..." style="max-height: 100px; margin: 5px;">
-                                    <button class="btn btn-default">Add to Cart</button>
+                                  <div style="margin: 5px auto;">
+                                    <img src="http://localhost/emq/public/product_images/@{{ x.image }}" alt="How do I dynamically put images here..." style="max-height: 100px;">                               
+                                  </div>
+                                  <div>
+                                    <a href="./product/@{{ x.id }}" class="btn btn-default">View Item</a>
+                                  </div>
                                 </div>
                             </div>                            
                         </div>
