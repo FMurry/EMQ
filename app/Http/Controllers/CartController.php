@@ -120,6 +120,11 @@ class CartController extends Controller
         return view('process.start', ['paymentMethods' => $paymentMethods, 'addresses' => $addresses, 'total_price' => $total['price'], 'total_quantity' => $total['quantity']]);
     }
 
+    public function completeOrder(Request $request){
+        $data = json_encode($request->all());
+        return view('process.complete', ['OrderData' => $data]);
+    }
+
     public function cartTotal(){
         $cart = Cart::where('user_id', Auth::user()->id )->get();
         $total_price = 0;

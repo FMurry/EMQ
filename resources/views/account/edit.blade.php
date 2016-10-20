@@ -3,14 +3,14 @@
 @section('content')
 <ol class="breadcrumb">
   <li><a href="http://localhost/emq/public/account">Account Management</a></li>
-  <li class="active">Add New Address</li>
+  <li class="active">Edit Account Details</li>
 </ol>
 
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Account Management</div>
+                <div class="panel-heading">Account Details</div>
 
                 <div class="panel-body">
                     

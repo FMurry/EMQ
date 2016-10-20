@@ -22,8 +22,12 @@ class AddressController extends Controller
 
     public function getAddress(){
     	$addresses = Address::where('user_id', Auth::user()->id )->get();
-    	return view('account.address', ['addresses' => $addresses]);
 
+        if(count($addresses) == 0){
+            return view('account.add_address');
+        }else{
+    	   return view('account.address', ['addresses' => $addresses]);
+        }
     }
     public function addAddress(Request $request){
 

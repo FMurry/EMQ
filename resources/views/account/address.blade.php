@@ -37,21 +37,20 @@
                 <div class="panel-body">
                     <div class="container-fluid">
                     <div class="row">
+                        @foreach($addresses as $address)
 
-                    @foreach($addresses as $address)
+                                <div class="col-md-4">
+                                <address>
+                                <strong>Name: {{ $address->fullName }} </strong><br>
+                                {{ $address->address }}, {{ $address->address2 }} <br>
+                                {{ $address->city }}, {{ $address->state }} {{ $address->zip }} <br>
+                                {{ $address->country }} <br>
+                                Phone: {{ $address->phone }} <br>
+                                </address>
+                                <a href="{{ action('AddressController@removeAddress', ['id' => $address->id]) }}" class="btn btn-danger">delete</a>
+                                </div>
 
-                            <div class="col-md-4">
-                            <address>
-                            <strong>Name: {{ $address->fullName }} </strong><br>
-                            {{ $address->address }}, {{ $address->address2 }} <br>
-                            {{ $address->city }}, {{ $address->state }} {{ $address->zip }} <br>
-                            {{ $address->country }} <br>
-                            Phone: {{ $address->phone }} <br>
-                            </address>
-                            <a href="{{ action('AddressController@removeAddress', ['id' => $address->id]) }}" class="btn btn-danger">delete</a>
-                            </div>
-
-                    @endforeach
+                        @endforeach
                     </div>
                     </div>
                     <br>
