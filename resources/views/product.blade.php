@@ -22,24 +22,32 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+            <div class="panel panel-warning">
+                <div class="panel-heading"><h3>{{ stripslashes($product->productName) }}</h3></div>
 
                 <div class="panel-body">
                     
 
 <!-- Stuff I added -->
-<b>Inventory</b>
-<br>
-<img src="{{asset('product_images/' . $product->image)}}" width=60%><br>
-Product ID: {{ $product->id }} <br> <!-- Displayed For Debugging - Remove Later -->
-Inventory Quantity: {{ $product->quantity }} <br> <!-- Displayed For Debugging - Remove Later -->
-Product Name: {{ stripslashes($product->productName) }} <br>
-Brand: {{ stripslashes($product->brand) }} <br>
-Category: {{ stripslashes($product->category) }} <br>
-Price: ${{ $product->price }} <br>
-Description:<br> {!! stripslashes($product->description) !!} <br>
-<a href="{{ action('CartController@addToCart', ['id' => $product->id]) }}" class="btn btn-primary">Add to Cart</a><br>
+                    <div class="row" style="padding: 20px;">
+
+                        <div class="col-md-4" style="text-align: center;">
+                            <div><img src="{{asset('product_images/' . $product->image)}}" style="width: 100%;"></div>
+                            <a href="{{ action('CartController@addToCart', ['id' => $product->id]) }}" class="btn btn-primary">Add to Cart</a><br> 
+                            <p>{{ $product->quantity }} left in stock</p>                    
+                        </div>
+                        
+                        <div class="col-md-8">
+                            <!-- Product ID: {{ $product->id }} <br> Displayed For Debugging - Remove Later -->
+                            <h3>Price: ${{ $product->price }}</h3>
+                            Produced: {{ stripslashes($product->brand) }} |
+                            Category: {{ stripslashes($product->category) }} <br>
+                            Description:<br> {!! stripslashes($product->description) !!} <br>
+                            
+                            
+                        </div>
+                    
+                    </div>
 
 
 <!-- Stuff I added -->
