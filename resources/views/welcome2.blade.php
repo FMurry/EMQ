@@ -40,20 +40,20 @@
                     
                     <h1 style="width: 100%; text-align: center;">Checkout these great deals!</h1>
 
-                    <!-- <div class="slide-wrapper" style="text-align: center">
+                    <div class="slide-wrapper" style="text-align: center">
                         <div class="promo-items-slick" style="width: 90%; margin: 0px auto;">
                           <img src="http://image.flaticon.com/icons/svg/214/214337.svg" alt="Rocket" style="width:200px; height:200px;">
                           <img src="http://image.flaticon.com/icons/svg/214/214299.svg" alt="Globe" style="width:200px; height:200px;">
                           <img src="http://image.flaticon.com/icons/svg/214/214298.svg" alt="Donut" style="width:200px; height:200px;">
                           <img src="http://image.flaticon.com/icons/svg/214/214320.svg" alt="Map" style="width:200px; height:200px;">
                         </div>                        
-                    </div> -->
+                    </div>
 
-                    <slick slides-to-show=3 slides-to-scroll=3 init-onload=true data="awesomeThings">
+                    <!-- <slick slides-to-show=3 slides-to-scroll=3 init-onload=true data="awesomeThings">
                       <div>1</div>
                       <div>2</div>
                       <div>3</div>
-                    </slick>
+                    </slick> -->
 
                     <div class="row" style="width: 100%; text-align: center;">
                         <div class="col-md-4">
