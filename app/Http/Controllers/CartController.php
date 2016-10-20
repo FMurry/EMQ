@@ -115,7 +115,9 @@ class CartController extends Controller
     public function startProcessOrderForm(){
         $addresses = Address::where('user_id', Auth::user()->id )->get();
         $paymentMethods = Payment::where('user_id', Auth::user()->id )->get();
-        return view('process.start', ['paymentMethods' => $paymentMethods, 'addresses' => $addresses]);
+
+        $total = CartController::cartTotal();
+        return view('process.start', ['paymentMethods' => $paymentMethods, 'addresses' => $addresses, 'total_price' => $total['price'], 'total_quantity' => $total['quantity']]);
     }
 
     public function cartTotal(){
