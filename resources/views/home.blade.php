@@ -15,10 +15,13 @@
   var app = angular.module('myApp', []);
   app.controller('customersCtrl', function($scope, $http) {
       $http.get("http://localhost/emq/public/api?data=products")
-      .then(function (response) {$scope.names = response.data.products;});
-      // $scope.random = function() {
-      //   return 0.5 - Math.random();
-      // }
+      .then(function (response) {
+        $scope.names = response.data.products;
+        $scope.random = function() {
+          return 0.5 - Math.random();
+        }
+      });
+      
   });
   </script>
     <!-- End of Scripts Added to Body Section -->
@@ -60,7 +63,7 @@
                                 @{{ x.productName }}
                                 </div>
                                 <div class="panel-body">
-                                    <img src="http://image.flaticon.com/icons/svg/214/214273.svg" alt="Box" style="width:90%; height:90%; margin: 5px;">
+                                    <img src="http://localhost/emq/public/product_images/@{{ x.image }}" alt="How do I dynamically put images here..." style="max-height: 100px; margin: 5px;">
                                     <button class="btn btn-default">Add to Cart</button>
                                 </div>
                             </div>                            
