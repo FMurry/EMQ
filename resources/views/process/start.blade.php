@@ -67,7 +67,7 @@
             <!-- END OF REQUESTED DETAILS -->
             @else
             <!-- START OF PAYMENT PROCESS -->
- <form method="POST" action="{{ action('PaymentController@addPaymentMethod') }}" autocomplete="on">
+ <form method="POST" action="{{ action('CartController@completeOrder') }}">
     {!! csrf_field() !!}
   <div class="form-group">          
 
@@ -151,6 +151,7 @@
         Estimated tax to be collected: $0.00<br>
         <br>
         Order total: ${{ $total_price }}<br>
+        <input type="hidden" name="total" value="{{ $total_price }}">
         <br>
         <button type="submit" class="btn btn-primary">Complete Order</a>
     

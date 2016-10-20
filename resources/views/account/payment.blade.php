@@ -37,7 +37,6 @@
                 <div class="panel-body">
                     <div class="container-fluid">
                     <div class="row">
-                    
                         @foreach($paymentMethods as $item)
 
                         <div class="col-md-4">
@@ -48,7 +47,6 @@
                         </div>
 
                         @endforeach
-
                     </div>
                     </div>
                 <br>

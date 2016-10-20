@@ -24,7 +24,11 @@ class PaymentController extends Controller
 	public function getPaymentMethods()
     {
         $paymentMethods = Payment::where('user_id', Auth::user()->id )->get();
-        return view('account.payment', ['paymentMethods' => $paymentMethods]);
+        if(count($paymentMethods) == 0){
+            return view('account.add_payment');
+        }else{
+            return view('account.payment', ['paymentMethods' => $paymentMethods]);
+        }
     }
     /*
     * Testing to see if Form can Update Database

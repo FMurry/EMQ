@@ -27,7 +27,7 @@
 
             <div class="panel panel-default">
 
-                <div class="panel-heading">Cart</div>
+                <div class="panel-heading">Shopping Cart</div>
 
                 <div class="panel-body">
                     @foreach($cart as $item)
