@@ -39,7 +39,7 @@ Brand: {{ stripslashes($product->brand) }} <br>
 Category: {{ stripslashes($product->category) }} <br>
 Price: ${{ $product->price }} <br>
 Description:<br> {!! stripslashes($product->description) !!} <br>
-<a href="{{ action('CartController@addToCart', ['id' => $product->id]) }}" class="btn btn-default">Add to Cart</a><br>
+<a href="{{ action('CartController@addToCart', ['id' => $product->id]) }}" class="btn btn-primary">Add to Cart</a><br>
 
 
 <!-- Stuff I added -->

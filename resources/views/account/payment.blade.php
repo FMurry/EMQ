@@ -35,10 +35,6 @@
                 <div class="panel-heading">Payment Methods</div>
 
                 <div class="panel-body">
-                    JSON Encoded String Data<br>
-                    {{ $paymentMethods }}
-                    <br><br><br>
-
                     <div class="container-fluid">
                     <div class="row">
                     
@@ -56,7 +52,7 @@
                     </div>
                     </div>
                 <br>
-                <a href="{{ action('PaymentController@addPaymentView') }}" class="btn btn-success">Add New Payment Method</a>
+                <a href="{{ action('PaymentController@addPaymentView') }}" class="btn btn-primary">Add New Payment Method</a>
                 </div>
 
             </div>

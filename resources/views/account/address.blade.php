@@ -35,9 +35,6 @@
                 <div class="panel-heading">Address Book</div>
 
                 <div class="panel-body">
-                    JSON Encoded String Data<br>
-                    {{ $addresses }}
-                    <br><br><br>
                     <div class="container-fluid">
                     <div class="row">
 
@@ -59,7 +56,7 @@
                     </div>
                     <br>
                     
-                    <a href="{{ action('AddressController@addAddressView') }}" class="btn btn-success">Add New Address</a>
+                    <a href="{{ action('AddressController@addAddressView') }}" class="btn btn-primary">Add New Address</a>
                 </div>
 
             </div>

@@ -30,26 +30,22 @@
                 <div class="panel-heading">Cart</div>
 
                 <div class="panel-body">
-                    JSON Encoded String Data<br>
-                    {{ $cart }}
-                    <br><br><br>
-                    <?php $price=0 ?>
                     @foreach($cart as $item)
                         <li>
-                        ID: {{ $item->product_id }} <br>
+                        ID: {{ $item->product_id }} <br> <!-- Displayed For Debugging - Remove Later -->
                         Product: {{ $item->product->productName }} <br>
-                        Inventory: {{ $item->product->quantity }} <br>
-                        Price: ${{ $item->product->price }} <br> <?php $price += $item->product->price * $item->quantity ?>
+                        Inventory: {{ $item->product->quantity }} <br> <!-- Displayed For Debugging - Remove Later -->
+                        Price: ${{ $item->product->price }} <br>
                         quantity: {{ $item->quantity }} <br>
                         <a href="{{ action('CartController@addToCart', ['id' => $item->product_id]) }}" class="btn btn-success"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span></a>
                         <a href="{{ action('CartController@removeFromCart', ['id' => $item->product_id]) }}" class="btn btn-danger"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></a>
                         </li>
                     @endforeach
-                    <br><b>Total: ${{ $price }}</b>
+                    <br><b>Subtotal ({{ $total_quantity }}): ${{ $total_price }}</b>
                 </div>
 
             </div>
-                                    <a href="{{ action('CartController@startProcessOrderForm') }}" class="btn btn-default">Process Order</a><br><br><br>
+                                    <a href="{{ action('CartController@startProcessOrderForm') }}" class="btn btn-primary">Process Order</a><br><br><br>
         </div>
     </div>
 </div>
