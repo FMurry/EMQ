@@ -117,10 +117,22 @@ class CartController extends Controller
         $paymentMethods = Payment::where('user_id', Auth::user()->id )->get();
 
         $total = CartController::cartTotal();
-        return view('process.start', ['paymentMethods' => $paymentMethods, 'addresses' => $addresses, 'total_price' => $total['price'], 'total_quantity' => $total['quantity']]);
+        if($total['price'] == 0){
+            $status = "Your Cart is Empty.";
+            return redirect()->action('CartController@getCart')->with('status', $status);
+        }else{
+            return view('process.start', ['paymentMethods' => $paymentMethods, 'addresses' => $addresses, 'total_price' => $total['price'], 'total_quantity' => $total['quantity']]);
+        }
     }
 
     public function completeOrder(Request $request){
+        $this->validate($request, [
+            'address' => 'required|integer|exists:address,id',//Can be hacked, need to validate address belongs to user
+            'payment' => 'required|integer|exists:payment,id',//Can be hacked, need to validate payment method belongs to user
+            'total' => 'required',
+        ]);
+
+
         $data = json_encode($request->all());
         return view('process.complete', ['OrderData' => $data]);
     }

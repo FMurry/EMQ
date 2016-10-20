@@ -67,6 +67,15 @@
             <!-- END OF REQUESTED DETAILS -->
             @else
             <!-- START OF PAYMENT PROCESS -->
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
  <form method="POST" action="{{ action('CartController@completeOrder') }}">
     {!! csrf_field() !!}
   <div class="form-group">          
