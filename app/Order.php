@@ -14,7 +14,7 @@ class Order extends Model
     protected $table = 'order';
 
 
-    public function product(){
+    public function products(){
     	//Relation (Foreign Object, Foreign ID, Local ID)
     	return $this->hasMany('App\OrderProducts','order_id','id');
     }

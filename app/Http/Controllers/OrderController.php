@@ -38,9 +38,9 @@ class OrderController extends Controller
     	$payment_id = $request['payment'];
     	$cost = $request['total'];
     	$this->createOrder($order,Auth::user()->id,$payment_id,$address_id,$cost);
-        $data = json_encode($request->all());
+        //$data = json_encode($request->all());
 
-        return view('process.complete', ['OrderData' => $data]);
+        return view('process.complete', ['order' => $order]);
     }
 
     public function createOrder($order,$user_id,$payment_id,$address_id,$cost){
