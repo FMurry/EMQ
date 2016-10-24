@@ -25,6 +25,13 @@ class OrderController extends Controller
         ]);
 
 
+    	$order = new Order;
+    	$order->user_id = Auth::user()->id;
+    	$order->store_id = 1;//Hardwired, implement later
+
+    	$order->save();
+
+
         $data = json_encode($request->all());
         return view('process.complete', ['OrderData' => $data]);
     }
