@@ -37,8 +37,5 @@ class OrderProductsController extends Controller
 
     }
 
-    public function returnOrderHistory(){
-    	$orders = Order::where('user_id', Auth::user()->id )->get();
-    	return view('account.orders', ['orders' => $orders]);
-    }
+    
 }

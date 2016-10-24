@@ -11,7 +11,7 @@ class Order extends Model
      *
      * @var string
      */
-    protected $table = 'orders';
+    protected $table = 'order';
 
 
     public function product(){
