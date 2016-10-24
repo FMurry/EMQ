@@ -24,6 +24,10 @@ class CartController extends Controller
     }
 
 
+    /**
+    * Gets the cart of user
+    * @return view returns the cart view
+    */
     public function getCart()
     {
         $cart = Cart::where('user_id', Auth::user()->id )->get();
@@ -32,11 +36,14 @@ class CartController extends Controller
     }
 
 
-    /*
-    *   Checks if cart entry with product exists in users cart.
-    *   If it exists, increment Cart Quantity
-    *   Products->isAvailable() returns bool and Decrements Product inventory quantity by 1.
-    *   Else make a new cart entry.
+    /**
+    * Checks if cart entry with product exists in users cart.
+    * If it exists, increment Cart Quantity
+    * Products->isAvailable() returns bool and Decrements Product inventory quantity 
+    * by 1.
+    * Else make a new cart entry.
+    * @param $product_id the id of the product
+    * @return action the getCart method with status
     */
     public function addToCart($product_id)
     {
@@ -77,10 +84,12 @@ class CartController extends Controller
         return redirect()->action('CartController@getCart')->with('status', $status);
     }
 
-    /*
+    /**
     *   Checks if cart entry with product exists in users cart.
     *   If it exists, decrement cart quantity, increment product inventory quantity.
     *   If Cart quantity is zero, delete table row
+    *   @param $product_id the id of the product to be removed
+    *   @return action the getCart method with status
     */
     public function removeFromCart($product_id){
 
