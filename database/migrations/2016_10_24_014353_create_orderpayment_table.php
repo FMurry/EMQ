@@ -12,7 +12,14 @@ class CreateOrderpaymentTable extends Migration
      */
     public function up()
     {
-        //
+       Schema::create('order_payment', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nameOnCard');
+            $table->integer('lastFour');
+            $table->integer('expMonth');
+            $table->integer('expYear');
+            $table->nullableTimestamps();
+        });
     }
 
     /**
@@ -22,6 +29,6 @@ class CreateOrderpaymentTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('order_payment');
     }
 }
