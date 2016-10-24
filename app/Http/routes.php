@@ -71,7 +71,9 @@ Route::get('/account/payment/delete/{id}', 'PaymentController@deletePaymentMetho
 
 /* temporary, will eventually reference to OrderController@startProcessOrderForm */
 Route::get('/process/start', 'CartController@startProcessOrderForm');
-Route::post('/process/complete', 'CartController@completeOrder');
+
+Route::post('/process/complete', 'OrderController@completeOrder');
+Route::get('/account/orders', 'OrderController@returnOrderHistory');
 
 /* Davids Welcome testing view */
 Route::get('/welcome', function () {
