@@ -35,6 +35,6 @@ class CreateStoreTable extends Migration
      */
     public function down()
     {
-        Schema::Drop('store');
+        Schema::drop('store');
     }
 }
