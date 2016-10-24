@@ -16,20 +16,20 @@ class Order extends Model
 
     public function product(){
     	//Relation (Foreign Object, Foreign ID, Local ID)
-    	return $this->hasMany('App/OrderProducts','order_id','id');
+    	return $this->hasMany('App\OrderProducts','order_id','id');
     }
 
     public function payment(){
 
-    	return $this->hasOne('App/OrderPayment','id','orderpayment_id');
+    	return $this->hasOne('App\OrderPayment','id','orderpayment_id');
     }
 
     public function address(){
-    	return $this->hasOne('App/OrderAddress','id','orderaddress_id');
+    	return $this->hasOne('App\OrderAddress','id','orderaddress_id');
     }
 
     public function store(){
-    	return $this->hasOne('App/Store','id','store_id');
+    	return $this->hasOne('App\Store','id','store_id');
     }
 
 
