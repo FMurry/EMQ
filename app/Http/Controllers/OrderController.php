@@ -96,8 +96,8 @@ class OrderController extends Controller
         foreach ($cart as $item){
 	    	$order_product = new OrderProducts;
 	    	$order_product->order_id = $order_id;
-	    	$order_product->product_id = $item->id;
-	    	$order_product->price = $item->price;
+	    	$order_product->product_id = $item->product->id;
+	    	$order_product->price = $item->product->price;
 	    	$order_product->quantity = $item->quantity;
 	    	$order_product->save(); //save item into order history
 	    	$item->delete(); //delete item from cart
