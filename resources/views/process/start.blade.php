@@ -76,7 +76,7 @@
         </ul>
     </div>
 @endif
- <form method="POST" action="{{ action('CartController@completeOrder') }}">
+ <form method="POST" action="{{ action('OrderController@completeOrder') }}">
     {!! csrf_field() !!}
   <div class="form-group">          
 
