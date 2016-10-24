@@ -18,10 +18,9 @@ class CreateOrderTable extends Migration
             $table->integer('store_id');
             $table->integer('orderaddress_id');
             $table->integer('orderpayment_id');
-            $table->double('cost');
-            $table->string('state');
-            $table->double('tax');
-            $table->double('total');
+            $table->decimal('cost',10,2);
+            $table->decimal('total',10,2);
+            $table->decimal('tax',10,2);
             $table->nullableTimestamps();
         });
     }
