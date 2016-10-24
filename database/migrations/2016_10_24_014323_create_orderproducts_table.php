@@ -17,6 +17,7 @@ class CreateOrderproductsTable extends Migration
             $table->integer('order_id');
             $table->integer('product_id');
             $table->decimal('price',10,2);
+            $table->integer('quantity');
             $table->nullableTimestamps();
         });
     }
