@@ -12,7 +12,20 @@ class CreateStoreTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('store', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('address');
+            $table->string('address2');
+            $table->string('city');
+            $table->string('state');
+            $table->integer('zip');
+            $table->string('country');
+            $table->string('phone');
+            $table->double('salesTax');
+            $table->nullableTimestamps();
+        });
+
     }
 
     /**
@@ -22,6 +35,6 @@ class CreateStoreTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::Drop('store');
     }
 }
