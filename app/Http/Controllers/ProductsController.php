@@ -12,8 +12,10 @@ use Illuminate\Support\Facades\DB;//Needed to use DB::
 
 class ProductsController extends Controller
 {
-	/*
+	/**
     * Used to Generate Products Page
+    * @param $id the id of the product
+    * @return view return the product view with product
     */
     public function getProduct($id)
     {
@@ -23,7 +25,7 @@ class ProductsController extends Controller
     }
 
 
-    /*
+    /**
     * Testing to see if Form can Update Database
     */
     public function changeName(Request $request){
