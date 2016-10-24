@@ -15,7 +15,7 @@ class StoreTableSeeder extends Seeder
         DB::table('store')->insert([
         	'name' => 'Store1',
         	'address' => 'One Washington Square',
-        	'address2' => null,
+        	'address2' => '',
         	'city' => 'San Jose',
         	'state' => 'California',
         	'zip' => 95113,
