@@ -20,11 +20,20 @@ use Illuminate\Support\Facades\DB;//Needed to use DB::
 
 class OrderController extends Controller
 {
+    /**
+    * User must be authenticated before accessing
+    *
+    */
 	 public function __construct()
     {
         $this->middleware('auth');
     }
 
+    /**
+    * Stores the user's order into DB
+    * @param Request The request received
+    * @return view Returns process.complete view
+    */
     public function completeOrder(Request $request){
         $this->validate($request, [
             'address' => 'required|integer|exists:address,id',//Can be hacked, need to validate address belongs to user
@@ -43,6 +52,15 @@ class OrderController extends Controller
         return view('process.complete', ['order' => $order]);
     }
 
+    /**
+    * creates the order and saves it into database
+    *@param $order The order object
+    *@param $user_id Id of the user
+    *@param $payment_id Id of the payment
+    *@param $address_id Id of the address
+    *@param $cost The cost of the order
+    *
+    */
     public function createOrder($order,$user_id,$payment_id,$address_id,$cost){
     	$order->user_id = $user_id;
     	$order->store_id = 1;
@@ -58,6 +76,11 @@ class OrderController extends Controller
 
     }
 
+    /**
+    * Creates the OrderPayment object and saves to database
+    * @param $id the id of the payment
+    * @return returns the id of the new OrderPayment 
+    */
     public function createOrderPayment($id){
     	$orderPayment = new OrderPayment;
     	$userPayment = Payment::find($id);
@@ -69,6 +92,11 @@ class OrderController extends Controller
     	return $orderPayment->id;
     }
 
+    /**
+    * Creates the OrderAddress object and saves to database
+    * @param $id the id of the address
+    * @return returns the id of the new OrderAddress
+    */
     public function createOrderAddress($id){
     	$orderAddress = new orderAddress;
     	$userAddress = Address::find($id);
@@ -84,11 +112,21 @@ class OrderController extends Controller
     	return $orderAddress->id;
     }
 
+    /**
+    * Returns all of the orders for user
+    * @return view returns account.orders view
+    */
     public function returnOrderHistory(){
     	$orders = Order::where('user_id', Auth::user()->id )->get();
     	return view('account.orders', ['orders' => $orders]);
     }
 
+
+    /**
+    * Migrates the items in carts to orderproduct
+    * @param $order_id The id of the order
+    *
+    */
     public function migrateCartToOrderHistory( $order_id ){
 
         $cart = Cart::where('user_id', Auth::user()->id )->get();
