@@ -17,10 +17,19 @@ class PaymentController extends Controller
         $this->middleware('auth');
     }
     
+    /**
+    * returns the add payment view
+    * @return view the add_payment view
+    */
+
 	public function addPaymentView(){
 		return view('account.add_payment');
 	}
 	
+    /**
+    * get All of the payment methods for user
+    * @return view returns page either showing payment methods or page for adding payment
+    */
 	public function getPaymentMethods()
     {
         $paymentMethods = Payment::where('user_id', Auth::user()->id )->get();
@@ -30,8 +39,11 @@ class PaymentController extends Controller
             return view('account.payment', ['paymentMethods' => $paymentMethods]);
         }
     }
-    /*
-    * Testing to see if Form can Update Database
+
+    /**
+    * adds payment to db
+    * @param $request the form request
+    * @return action the paymentmethod page with a status
     */
     public function addPaymentMethod(Request $request){
 
@@ -77,6 +89,10 @@ class PaymentController extends Controller
 
     }
 
+    /**
+    * Deletes the payment at a given id
+    * @param $id the id of the payment
+    */
     public function deletePaymentMethod($id){
     	$paymentMethod = Payment::find( $id );
 
