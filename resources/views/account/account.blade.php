@@ -52,6 +52,15 @@
                                 </div>
                             </div>                            
                         </div>
+                                                <div class="col-md-3">
+                            <div class="panel panel-warning" style="margin: 10px;">
+                                <div class="panel-heading">Order History</div>
+                                <div class="panel-body">
+                                    <img src="http://image.flaticon.com/icons/svg/235/235805.svg" alt="OrderHistory" style="width:180px; height:180px; margin: 5px;">
+                                    <a href="{{ action('OrderController@returnOrderHistory') }}" class="btn btn-default">View Order History</a><br>                              
+                                </div>
+                            </div>                            
+                        </div>
                     </div>
 
 <!-- Stuff I added -->
