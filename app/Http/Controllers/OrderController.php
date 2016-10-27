@@ -85,7 +85,7 @@ class OrderController extends Controller
     }
 
     public function returnOrderHistory(){
-    	$orders = Order::where('user_id', Auth::user()->id )->get();
+    	$orders = Order::where('user_id', Auth::user()->id )->orderBy('id', 'DESC')->get();
     	return view('account.orders', ['orders' => $orders]);
     }
 
