@@ -11,15 +11,25 @@ use Illuminate\Support\Facades\DB;
 
 class AddressController extends Controller
 {
-    /* Authenticate User IF not Authenticated */
+    /**
+    * Authenticate User IF not Authenticated
+    */
     public function __construct(){
         $this->middleware('auth');
     }
 
+    /**
+    * Return the add Address view
+    * @return view the add address view
+    */
     public function addAddressView(){
         return view('account.add_address');
     }
 
+    /**
+    * gets addresses for user
+    * @return view returns the address view or add address view
+    */
     public function getAddress(){
     	$addresses = Address::where('user_id', Auth::user()->id )->get();
 
@@ -29,6 +39,12 @@ class AddressController extends Controller
     	   return view('account.address', ['addresses' => $addresses]);
         }
     }
+
+    /**
+    * Adds the address from the form
+    * @param $request the form request
+    * @return view action returns getAddress with statua 
+    */
     public function addAddress(Request $request){
 
          $this->validate($request, [
@@ -69,6 +85,11 @@ class AddressController extends Controller
 
     }
 
+    /**
+    * Removes the address
+    * @param $id the address id
+    * @return action getAddress with status
+    */
     public function removeAddress($id){
     	$address = Address::find($id);
     	if($address){
