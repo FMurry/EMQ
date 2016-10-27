@@ -32,6 +32,13 @@ class CreateOrderTable extends Migration
      */
     public function down()
     {
-        Schema::drop('order');
+        /* temporary till everyone has refreshed database tables */
+        if(Schema::hasTable('order')){
+            Schema::drop('order');
+        }
+        
+        if(Schema::hasTable('orders')){
+            Schema::drop('orders');
+        }
     }
 }
