@@ -40,7 +40,11 @@
                                 <h4 style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">{{ $item->product->productName }}</h4>
                             </div>
                             <div class="col-md-2" style="">
+                                @if($item->quantity <= 1)
                                 <h4>${{$item->product->price}}</h4>
+                                @else
+                                <h4>${{($item->product->price * $item->quantity)}} ({{ $item->quantity }})</h4>
+                                @endif
                             </div>
                             <div class="col-md-2" style="text-align: center;">
                                 <h6>Quantity: {{ $item->quantity }}</h6>
