@@ -38,25 +38,25 @@
                 <div class="panel-body">
                    <div class="row" style="width: 100%; text-align: center;">
                         @if( count($addresses) == 0 )
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <b>Please Enter a Shipping Address</b>
                             <div class="panel panel-warning" style="margin: 10px;">
                                 <div class="panel-heading">Address Book</div>
                                 <div class="panel-body">
-                                    <img src="http://image.flaticon.com/icons/svg/232/232508.svg" alt="AddressBook" style="width:180px; height:180px; margin: 5px;">
-                                    <a href="{{ action('AddressController@getAddress') }}" class="btn btn-default">Manage Addresses</a><br>
+                                    <div><img src="http://image.flaticon.com/icons/svg/232/232508.svg" alt="AddressBook" style="width:180px; height:180px; margin: 5px;"></div>
+                                    <div><a href="{{ action('AddressController@getAddress') }}" class="btn btn-default">Manage Addresses</a></div>                                    
                                 </div>
                             </div>                            
                         </div>
                         @endif
                         @if( count($paymentMethods) == 0 )
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <b>Please Enter a Payment Method</b>
                             <div class="panel panel-warning" style="margin: 10px;">
                                 <div class="panel-heading">Payment Methods</div>
                                 <div class="panel-body">
-                                    <img src="http://image.flaticon.com/icons/svg/235/235805.svg" alt="Payment" style="width:180px; height:180px; margin: 5px;">
-                                    <a href="{{ action('PaymentController@getPaymentMethods') }}" class="btn btn-default">Manage Payment Methods</a><br>                              
+                                    <div><img src="http://image.flaticon.com/icons/svg/235/235805.svg" alt="Payment" style="width:180px; height:180px; margin: 5px;"></div>
+                                    <div><a href="{{ action('PaymentController@getPaymentMethods') }}" class="btn btn-default">Manage Payment Methods</a></div>                
                                 </div>
                             </div>                            
                         </div>
