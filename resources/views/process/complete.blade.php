@@ -66,6 +66,7 @@ Still under construction<br>
                 <!-- end of display cost totals -->
 
               </div><!--end of products row-->
+              <a href="{{ action('HomeController@index') }}" class="btn btn-primary">Continue Shopping</a>
 <!-- Stuff I added -->
                 </div>
             </div>
