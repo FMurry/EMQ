@@ -62,8 +62,11 @@ class OrderController extends Controller
     *
     */
     public function createOrder($order,$user_id,$payment_id,$address_id,$cost){
+        //Hardcoded Store for the mean time.
+        $store = Store::find(1);
+
     	$order->user_id = $user_id;
-    	$order->store_id = 1;
+    	$order->store_id = $store->id;
     	// $order->orderaddress = $address_id;
     	// $order->orderpayment = $payment_id;
     	$order->orderpayment_id = $this->createOrderPayment($payment_id);
@@ -71,6 +74,10 @@ class OrderController extends Controller
     	$order->orderaddress_id = $this->createOrderAddress($address_id);
     	
     	$order->cost = $cost;
+        $tax = ($cost * ($store->salesTax / 100));
+        $order->tax = number_format($tax, 2, '.', '');
+
+        $order->total = $order->cost + $order->tax;
     	$order->save();
     	$this->migrateCartToOrderHistory($order->id);
 
