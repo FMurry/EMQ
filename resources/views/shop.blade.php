@@ -2,8 +2,6 @@
 
 @section('scripts-head')
     <!-- Start of Scripts Added to Head Section -->
-    <!-- Angular -->
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <!-- End of Scripts Added to Head Section -->
 @endsection
 
@@ -11,29 +9,17 @@
 
 @section('scripts-body')
     <!-- Start of Scripts Added to Body Section -->
-  <script>
-  var app = angular.module('myApp', []);
-  app.controller('customersCtrl', function($scope, $http) {
-      $http.get("http://localhost/emq/public/api?data=products")
-      .then(function (response) {
-        $scope.names = response.data.products;
-        $scope.random = function() {
-          return 0.5 - Math.random();
-        }
-      });
-      
-  });
-  </script>
     <!-- End of Scripts Added to Body Section -->
 @endsection
 
 
 @section('content')
+
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Home</div>
+                <div class="panel-heading">Shop</div>
 
                 <div class="panel-body">
 
@@ -52,29 +38,29 @@
                   }
                   </style>
 
-                  <div ng-app="myApp" ng-controller="customersCtrl"> 
+                  <!--<div ng-app="myApp" ng-controller="customersCtrl">--> 
 
                     <div class="row" style="width: 100%; text-align: center;">
-                      <div ng-repeat="x in names">
+                      @foreach($products as $product)
                         <div class="col-md-4">
                             <div class="panel panel-warning" style="margin: 10px;">
                                 <div class="panel-heading" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-                                @{{ x.productName }}
+                                {{ stripslashes($product->productName) }}
                                 </div>
                                 <div class="panel-body">
                                   <div style="margin: 5px auto;">
-                                    <img src="http://localhost/emq/public/product_images/@{{ x.image }}" alt="How do I dynamically put images here..." style="max-height: 100px;">                               
+                                    <img src="http://localhost/emq/public/product_images/{{ $product->image }}" alt="..." style="max-height: 100px;">                               
                                   </div>
                                   <div>
-                                    <a href="./product/@{{ x.id }}" class="btn btn-default">View Item</a>
+                                    <a href="./product/{{ $product->id }}" class="btn btn-default">View Item</a>
                                   </div>
                                 </div>
                             </div>                            
                         </div>
-                      </div>                      
+                      @endforeach                      
                     </div>
 
-                  </div>
+                  <!--</div>-->
 
 
 

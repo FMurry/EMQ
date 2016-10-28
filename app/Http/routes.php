@@ -20,6 +20,8 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/shop', 'ProductsController@shopPublicIndex');
+
 Route::get('product/{id}', 'ProductsController@getProduct');
 
 /* API */

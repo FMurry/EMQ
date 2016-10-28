@@ -49,7 +49,12 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
+                    @if (Auth::guest())
+                    <li><a href="{{ url('/shop') }}">Shop</a></li>
+                    @else
+                    <li><a href="{{ url('/shop') }}">Shop</a></li>
                     <li><a href="{{ url('/home') }}">Home</a></li>
+                    @endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -65,7 +70,8 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                 <li><a href="{{ url('/account') }}"><i class="fa fa-btn fa-edit"></i>Account Management</a></li>
+                                <li><a href="{{ url('/account') }}"><i class="fa fa-btn fa-edit"></i>Account Management</a></li>
+                                <li><a href="{{ url('/account/orders') }}"><i class="fa fa-btn fa-edit"></i>Order History</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                             <li><a href="{{ url('/cart') }}"><i class="fa fa-btn
