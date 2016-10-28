@@ -37,13 +37,13 @@
                             </div>
                             <div class="col-md-6" style="">
                                 <!-- <a href="./product/@{{ $item->product->id }}">View Item</a> -->
-                                <h4 style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">{{ $item->product->productName }}</h4>
+                                <h4 style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">{{ stripslashes($item->product->productName) }}</h4>
                             </div>
                             <div class="col-md-2" style="">
                                 @if($item->quantity <= 1)
                                 <h4>${{$item->product->price}}</h4>
                                 @else
-                                <h4>${{($item->product->price * $item->quantity)}} ({{ $item->quantity }})</h4>
+                                <h4>${{($item->product->price)}}  x({{ $item->quantity }})</h4>
                                 @endif
                             </div>
                             <div class="col-md-2" style="text-align: center;">
@@ -71,7 +71,7 @@
                 </div>
 
             </div>
-            <a href="{{ action('CartController@startProcessOrderForm') }}" class="btn btn-primary">Process Order</a>
+            <a href="{{ action('CartController@startProcessOrderForm') }}" class="btn btn-primary">Process Order</a>&nbsp;&nbsp;&nbsp;<a href="{{ action('HomeController@index') }}" class="btn btn-default">Continue Shopping</a>
             <br><br><br>
         </div>
     </div>
