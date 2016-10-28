@@ -14,10 +14,15 @@
 
                 <div class="panel-body">
                     
-
+<div class="container-fluid">
 <!-- Stuff I added -->
 @foreach($orders as $order)
+
+            <div class="panel-default">
+                <div class="panel-body">
             <div class="row"> <!-- address and payment row -->
+                
+                                
                 <h3>Transaction ID: {{ $order->id }}</h3><br>
                 <div class="col-md-4">
                 <h3>Shipping From:</h3><br>
@@ -69,9 +74,11 @@
                 <h4><b>Total:</b> ${{ $order->total }}</h4><br>
                 <!-- end of display cost totals -->
                 </div><!--end of products row-->
+            </div></div>
+       <hr>
 @endforeach
 <!-- Stuff I added -->
-
+</div></div>
 
                 </div>
             </div>
