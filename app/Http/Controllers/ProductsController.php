@@ -24,7 +24,11 @@ class ProductsController extends Controller
     	return view('product', ['product' => $product]);
     }
 
-
+    public function shopPublicIndex()
+    {
+        $products = Products::all();
+        return view('shop', ['products' => $products]);
+    }
     /**
     * Testing to see if Form can Update Database
     */
