@@ -62,7 +62,7 @@
                                 <div><img src="{{asset('product_images/' . $item->product->image)}}" style="width: 100%;"></div>
                             </div>
                             <div class="col-md-6" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-                                <a href="./product/{{ $item->product->id }}" >{{ stripslashes($item->product->productName) }}</a>
+                                <a href="../product/{{ $item->product->id }}" >{{ stripslashes($item->product->productName) }}</a>
                             </div>
                             <div class="col-md-2" style="text-align: center;">
                                 Quantity: {{ $item->quantity }}

@@ -58,7 +58,7 @@
                                 <div><img src="{{asset('product_images/' . $item->product->image)}}" style="width: 100%;"></div>
                             </div>
                             <div class="col-md-6" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-                                <a href="./product/{{ $item->product->id }}" >{{ stripslashes($item->product->productName) }}</a>
+                                <a href="../product/{{ $item->product->id }}" >{{ stripslashes($item->product->productName) }}</a>
                             </div>
                             <div class="col-md-2" style="text-align: center;">
                                 Quantity: {{ $item->quantity }}
@@ -85,7 +85,7 @@
             </div><!--end of products row-->
 
             <div class="row text-center">
-                <button id ="trackButton" name="Track Order" class="btn btn-primary center-block" href="{{ action('HomeController@index') }}" class="btn btn-primary">Continue Shopping</button>
+                <a href="{{ action('HomeController@index') }}" class="btn btn-primary">Continue Shopping</a>
             </div>
 <!-- Stuff I added -->
             </div>
