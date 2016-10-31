@@ -18,15 +18,13 @@
 <!-- Stuff I added -->
 @foreach($orders as $order)
 
-            <div class="panel-default">
-                <div class="panel-body">
+    <div class="panel-default">
+        <div class="panel-body">
             <div class="row"> <!-- address and payment row -->
                 
-                                
-                <h3>Transaction ID: {{ $order->id }}</h3><br>
-                Order Date: {{ $order->updated_at}}<br>
+                <h4>Order Date: {{ $order->updated_at}}</h4>
                 <div class="col-md-4">
-                <h3>Shipping From:</h3><br>
+                <h4>Shipping From:</h4>
                 <address>
                 <strong>Store: {{ $order->store->name }} </strong><br>
                 {{ $order->store->address }}, {{ $order->store->address2 }} <br>
@@ -37,7 +35,7 @@
                 </div>
 
                 <div class="col-md-4">
-                <h3>Shipping To:</h3><br>
+                <h4>Shipping To:</h4>
                 <address>
                 <strong>Name: {{ $order->address->fullName }} </strong><br>
                 {{ $order->address->address }}, {{ $order->address->address2 }} <br>
@@ -48,35 +46,57 @@
                 </div>
 
                 <div class="col-md-4">
-                <h3>Payment Method:</h3><br>
+                <h4>Payment Method:</h4>
                 <strong>Cardholder Name: {{ $order->payment->nameOnCard }}</strong><br>
                 Creditcard Number: ****{{ $order->payment->lastFour }} <br>
                 Exp: {{ $order->payment->expMonth }}/{{ $order->payment->expYear }} <br>
                 </div>
-              </div><!--end of address and payment row-->
+            </div><!--end of address and payment row-->
 
-              <div class="row"><!-- products row -->
-                <h3>Products Ordered:</h3><br>
+            <div class="row"><!-- products row -->
+                <h4>Products Ordered:</h4><br>
                 <!-- start of display ordered products -->
                 @foreach($order->products as $item)
-                    <li>
-                    Product: {{ $item->product->productName }} <br>
-                    Price: ${{ $item->price }} <br>
-                    quantity: {{ $item->quantity }} <br>
-                    </li>
+                    <div class="row" style="padding: 20px;">
+                            <div class="col-md-2" style="text-align: center;">                            
+                                <div><img src="{{asset('product_images/' . $item->product->image)}}" style="width: 100%;"></div>
+                            </div>
+                            <div class="col-md-6" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                <a href="./product/{{ $item->product->id }}" >{{ stripslashes($item->product->productName) }}</a>
+                            </div>
+                            <div class="col-md-2" style="text-align: center;">
+                                Quantity: {{ $item->quantity }}
+                            </div>
+                            <div class="col-md-2" style="">
+                                @if($item->quantity <= 1)
+                                ${{$item->product->price}}
+                                @else
+                                ${{($item->product->price)}} x {{ $item->quantity }}
+                                @endif
+                            </div>
+                    </div>
                 @endforeach
                 <!-- end of display ordered products -->
 
                 <!-- start of display cost totals -->
-                <br>
-                <b>Subtotal:</b> ${{ $order->cost }}<br>
-                <b>Tax:</b> ${{ $order->tax }}<br>
-                <b>Shipping:</b> $0.00<br>
-                <h4><b>Total:</b> ${{ $order->total }}</h4><br>
+                <div class="row text-right" style="margin-right: 50px">
+                    <b>Subtotal:</b> ${{ $order->cost }}<br>
+                    <b>Tax:</b> ${{ $order->tax }}<br>
+                    <b>Shipping:</b> $0.00<br>
+                    <b><big>Total: ${{ $order->total }}</big></b>
+                </div>
                 <!-- end of display cost totals -->
-                </div><!--end of products row-->
-            </div></div>
-       <hr>
+            </div><!--end of products row-->
+
+        <!--Track Order button-->
+        <div class="row text-center">
+            <button id ="trackButton" name="Track Order" class="btn btn-primary center-block" href="">Track Order</button>
+        </div>
+        <!--End of Track Order button-->
+
+        </div>
+    </div>
+    <hr>
 @endforeach
 <!-- Stuff I added -->
 </div></div>
