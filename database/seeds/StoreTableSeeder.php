@@ -133,6 +133,6 @@ class StoreTableSeeder extends Seeder
             'phone' => 4081115555,
             'salesTax' => 8.75
             ]
-            ));
+        ));
     }
 }
