@@ -9,68 +9,89 @@
                 <div class="panel-heading">Order Details</div>
 
                 <div class="panel-body">
+
 <!-- Stuff I added -->
-Still under construction<br>
-<h2>Your Order has been Completed Successfully.</h2><br>
-
-              <div class="row"> <!-- address and payment row -->
-                <h3>Transaction ID: {{ $order->id }}</h3><br>
-                <div class="col-md-4">
-                <h3>Shipping From:</h3><br>
-                <address>
-                <strong>Store: {{ $order->store->name }} </strong><br>
-                {{ $order->store->address }}, {{ $order->store->address2 }} <br>
-                {{ $order->store->city }}, {{ $order->store->state }} {{ $order->store->zip }} <br>
-                {{ $order->store->country }} <br>
-                Phone: {{ $order->store->phone }} <br>
-                </address>
+                <div class="row text-center">
+                <h2>Your Order Has Been Completed Successfully!</h2><br>
                 </div>
 
-                <div class="col-md-4">
-                <h3>Shipping To:</h3><br>
-                <address>
-                <strong>Name: {{ $order->address->fullName }} </strong><br>
-                {{ $order->address->address }}, {{ $order->address->address2 }} <br>
-                {{ $order->address->city }}, {{ $order->address->state }} {{ $order->address->zip }} <br>
-                {{ $order->address->country }} <br>
-                Phone: {{ $order->address->phone }} <br>
-                </address>
-                </div>
+                <div class="container-fluid">
+                <div class="row"> <!-- address and payment row -->
 
-                <div class="col-md-4">
-                <h3>Payment Method:</h3><br>
-                <strong>Cardholder Name: {{ $order->payment->nameOnCard }}</strong><br>
-                Creditcard Number: ****{{ $order->payment->lastFour }} <br>
-                Exp: {{ $order->payment->expMonth }}/{{ $order->payment->expYear }} <br>
-                </div>
-              </div><!--end of address and payment row-->
+                    <h4>Order Date: {{ $order->updated_at}}</h4>
+                    <div class="col-md-4">
+                        <h4>Shipping From:</h4>
+                        <address>
+                            <strong>Store: {{ $order->store->name }} </strong><br>
+                            {{ $order->store->address }}, {{ $order->store->address2 }} <br>
+                            {{ $order->store->city }}, {{ $order->store->state }} {{ $order->store->zip }} <br>
+                            {{ $order->store->country }} <br>
+                            Phone: {{ $order->store->phone }} <br>
+                        </address>
+                    </div>
 
-              <div class="row"><!-- products row -->
-                <h3>Products Ordered:</h3><br>
-                <!-- start of display ordered products -->
-                @foreach($order->products as $item)
-                    <li>
-                    Product: {{ $item->product->productName }} <br>
-                    Price: ${{ $item->price }} <br>
-                    quantity: {{ $item->quantity }} <br>
-                    </li>
-                @endforeach
+                    <div class="col-md-4">
+                        <h4>Shipping To:</h4>
+                        <address>
+                            <strong>Name: {{ $order->address->fullName }} </strong><br>
+                            {{ $order->address->address }}, {{ $order->address->address2 }} <br>
+                            {{ $order->address->city }}, {{ $order->address->state }} {{ $order->address->zip }} <br>
+                            {{ $order->address->country }} <br>
+                            Phone: {{ $order->address->phone }} <br>
+                        </address>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h4>Payment Method:</h4>
+                        <strong>Cardholder Name: {{ $order->payment->nameOnCard }}</strong><br>
+                        Creditcard Number: ****{{ $order->payment->lastFour }} <br>
+                        Exp: {{ $order->payment->expMonth }}/{{ $order->payment->expYear }} <br>
+                    </div>
+                </div><!--end of address and payment row-->
+
+                <div class="row"><!-- products row -->
+                    <h4>Products Ordered:</h4><br>
+                    <!-- start of display ordered products -->
+                    @foreach($order->products as $item)
+                        <div class="row" style="padding: 20px;">
+                            <div class="col-md-2" style="text-align: center;">                            
+                                <div><img src="{{asset('product_images/' . $item->product->image)}}" style="width: 100%;"></div>
+                            </div>
+                            <div class="col-md-6" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                <a href="./product/{{ $item->product->id }}" >{{ stripslashes($item->product->productName) }}</a>
+                            </div>
+                            <div class="col-md-2" style="text-align: center;">
+                                Quantity: {{ $item->quantity }}
+                            </div>
+                            <div class="col-md-2" style="">
+                                @if($item->quantity <= 1)
+                                ${{$item->product->price}}
+                                @else
+                                ${{($item->product->price)}} x {{ $item->quantity }}
+                                @endif
+                            </div>
+                        </div>
+                    @endforeach
                 <!-- end of display ordered products -->
 
                 <!-- start of display cost totals -->
-                <br>
-                <b>Subtotal:</b> ${{ $order->cost }}<br>
-                <b>Tax:</b> ${{ $order->tax }}<br>
-                <b>Shipping:</b> $0.00<br>
-                <h4><b>Total:</b> ${{ $order->total }}</h4><br>
-                <!-- end of display cost totals -->
-
-              </div><!--end of products row-->
-              <a href="{{ action('HomeController@index') }}" class="btn btn-primary">Continue Shopping</a>
-<!-- Stuff I added -->
+                <div class="row text-right" style="margin-right: 60px">
+                    <b>Subtotal:</b> ${{ $order->cost }}<br>
+                    <b>Tax:</b> ${{ $order->tax }}<br>
+                    <b>Shipping:</b> $0.00<br>
+                    <b><big>Total: ${{ $order->total }}</big></b>
                 </div>
+                <!-- end of display cost totals -->
+            </div><!--end of products row-->
+
+            <div class="row text-center">
+                <button id ="trackButton" name="Track Order" class="btn btn-primary center-block" href="{{ action('HomeController@index') }}" class="btn btn-primary">Continue Shopping</button>
+            </div>
+<!-- Stuff I added -->
+            </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection
