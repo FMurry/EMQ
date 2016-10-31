@@ -25,15 +25,17 @@
                                 </div>
                             </div>                            
                         </div>
+
                         <div class="col-md-3">
                             <div class="panel panel-warning" style="margin: 10px;">
-                                <div class="panel-heading">Shopping Cart</div>
+                                <div class="panel-heading">Order History</div>
                                 <div class="panel-body">
-                                    <img src="http://image.flaticon.com/icons/svg/204/204283.svg" alt="Cart" style="width:180px; height:180px; margin: 5px;">
-                                    <a href="{{ action('CartController@getCart') }}" class="btn btn-default">Manage Shopping Cart</a><br>
+                                    <img src="http://image.flaticon.com/icons/svg/172/172164.svg" alt="OrderHistory" style="width:180px; height:180px; margin: 5px;">
+                                    <a href="{{ action('OrderController@returnOrderHistory') }}" class="btn btn-default">View Order History</a><br>                              
                                 </div>
                             </div>                            
                         </div>
+
                         <div class="col-md-3">
                             <div class="panel panel-warning" style="margin: 10px;">
                                 <div class="panel-heading">Address Book</div>
@@ -43,21 +45,13 @@
                                 </div>
                             </div>                            
                         </div>
+
                         <div class="col-md-3">
                             <div class="panel panel-warning" style="margin: 10px;">
                                 <div class="panel-heading">Payment Methods</div>
                                 <div class="panel-body">
                                     <img src="http://image.flaticon.com/icons/svg/235/235805.svg" alt="Payment" style="width:180px; height:180px; margin: 5px;">
                                     <a href="{{ action('PaymentController@getPaymentMethods') }}" class="btn btn-default">Manage Payment Methods</a><br>                              
-                                </div>
-                            </div>                            
-                        </div>
-                                                <div class="col-md-3">
-                            <div class="panel panel-warning" style="margin: 10px;">
-                                <div class="panel-heading">Order History</div>
-                                <div class="panel-body">
-                                    <img src="http://image.flaticon.com/icons/svg/235/235805.svg" alt="OrderHistory" style="width:180px; height:180px; margin: 5px;">
-                                    <a href="{{ action('OrderController@returnOrderHistory') }}" class="btn btn-default">View Order History</a><br>                              
                                 </div>
                             </div>                            
                         </div>
