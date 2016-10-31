@@ -24,6 +24,7 @@
                 
                                 
                 <h3>Transaction ID: {{ $order->id }}</h3><br>
+                Order Date: {{ $order->updated_at}}<br>
                 <div class="col-md-4">
                 <h3>Shipping From:</h3><br>
                 <address>
