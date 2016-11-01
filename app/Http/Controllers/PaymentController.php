@@ -47,45 +47,69 @@ class PaymentController extends Controller
     */
     public function addPaymentMethod(Request $request){
 
+        //$number = preg_replace('/\D/', '', $request['cardNumber']);
 
 
         $this->validate($request, [
             'fullNameOnCard' => 'required|max:255',
             'cardNumber' => 'required|digits:16',
             'expirationMonth' => 'required|digits_between:1,12',
-            'expirationYear' => 'required|integer|between:2016,2025',
+            'expirationYear' => 'required|integer|between:2014,2025',
             //'body' => 'required',
         ]);
+        // Set str length and parity
+        /*$number_length = strlen($number);
+        $parity = $number_length % 2;
 
-        /* Convert Card Number to Hash to Check Uniqueness on database with Validate */
-        if($request['cardNumber']){
-            $lastFour = substr( $request['cardNumber'] , -4);
-            $request['cardNumber'] = sha1($request['cardNumber']);
-        }
+        //Luhn algorithm
+        $total = 0;
+        for ($i = 0; $i < $number_length; $i++){
+            $digit = $number[$i];
+            // Multiply alternate digits by two
+            if ($i % 2 == $parity) {
+                $digit *= 2;
+                // If the sum is two digits, add them together (in effect)
+                if ($digit > 9) {
+                    $digit -= 9;
+                }
+            }
+            // Total up the digits
+            $total += $digit;
+        } 
+        if($total % 10 == 0){*/
+            /* Convert Card Number to Hash to Check Uniqueness on database with Validate */
+            if($request['cardNumber']){
+                $lastFour = substr( $request['cardNumber'] , -4);
+                $request['cardNumber'] = sha1($request['cardNumber']);
+            }
 
-        $this->validate($request, [
-            'cardNumber' => 'unique:payment',
-        ]);
+            $this->validate($request, [
+                'cardNumber' => 'unique:payment',
+            ]);
 
-    	$nameOnCard = $request['fullNameOnCard'];
-		$cardNumber = $request['cardNumber'];
-		//$lastFour = substr($cardNumber, -4);
-		$cardHash = $cardNumber;//sha1($cardNumber);
-		$expMonth = $request['expirationMonth'];
-		$expYear = $request['expirationYear'];
+        	$nameOnCard = $request['fullNameOnCard'];
+    		$cardNumber = $request['cardNumber'];
+    		//$lastFour = substr($cardNumber, -4);
+    		$cardHash = $cardNumber;//sha1($cardNumber);
+    		$expMonth = $request['expirationMonth'];
+    		$expYear = $request['expirationYear'];
 
-        $paymentMethod = new Payment;
-        $paymentMethod->user_id = Auth::user()->id;
-        $paymentMethod->nameOnCard = $nameOnCard;
-        $paymentMethod->cardNumber = $cardHash;
-        $paymentMethod->lastFour = $lastFour;
-        $paymentMethod->expMonth = $expMonth;
-        $paymentMethod->expYear = $expYear;
-        $paymentMethod->save();//ALWAYS SAVE CHANGES
-	
-		$status = "Successfully Added New Payment Method.";
-        return redirect()->action('PaymentController@getPaymentMethods')->with('status', $status);
-
+            $paymentMethod = new Payment;
+            $paymentMethod->user_id = Auth::user()->id;
+            $paymentMethod->nameOnCard = $nameOnCard;
+            $paymentMethod->cardNumber = $cardHash;
+            $paymentMethod->lastFour = $lastFour;
+            $paymentMethod->expMonth = $expMonth;
+            $paymentMethod->expYear = $expYear;
+            $paymentMethod->save();//ALWAYS SAVE CHANGES
+    	
+    		$status = "Successfully Added New Payment Method.";
+            return redirect()->action('PaymentController@getPaymentMethods')->with('status', $status);
+        /*}
+        else{
+            $status = "Invalid Payment Method.";
+            return redirect()->action('PaymentController@addPaymentView')->with('status', $status);
+        }*/
 
     }
 
