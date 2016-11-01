@@ -21,6 +21,10 @@ class CreateOrderTable extends Migration
             $table->decimal('cost',10,2);
             $table->decimal('total',10,2);
             $table->decimal('tax',10,2);
+            $table->integer('delivery_time');
+            $table->boolean('delivered');
+            $table->timestamp('delivery_date')->nullable();
+
             $table->nullableTimestamps();
         });
     }

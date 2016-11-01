@@ -62,11 +62,14 @@ class OrderController extends Controller
     *
     */
     public function createOrder($order,$user_id,$payment_id,$address_id,$cost){
-        //Hardcoded Store for the mean time.
-        $store = Store::find(1);
+        /* Returns associate array of nearest store with store_id and delivery_time */
+        $nearest_store = OrderController::returnStoreAndDeliveryTime( $address_id );
 
     	$order->user_id = $user_id;
-    	$order->store_id = $store->id;
+    	$order->store_id = $nearest_store['store_id'];//$store->id;
+        $order->delivery_time = $nearest_store['delivery_time'];
+        $order->delivered = false;
+        $store = Store::find( $nearest_store['store_id'] );
     	// $order->orderaddress = $address_id;
     	// $order->orderpayment = $payment_id;
     	$order->orderpayment_id = $this->createOrderPayment($payment_id);
@@ -148,5 +151,50 @@ class OrderController extends Controller
 	    	$item->delete(); //delete item from cart
         }
 
+    }
+
+
+    public function gmapsStringify( $address ){
+        $address=str_replace(" ","+",$address);
+        return $address;
+    }
+
+    public function return_delivery_time($store, $home){
+        $url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=' .$store. '&destinations='.$home.'&key=AIzaSyCz2mUMKWxhHnmrCZoVYiWjwPwu3PUCPYs&format=json';
+        $delivery_json =json_decode(file_get_contents( $url ));
+        return $delivery_json->rows[0]->elements[0]->duration->value;
+    }
+
+    public function returnStoreAndDeliveryTime( $customer_address_id ){
+        /* retrieve customer address object*/
+        $customer = Address::find( $customer_address_id );
+        /* convert address object to string */
+        $customer_address = $customer->address.",".$customer->city.",".$customer->state." ".$customer->zip.",".$customer->country;
+        /* stringify customer address for gmaps */
+        $customer_address = OrderController::gmapsStringify( $customer_address );
+
+        /* retrieve all stores*/
+        $stores = Store::all();
+
+        $fastest_delivery_store = "";
+        $fastest_delivery_time = "";
+        foreach($stores as $store){
+            /* convert store address object to string */
+            $store_address = $store->address.",".$store->city.",".$store->state." ".$store->zip.",".$store->country;
+            /* stringify store address for gmaps */
+            $store_address = OrderController::gmapsStringify( $store_address );
+
+            $delivery_time = OrderController::return_delivery_time($store_address, $customer_address);
+
+            if( $fastest_delivery_time == "" ){ /* initialize fastest to first store */
+                $fastest_delivery_store = $store->id;
+                $fastest_delivery_time = $delivery_time;
+            }elseif( $delivery_time < $fastest_delivery_time){ /* set new store for delivery */
+                $fastest_delivery_store = $store->id;
+                $fastest_delivery_time = $delivery_time;
+            }
+        }
+        $store = array("store_id" => $fastest_delivery_store,"delivery_time"=> $fastest_delivery_time);
+        return $store;
     }
 }
