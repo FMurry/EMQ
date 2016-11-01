@@ -117,16 +117,27 @@ class PaymentController extends Controller
     * @param $number the CC number input
     */
     private function luhnCheck($number){
-        $len = strlen($number);
-        for ($i = $len-1; $i >= 0; $i--){
-            $ord = ord($number[$i]);
-            if (($len - 1) & $i){
-                $sum += $ord;
+        $number = preg_replace('/\D/', '', $ccNumber);
+
+         // Set str length and parity
+        $number_length = strlen($number);
+        $parity = $number_length % 2;
+
+        //Luhn algorithm
+        $total = 0;
+        for ($i = 0; $i < $number_length; $i++){
+            $digit = $number[$i];
+            // Multiply alternate digits by two
+            if ($i % 2 == $parity) {
+                $digit *= 2;
+                // If the sum is two digits, add them together (in effect)
+                if ($digit > 9) {
+                    $digit -= 9;
+                }
             }
-            else{
-                $sum += $ord / 5 + (2 * $ord) % 10;
-            }
-        }       
-        return $sum % 10 == 0;
+            // Total up the digits
+            $total += $digit;
+        }  
+        return $total % 10 == 0;
     }
 }
