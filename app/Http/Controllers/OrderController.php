@@ -18,6 +18,8 @@ use App\OrderProducts; //Import Payment to Controller
 use Illuminate\Support\Facades\Auth;//Needed to use Auth::
 use Illuminate\Support\Facades\DB;//Needed to use DB::
 
+use Carbon\Carbon;
+
 class OrderController extends Controller
 {
     /**
@@ -35,6 +37,7 @@ class OrderController extends Controller
     * @return view Returns process.complete view
     */
     public function completeOrder(Request $request){
+
         $this->validate($request, [
             'address' => 'required|integer|exists:address,id',//Can be hacked, need to validate address belongs to user
             'payment' => 'required|integer|exists:payment,id',//Can be hacked, need to validate payment method belongs to user
@@ -127,8 +130,68 @@ class OrderController extends Controller
     * @return view returns account.orders view
     */
     public function returnOrderHistory(){
-    	$orders = Order::where('user_id', Auth::user()->id )->orderBy('id', 'DESC')->get();
-    	return view('account.orders', ['orders' => $orders]);
+        
+        $orders = Order::where('user_id', Auth::user()->id )->orderBy('id', 'DESC')->get();
+        foreach ($orders as $order) {
+            OrderController::updateOrderIfDelivered( $order );
+        }
+
+        return view('account.orders', ['orders' => $orders]);
+    }
+
+    public function updateOrderIfDelivered( $order ){
+        if( $order->delivered == false ){
+            $now= Carbon::now(); //current time
+            $current_delivery_time = $now->diffInSeconds($order->created_at);
+            if( $current_delivery_time > $order->delivery_time ){
+                /* then order has already been delivered */
+                /* generate delivered_at timestamp */
+                $delivered_at = $order->created_at->addSeconds( $order->delivery_time );
+                $order->delivered_at = $delivered_at;
+                $order->delivered = true;
+                $order->save();
+            }
+        }
+    }
+
+    public function returnOrderTracking( $id ){
+        //add error checking for non-ids
+        $order = Order::find( $id );
+
+
+        /* if Order belongs to Customer */
+        if( $order->user_id == Auth::user()->id ){
+
+
+
+            if( $order->delivered == false ){
+
+                $now= Carbon::now(); //current time
+                $current_delivery_time = $now->diffInSeconds($order->created_at);
+
+                if( $current_delivery_time < $order->delivery_time){
+                    $home = $order->address->address.",".$order->address->city.",".$order->address->state." ".$order->address->zip.",".$order->address->country;
+                    $store = $order->store->address.",".$order->store->city.",".$order->store->state." ".$order->store->zip.",".$order->store->country;
+
+                    return view('account.tracking', ['customer_address' => $home, 'store_address' => $store, 'current_delivery_time' => $current_delivery_time, 'order_id' => $order->id]);
+                }else{
+                    /* had to place OrderController::returnOrderHistory() code directly, kept getting white screen bug */
+                    $orders = Order::where('user_id', Auth::user()->id )->orderBy('id', 'DESC')->get();
+                    foreach ($orders as $order) {
+                        OrderController::updateOrderIfDelivered( $order );
+                    }
+                    return view('account.orders', ['orders' => $orders]);
+                }
+            }
+            /* had to place OrderController::returnOrderHistory() code directly, kept getting white screen bug */
+            $orders = Order::where('user_id', Auth::user()->id )->orderBy('id', 'DESC')->get();
+            foreach ($orders as $order) {
+                OrderController::updateOrderIfDelivered( $order );
+            }
+            return view('account.orders', ['orders' => $orders]);
+        }
+        //add redirect for illegal user attempt
+        
     }
 
 

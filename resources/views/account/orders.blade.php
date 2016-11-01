@@ -22,7 +22,7 @@
         <div class="panel-body">
             <div class="row"> <!-- address and payment row -->
                 
-                <h4>Order Date: {{ $order->updated_at}}</h4>
+                <h4>Order Date: {{ $order->created_at}}</h4>
                 <div class="col-md-4">
                 <h4>Shipping From:</h4>
                 <address>
@@ -90,7 +90,12 @@
 
         <!--Track Order button-->
         <div class="row text-center">
-            <button id ="trackButton" name="Track Order" class="btn btn-primary center-block" href="">Track Order</button>
+            @if($order->delivered == false)
+            <h4>Currently On Delivered</h4>
+            <a href="{{ action('OrderController@returnOrderTracking', ['id' => $order->id]) }}" class="btn btn-primary">Track Order</a>
+            @else
+            <h4>Successfully Delivered On: {{ $order->delivered_at }}</h4>
+            @endif
         </div>
         <!--End of Track Order button-->
 
