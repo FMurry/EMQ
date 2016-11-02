@@ -25,6 +25,8 @@
           $('.popular-slick').slick({
             slidesToShow: 3,
             infinite: true,
+            autoplay: true,
+            autoplaySpeed: 5000
           });
         });
     </script>
