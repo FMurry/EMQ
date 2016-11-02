@@ -50,6 +50,8 @@
                         <div class="deals-slick" style="width: 90%; margin: 0px auto;">
                           <img src="http://localhost/emq/public/deal_images/emq-deal-01.jpg" alt="" style="">
                           <img src="http://localhost/emq/public/deal_images/emq-deal-02.jpg" alt="" style="">
+                          <img src="http://localhost/emq/public/deal_images/emq-deal-03.jpg" alt="" style="">
+                          <img src="http://localhost/emq/public/deal_images/emq-deal-04.jpg" alt="" style="">
                         </div>                        
                     </div>
 
