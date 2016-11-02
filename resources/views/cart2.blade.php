@@ -62,7 +62,7 @@
                 </div>
 
             </div>
-            <a href="{{ action('CartController@startProcessOrderForm') }}" class="btn btn-primary">Process Order</a>&nbsp;&nbsp;&nbsp;<a href="{{ action('HomeController@index') }}" class="btn btn-default">Continue Shopping</a>
+            <a href="{{ action('CartController@startProcessOrderForm') }}" class="btn btn-primary">Process Order</a>&nbsp;&nbsp;&nbsp;<a href="{{ action('ProductsController@shopPublicIndex') }}" class="btn btn-default">Continue Shopping</a>
             <br><br><br>
         </div>
     </div>

@@ -118,7 +118,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+        <a data-parent="#accordion" href="#collapse2">
         Select Payment Method</a>
       </h4>
     </div>
@@ -147,7 +147,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+        <a data-parent="#accordion" href="#collapse3">
         Complete Order</a>
       </h4>
     </div>
