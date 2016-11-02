@@ -84,8 +84,8 @@ class PaymentController extends Controller
     	
     		$status = "Successfully Added New Payment Method.";
             return redirect()->action('PaymentController@getPaymentMethods')->with('status', $status);
-        }
-        /*else{
+        /*}
+        else{
             $status = "Invalid Payment Method.";
             return redirect()->action('PaymentController@addPaymentView')->with('status', $status);
         }*/
