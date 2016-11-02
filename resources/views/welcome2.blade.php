@@ -16,11 +16,15 @@
 
     <script type="text/javascript">
         $(document).ready(function(){
-          $('.promo-items-slick').slick({
-            slidesToShow: 2,
+          $('.deals-slick').slick({
+            slidesToShow: 1,
             infinite: true,
             autoplay: true,
-            autoplaySpeed: 2000
+            autoplaySpeed: 3000
+          });
+          $('.popular-slick').slick({
+            slidesToShow: 3,
+            infinite: true,
           });
         });
     </script>
@@ -41,50 +45,39 @@
                     <h1 style="width: 100%; text-align: center;">Checkout these great deals!</h1>
 
                     <div class="slide-wrapper" style="text-align: center">
-                        <div class="promo-items-slick" style="width: 90%; margin: 0px auto;">
-                          <img src="http://image.flaticon.com/icons/svg/214/214337.svg" alt="Rocket" style="width:200px; height:200px;">
-                          <img src="http://image.flaticon.com/icons/svg/214/214299.svg" alt="Globe" style="width:200px; height:200px;">
-                          <img src="http://image.flaticon.com/icons/svg/214/214298.svg" alt="Donut" style="width:200px; height:200px;">
-                          <img src="http://image.flaticon.com/icons/svg/214/214320.svg" alt="Map" style="width:200px; height:200px;">
+                        <div class="deals-slick" style="width: 90%; margin: 0px auto;">
+                          <img src="http://localhost/emq/public/deal_images/emq-deal-01.jpg" alt="" style="">
+                          <img src="http://localhost/emq/public/deal_images/emq-deal-02.jpg" alt="" style="">
                         </div>                        
                     </div>
 
-                    <!-- <slick slides-to-show=3 slides-to-scroll=3 init-onload=true data="awesomeThings">
-                      <div>1</div>
-                      <div>2</div>
-                      <div>3</div>
-                    </slick> -->
+                    <h3 style="width: 100%;">Popular Items</h3>
 
-                    <div class="row" style="width: 100%; text-align: center;">
-                        <div class="col-md-4">
-                            <div class="panel panel-warning" style="margin: 10px;">
-                                <div class="panel-heading">This is a box</div>
-                                <div class="panel-body">
-                                    <img src="http://image.flaticon.com/icons/svg/214/214273.svg" alt="Box" style="width:200px; height:200px; margin: 5px;">
-                                    <button class="btn btn-default">Add to Cart</button>
+                    <div class="slide-wrapper" style="text-align: center">
+                        <div class="popular-slick" style="width: 90%; margin: 0px auto;">
+                          
+                              @foreach($products as $product)
+                                <div class="col-md-4" style="">
+                                    <div class="panel panel-warning" style="margin: 10px;">
+                                        <div class="panel-heading" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                        {{ stripslashes($product->productName) }}
+                                        </div>
+                                        <div class="panel-body" style="text-align: center">
+                                            <div style="margin: 5px auto;"></div>
+                                        <!-- Margins are off for some reason... -->
+                                          <div style="margin: 5px auto;">
+                                            <img src="http://localhost/emq/public/product_images/{{ $product->image }}" alt="..." style="max-height: 100px;">                               
+                                          </div>
+                                          <div>
+                                            <a href="./product/{{ $product->id }}" class="btn btn-default">View Item</a>
+                                          </div>
+                                        </div>
+                                    </div>                            
                                 </div>
-                            </div>                            
-                        </div>
-                        <div class="col-md-4">
-                            <div class="panel panel-warning" style="margin: 10px;">
-                                <div class="panel-heading">This is another box</div>
-                                <div class="panel-body">
-                                    <img src="http://image.flaticon.com/icons/svg/214/214273.svg" alt="Box" style="width:200px; height:200px; margin: 5px;">
-                                    <button class="btn btn-default">Add to Cart</button>                                
-                                </div>
-                            </div>                            
-                        </div>
-                        <div class="col-md-4">
-                            <div class="panel panel-warning" style="margin: 10px;">
-                                <div class="panel-heading">We sell boxes</div>
-                                <div class="panel-body">
-                                    <img src="http://image.flaticon.com/icons/svg/214/214273.svg" alt="Box" style="width:200px; height:200px; margin: 5px;">
-                                    <button class="btn btn-default">Add to Cart</button>                                
-                                </div>
-                            </div>                            
-                        </div>
+                            @endforeach
+                                                    
+                        </div>                        
                     </div>
-
 
                 </div>
             </div>
