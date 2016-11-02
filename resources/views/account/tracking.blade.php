@@ -34,18 +34,18 @@
         text-align: center;
       }
       #floating-panel2 {
-  position: absolute;
-  bottom: 30px;
-  left: 7%;
-  z-index: 5;
-  background-color: #fff;
-  padding: 5px;
-  border: 1px solid #999;
-  //text-align: center;
-  font-family: 'Roboto','sans-serif';
-  line-height: 30px;
-  padding-left: 10px;
-}
+        position: absolute;
+        bottom: 30px;
+        left: 7%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        //text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
 
       #floating-panel2 {
         margin-left: -52px;
