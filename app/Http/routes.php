@@ -78,8 +78,5 @@ Route::post('/process/complete', 'OrderController@completeOrder');
 Route::get('/account/orders', 'OrderController@returnOrderHistory');
 Route::get('/account/tracking/{id}', 'OrderController@returnOrderTracking');
 
+Route::get('/welcome', 'ProductsController@welcomePageIndex');
 
-/* Davids Welcome testing view */
-Route::get('/welcome', function () {
-    return view('welcome2');
-});

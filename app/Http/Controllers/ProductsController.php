@@ -24,6 +24,10 @@ class ProductsController extends Controller
     	return view('product', ['product' => $product]);
     }
 
+    public function welcomePageIndex(){
+        $products = Products::all();
+        return view('welcome2', ['products' => $products]);
+    }
     public function shopPublicIndex()
     {
         $products = Products::all();
