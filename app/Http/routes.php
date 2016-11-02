@@ -10,10 +10,10 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+/*
 Route::get('/', function () {
     return view('welcome2');
-});
+});*/
 
 
 Route::auth();
@@ -75,8 +75,11 @@ Route::get('/account/payment/delete/{id}', 'PaymentController@deletePaymentMetho
 Route::get('/process/start', 'CartController@startProcessOrderForm');
 
 Route::post('/process/complete', 'OrderController@completeOrder');
+
+
 Route::get('/account/orders', 'OrderController@returnOrderHistory');
 Route::get('/account/tracking/{id}', 'OrderController@returnOrderTracking');
 
 Route::get('/welcome', 'ProductsController@welcomePageIndex');
+Route::get('/', 'ProductsController@welcomePageIndex');
 

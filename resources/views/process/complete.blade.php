@@ -85,7 +85,7 @@
             </div><!--end of products row-->
 
             <div class="row text-center">
-                <a href="{{ action('HomeController@index') }}" class="btn btn-primary">Continue Shopping</a>
+                <a href="{{ action('OrderController@returnOrderTracking', ['id' => $order->id]) }}" class="btn btn-primary">Track Order</a>&nbsp;&nbsp;&nbsp;<a href="{{ action('ProductsController@shopPublicIndex') }}" class="btn btn-default">Continue Shopping</a>
             </div>
 <!-- Stuff I added -->
             </div>

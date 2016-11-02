@@ -55,6 +55,7 @@ class OrderController extends Controller
         return view('process.complete', ['order' => $order]);
     }
 
+
     /**
     * creates the order and saves it into database
     *@param $order The order object
