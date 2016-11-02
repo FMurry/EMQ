@@ -52,8 +52,8 @@
                     @if (Auth::guest())
                     <li><a href="{{ url('/shop') }}">Shop</a></li>
                     @else
-                    <li><a href="{{ url('/shop') }}">Shop</a></li>
                     <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li><a href="{{ url('/shop') }}">Shop</a></li>
                     @endif
                 </ul>
 

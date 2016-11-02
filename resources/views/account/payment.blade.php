@@ -25,7 +25,7 @@
         <div class="col-md-10 col-md-offset-1">
 
                 @if (session('status'))
-                    <div class="alert alert-info">
+                    <div class="alert alert-danger">
                         {{ session('status') }}
                     </div>
                 @endif
