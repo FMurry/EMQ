@@ -83,3 +83,13 @@ Route::get('/account/tracking/{id}', 'OrderController@returnOrderTracking');
 Route::get('/welcome', 'ProductsController@welcomePageIndex');
 Route::get('/', 'ProductsController@welcomePageIndex');
 
+Route::group(['middleware' => 'App\Http\Middleware\AuthMiddleware'], function()
+{
+    Route::get('/admin/management', 'AdminController@getAdminAccount');
+    Route::get('/admin/users', 'AdminController@getAllUsers');
+    Route::get('/admin/orders/{id}', 'AdminController@manageUserOrder');
+    Route::get('/admin/stores','AdminController@getStores');
+
+});
+
+
