@@ -20,13 +20,15 @@
             slidesToShow: 1,
             infinite: true,
             autoplay: true,
-            autoplaySpeed: 3000
+            autoplaySpeed: 3000,
+            arrows: false
           });
           $('.popular-slick').slick({
             slidesToShow: 3,
             infinite: true,
             autoplay: true,
-            autoplaySpeed: 5000
+            autoplaySpeed: 3000,
+            pauseOnHover: true
           });
         });
     </script>
@@ -44,7 +46,7 @@
 
                 <div class="panel-body">
                     
-                    <h1 style="width: 100%; text-align: center;">Checkout these great deals!</h1>
+                    <h1 style="width: 100%; text-align: center;">Take a look at these EMQ exclusive deals!</h1>
 
                     <div class="slide-wrapper" style="text-align: center">
                         <div class="deals-slick" style="width: 90%; margin: 0px auto;">
@@ -68,9 +70,8 @@
                                         </div>
                                         <div class="panel-body" style="text-align: center">
                                             <div style="margin: 5px auto;"></div>
-                                        <!-- Margins are off for some reason... -->
-                                          <div style="margin: 5px auto;">
-                                            <img src="http://localhost/emq/public/product_images/{{ $product->image }}" alt="..." style="max-height: 100px;">                               
+                                          <div style="height: 100px;">
+                                            <img src="http://localhost/emq/public/product_images/{{ $product->image }}" alt="..." style="max-height: 100px; max-width: 100%; margin: 5px auto;">                               
                                           </div>
                                           <div>
                                             <a href="./product/{{ $product->id }}" class="btn btn-default">View Item</a>
