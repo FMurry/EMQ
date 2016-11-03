@@ -22,6 +22,20 @@
             autoplaySpeed: 3000,
             pauseOnHover: true
           });
+          $('.history-slick').slick({
+            slidesToShow: 3,
+            infinite: true,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            pauseOnHover: true
+          });
+          $('.similar-slick').slick({
+            slidesToShow: 3,
+            infinite: true,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            pauseOnHover: true
+          });
         });
     </script>
 
@@ -70,24 +84,73 @@
                           @endfor
                           
                         </div>
-                  
-                      <!-- @foreach($products as $product)
-                        <div class="col-md-4">
-                            <div class="panel panel-warning" style="margin: 10px;">
-                                <div class="panel-heading" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-                                {{ stripslashes($product->productName) }}
-                                </div>
-                                <div class="panel-body">
-                                  <div style="margin: 5px auto;">
-                                    <img src="http://localhost/emq/public/product_images/{{ $product->image }}" alt="..." style="max-height: 100px;">                               
-                                  </div>
-                                  <div>
-                                    <a href="./product/{{ $product->id }}" class="btn btn-default">View Item</a>
-                                  </div>
-                                </div>
-                            </div>                            
+                                     
+                  </div>
+
+                  <h3 style="width: 100%;">Continue where you left off!</h3>
+
+                  <div class="slide-wrapper" style="text-align: center">
+                        <div class="history-slick" style="width: 90%; margin: 0px auto;">
+
+                          @for($i = 0; $i < 5; $i++)
+
+                            <?php 
+                              $current_product = $products[rand(0, count($products)-1)]
+                            ?>
+
+                            <div class="col-md-4">
+                                <div class="panel panel-warning" style="margin: 10px;">
+                                    <div class="panel-heading" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                    {{ stripslashes($current_product->productName) }}
+                                    </div>
+                                    <div class="panel-body">
+                                      <div style="margin: 5px auto;">
+                                        <img src="http://localhost/emq/public/product_images/{{ $current_product->image }}" alt="..." style="max-height: 100px; max-width: 100%; margin: 5px auto;">                               
+                                      </div>
+                                      <div>
+                                        <a href="./product/{{ $current_product->id }}" class="btn btn-default">View Item</a>
+                                      </div>
+                                    </div>
+                                </div>                            
+                            </div>
+
+                          @endfor
+                          
                         </div>
-                      @endforeach  -->                    
+                                     
+                  </div>
+
+                  <h3 style="width: 100%;">Similar Items based on your Browsing History</h3>
+
+                  <div class="slide-wrapper" style="text-align: center">
+                        <div class="similar-slick" style="width: 90%; margin: 0px auto;">
+
+                          @for($i = 0; $i < 5; $i++)
+
+                            <?php 
+                              $current_product = $products[rand(0, count($products)-1)]
+                            ?>
+
+                            <div class="col-md-4">
+                                <div class="panel panel-warning" style="margin: 10px;">
+                                    <div class="panel-heading" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                    {{ stripslashes($current_product->productName) }}
+                                    </div>
+                                    <div class="panel-body">
+                                      <div style="margin: 5px auto;">
+                                        <img src="http://localhost/emq/public/product_images/{{ $current_product->image }}" alt="..." style="max-height: 100px; max-width: 100%; margin: 5px auto;">                               
+                                      </div>
+                                      <div>
+                                        <a href="./product/{{ $current_product->id }}" class="btn btn-default">View Item</a>
+                                      </div>
+                                    </div>
+                                </div>                            
+                            </div>
+
+                          @endfor
+                          
+                        </div>
+                                     
                   </div>
 
 <!-- Stuff I added -->

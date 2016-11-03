@@ -25,6 +25,13 @@
             autoplaySpeed: 3000,
             pauseOnHover: true
           });
+          $('.top-picks-slick').slick({
+            slidesToShow: 3,
+            infinite: true,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            pauseOnHover: true
+          });
         });
     </script>
     <!-- End of Scripts Added to Body Section -->
@@ -46,6 +53,7 @@
                           <img src="http://localhost/emq/public/deal_images/emq-deal-04.jpg" alt="" style="">
                         </div>                        
                     </div>
+
                     <h3 style="width: 100%;">Popular Items</h3>
                     <div class="slide-wrapper" style="text-align: center">
                         <div class="popular-slick" style="width: 90%; margin: 0px auto;">
@@ -71,6 +79,39 @@
                                                     
                         </div>                        
                     </div>
+
+                    <h3 style="width: 100%;">Our Top-Picks of the day!</h3>
+                    <div class="slide-wrapper" style="text-align: center">
+                        <div class="top-picks-slick" style="width: 90%; margin: 0px auto;">
+
+                          @for($i = 0; $i < 5; $i++)
+
+                            <?php 
+                              $current_product = $products[rand(0, count($products)-1)]
+                            ?>
+
+                            <div class="col-md-4">
+                                <div class="panel panel-warning" style="margin: 10px;">
+                                    <div class="panel-heading" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                    {{ stripslashes($current_product->productName) }}
+                                    </div>
+                                    <div class="panel-body">
+                                      <div style="margin: 5px auto;">
+                                        <img src="http://localhost/emq/public/product_images/{{ $current_product->image }}" alt="..." style="max-height: 100px; max-width: 100%; margin: 5px auto;">                               
+                                      </div>
+                                      <div>
+                                        <a href="./product/{{ $current_product->id }}" class="btn btn-default">View Item</a>
+                                      </div>
+                                    </div>
+                                </div>                            
+                            </div>
+
+                          @endfor
+                          
+                        </div>
+                                     
+                  </div>
+
                 </div>
             </div>
         </div>
