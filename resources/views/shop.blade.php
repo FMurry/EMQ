@@ -24,22 +24,7 @@
                 <div class="panel-body">
 
 <!-- Stuff I added -->
-                  <style>
-                  table, th , td  {
-                    border: 1px solid grey;
-                    border-collapse: collapse;
-                    padding: 5px;
-                  }
-                  table tr:nth-child(odd) {
-                    background-color: #f1f1f1;
-                  }
-                  table tr:nth-child(even) {
-                    background-color: #ffffff;
-                  }
-                  </style>
-
-                  <!--<div ng-app="myApp" ng-controller="customersCtrl">--> 
-
+                  
                     <div class="row" style="width: 100%; text-align: center;">
                       @foreach($products as $product)
                         <div class="col-md-4">
