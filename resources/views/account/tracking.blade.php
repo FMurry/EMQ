@@ -84,7 +84,8 @@
     <input type="hidden" id="start" name="Store" value="{{ $store_address }}">
     <input type="hidden" id="end" name="Home" value="{{ $customer_address }}">
     <input type="hidden" id="elapsed_order_time" name="Delivery" value="{{ $current_delivery_time }}"><!-- in seconds -->
-    <input type="hidden" id="store_prompt" value="<center><b>EMQ San Mateo</b><br>1750 West Hamilton Ave<br>Campbell, CA 95076<br>Phone: 123-123-1234">
+    <input type="hidden" id="store_prompt" value="{{ $storeAddressHTML }}">
+    <input type="hidden" id="home_prompt" value="{{ $homeAddressHTML }}">
 
     <!-- start of LEGEND -->
     <div id="floating-panel2">
@@ -225,7 +226,7 @@
         marker.setMap(map);
         marker.setPosition(directionResult.routes[0].legs[0].end_location);
         attachInstructionText(
-        stepDisplay, marker, "HOUSE", map);
+        stepDisplay, marker, document.getElementById('home_prompt').value, map);
 
         /* END OF DRAW STORE AND HOUSE MARKERS */
 
@@ -252,7 +253,7 @@
             console.log("Event triggered: ("+ i +") " + running_time);
             marker.setPosition(myRoute.steps[i-1].end_location);
             attachInstructionText(
-              stepDisplay, marker, "Delivery Truck", map);
+              stepDisplay, marker, "Your package is on its way!", map);
             break;
           }
           
