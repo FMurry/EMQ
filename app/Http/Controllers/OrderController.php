@@ -155,6 +155,15 @@ class OrderController extends Controller
         }
     }
 
+    public function address2html( $name, $obj ){
+        $addressHtml = "<center><b>".$name."</b><br>".$obj->address;
+        if( $obj->address2 != ""){
+            $addressHtml .= ", ".$obj->address;
+        }
+        $addressHtml .= "<br>".$obj->city .", ".$obj->state ." ".$obj->zip."<br>Phone: ".$obj->phone."</center>";
+        return $addressHtml;
+    }
+
     public function returnOrderTracking( $id ){
         //add error checking for non-ids
         $order = Order::find( $id );
@@ -174,7 +183,10 @@ class OrderController extends Controller
                     $home = $order->address->address.",".$order->address->city.",".$order->address->state." ".$order->address->zip.",".$order->address->country;
                     $store = $order->store->address.",".$order->store->city.",".$order->store->state." ".$order->store->zip.",".$order->store->country;
                     $delivery_estimate = $order->created_at->addSeconds( $order->delivery_time );
-                    return view('account.tracking', ['customer_address' => $home, 'store_address' => $store, 'current_delivery_time' => $current_delivery_time, 'order' => $order, 'delivery_estimate' => $delivery_estimate->format('l, F jS Y @ h:i A') ]);
+                    
+                    $homeAddress = OrderController::address2html($order->address->fullName, $order->address);
+                    $storeAddress = OrderController::address2html($order->store->name, $order->store);
+                    return view('account.tracking', ['customer_address' => $home, 'store_address' => $store, 'current_delivery_time' => $current_delivery_time, 'order' => $order, 'delivery_estimate' => $delivery_estimate->format('l, F jS Y @ h:i A') , 'homeAddressHTML' => $homeAddress, 'storeAddressHTML' => $storeAddress]);
                 }else{
                     /* had to place OrderController::returnOrderHistory() code directly, kept getting white screen bug */
                     $orders = Order::where('user_id', Auth::user()->id )->orderBy('id', 'DESC')->get();
