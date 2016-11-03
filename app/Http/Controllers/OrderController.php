@@ -147,7 +147,7 @@ class OrderController extends Controller
             if( $current_delivery_time > $order->delivery_time ){
                 /* then order has already been delivered */
                 /* generate delivered_at timestamp */
-                $delivered_at = $order->created_at->addSeconds( $order->delivery_time );
+                $delivered_at = $order->created_at->addSeconds( $order->delivery_time )->format('l, F jS Y @ h:i A');
                 $order->delivered_at = $delivered_at;
                 $order->delivered = true;
                 $order->save();
@@ -173,8 +173,8 @@ class OrderController extends Controller
                 if( $current_delivery_time < $order->delivery_time){
                     $home = $order->address->address.",".$order->address->city.",".$order->address->state." ".$order->address->zip.",".$order->address->country;
                     $store = $order->store->address.",".$order->store->city.",".$order->store->state." ".$order->store->zip.",".$order->store->country;
-
-                    return view('account.tracking', ['customer_address' => $home, 'store_address' => $store, 'current_delivery_time' => $current_delivery_time, 'order_id' => $order->id]);
+                    $delivery_estimate = $order->created_at->addSeconds( $order->delivery_time );
+                    return view('account.tracking', ['customer_address' => $home, 'store_address' => $store, 'current_delivery_time' => $current_delivery_time, 'order' => $order, 'delivery_estimate' => $delivery_estimate->format('l, F jS Y @ h:i A') ]);
                 }else{
                     /* had to place OrderController::returnOrderHistory() code directly, kept getting white screen bug */
                     $orders = Order::where('user_id', Auth::user()->id )->orderBy('id', 'DESC')->get();

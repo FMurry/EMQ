@@ -35,8 +35,8 @@
       }
       #floating-panel2 {
         position: absolute;
-        bottom: 30px;
-        left: 7%;
+        top: 55px;
+        left: 8%;
         z-index: 5;
         background-color: #fff;
         padding: 5px;
@@ -84,7 +84,7 @@
     <input type="hidden" id="start" name="Store" value="{{ $store_address }}">
     <input type="hidden" id="end" name="Home" value="{{ $customer_address }}">
     <input type="hidden" id="elapsed_order_time" name="Delivery" value="{{ $current_delivery_time }}"><!-- in seconds -->
-
+    <input type="hidden" id="store_prompt" value="<center><b>EMQ San Mateo</b><br>1750 West Hamilton Ave<br>Campbell, CA 95076<br>Phone: 123-123-1234">
 
     <!-- start of LEGEND -->
     <div id="floating-panel2">
@@ -107,6 +107,32 @@
     <div id="warnings-panel"></div>
 
             <center></a>&nbsp;&nbsp;&nbsp;<a href="{{ action('OrderController@returnOrderHistory') }}" class="btn btn-primary">Return to Order History</a>&nbsp;&nbsp;&nbsp;<a href="{{ action('HomeController@index') }}" class="btn btn-default">Continue Shopping</a></center>
+            
+            <div class="row"><!-- products row -->
+                <center><h3>Items Out on Delivery</h3></center>
+                <!-- start of display ordered products -->
+                @foreach($order->products as $item)
+                    <div class="row" style="padding: 20px;">
+                            <div class="col-md-2" style="text-align: center;">                            
+                                <div><img src="{{asset('product_images/' . $item->product->image)}}" style="width: 100%;"></div>
+                            </div>
+                            <div class="col-md-8" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                <a href="../product/{{ $item->product->id }}" >{{ stripslashes($item->product->productName) }}</a>
+                            </div>
+                            <div class="col-md-2" style="text-align: center;">
+                                Quantity: {{ $item->quantity }}
+                            </div>
+                    </div>
+                @endforeach
+                <!-- end of display ordered products -->
+
+                <!-- start of display cost totals -->
+                <div class="row text-center" >
+                <a href="{{ action('OrderController@returnOrderTracking', ['id' => $order->id]) }}" class="btn btn-success"><h4>Estimated Arrival Time: {{ $delivery_estimate }}</h4></a>
+                </div>
+                <!-- end of display cost totals -->
+            </div><!--end of products row-->
+
     <script>
       function initMap() {
         var markerArray = [];
@@ -192,7 +218,7 @@
           marker.setMap(map);
         marker.setPosition(directionResult.routes[0].legs[0].start_location);
         attachInstructionText(
-        stepDisplay, marker, "STORE", map);
+        stepDisplay, marker, document.getElementById('store_prompt').value, map);
 
         var marker = markerArray[1] = markerArray[1] || new google.maps.Marker({ 
         icon: 'http://findicons.com/files/icons/2166/oxygen/48/go_home.png'});
