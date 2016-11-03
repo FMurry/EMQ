@@ -2,28 +2,29 @@
 
 @section('scripts-head')
     <!-- Start of Scripts Added to Head Section -->
-    <!-- Angular -->
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="misc/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="misc/slick/slick-theme.css"/>
     <!-- End of Scripts Added to Head Section -->
 @endsection
 
-
-
 @section('scripts-body')
     <!-- Start of Scripts Added to Body Section -->
-  <script>
-  var app = angular.module('myApp', []);
-  app.controller('customersCtrl', function($scope, $http) {
-      $http.get("http://localhost/emq/public/api?data=products")
-      .then(function (response) {
-        $scope.names = response.data.products;
-        $scope.random = function() {
-          return 0.5 - Math.random();
-        }
-      });
-      
-  });
-  </script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+          $('.recommended-slick').slick({
+            slidesToShow: 3,
+            infinite: true,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            pauseOnHover: true
+          });
+        });
+    </script>
+
     <!-- End of Scripts Added to Body Section -->
 @endsection
 
@@ -38,45 +39,56 @@
                 <div class="panel-body">
 
 <!-- Stuff I added -->
-                  <style>
-                  table, th , td  {
-                    border: 1px solid grey;
-                    border-collapse: collapse;
-                    padding: 5px;
-                  }
-                  table tr:nth-child(odd) {
-                    background-color: #f1f1f1;
-                  }
-                  table tr:nth-child(even) {
-                    background-color: #ffffff;
-                  }
-                  </style>
+                  
+                  <h3 style="width: 100%;">Recommended for You!</h3>
 
-                  <div ng-app="myApp" ng-controller="customersCtrl"> 
+                  <div class="slide-wrapper" style="text-align: center">
+                        <div class="recommended-slick" style="width: 90%; margin: 0px auto;">
 
-                    <div class="row" style="width: 100%; text-align: center;">
-                      <div ng-repeat="x in names">
+                          @for($i = 0; $i < 5; $i++)
+
+                            <?php 
+                              $current_product = $products[rand(0, count($products)-1)]
+                            ?>
+
+                            <div class="col-md-4">
+                                <div class="panel panel-warning" style="margin: 10px;">
+                                    <div class="panel-heading" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                    {{ stripslashes($current_product->productName) }}
+                                    </div>
+                                    <div class="panel-body">
+                                      <div style="margin: 5px auto;">
+                                        <img src="http://localhost/emq/public/product_images/{{ $current_product->image }}" alt="..." style="max-height: 100px; max-width: 100%; margin: 5px auto;">                               
+                                      </div>
+                                      <div>
+                                        <a href="./product/{{ $current_product->id }}" class="btn btn-default">View Item</a>
+                                      </div>
+                                    </div>
+                                </div>                            
+                            </div>
+
+                          @endfor
+                          
+                        </div>
+                  
+                      <!-- @foreach($products as $product)
                         <div class="col-md-4">
                             <div class="panel panel-warning" style="margin: 10px;">
                                 <div class="panel-heading" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-                                @{{ x.productName }}
+                                {{ stripslashes($product->productName) }}
                                 </div>
                                 <div class="panel-body">
                                   <div style="margin: 5px auto;">
-                                    <img src="http://localhost/emq/public/product_images/@{{ x.image }}" alt="How do I dynamically put images here..." style="max-height: 100px;">                               
+                                    <img src="http://localhost/emq/public/product_images/{{ $product->image }}" alt="..." style="max-height: 100px;">                               
                                   </div>
                                   <div>
-                                    <a href="./product/@{{ x.id }}" class="btn btn-default">View Item</a>
+                                    <a href="./product/{{ $product->id }}" class="btn btn-default">View Item</a>
                                   </div>
                                 </div>
                             </div>                            
                         </div>
-                      </div>                      
-                    </div>
-
+                      @endforeach  -->                    
                   </div>
-
-
 
 <!-- Stuff I added -->
 
