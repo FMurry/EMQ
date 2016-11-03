@@ -44,8 +44,7 @@
 
                 <div class="panel-body">
                     
-                    <h1 style="width: 100%; text-align: center;">Checkout these great deals!</h1>
-
+                    <!--<h1 style="width: 100%; text-align: center;">Checkout these great deals!</h1>-->
                     <div class="slide-wrapper" style="text-align: center">
                         <div class="deals-slick" style="width: 90%; margin: 0px auto;">
                           <img src="http://localhost/emq/public/deal_images/emq-deal-01.jpg" alt="" style="">
@@ -70,7 +69,7 @@
                                             <div style="margin: 5px auto;"></div>
                                         <!-- Margins are off for some reason... -->
                                           <div style="margin: 5px auto;">
-                                            <img src="http://localhost/emq/public/product_images/{{ $product->image }}" alt="..." style="max-height: 100px;">                               
+                                            <center><img src="http://localhost/emq/public/product_images/{{ $product->image }}" alt="..." style="max-height: 100px;"></center>                               
                                           </div>
                                           <div>
                                             <a href="./product/{{ $product->id }}" class="btn btn-default">View Item</a>
