@@ -13,7 +13,7 @@ class StoreTableSeeder extends Seeder
     {
         DB::table('store')->delete();
         DB::table('store')->insert(array([
-        	'name' => 'Store1',
+        	'name' => 'EMQ',
         	'address' => '2004 El Camino Real',
         	'address2' => '',
         	'city' => 'Santa Clara',
@@ -23,7 +23,7 @@ class StoreTableSeeder extends Seeder
         	'phone' => 4085555555,
         	'salesTax' => 8.75
         	],
-            ['name' => 'Store2',
+            ['name' => 'EMQ',
             'address' => '2161 Monterey Rd',
             'address2' => '',
             'city' => 'San Jose',
@@ -33,7 +33,7 @@ class StoreTableSeeder extends Seeder
             'phone' => 4086666666,
             'salesTax' => 9.00
             ],
-            ['name' => 'Store3',
+            ['name' => 'EMQ',
             'address' => '133 Serramonte Center',
             'address2' => '',
             'city' => 'Daly City',
@@ -43,7 +43,7 @@ class StoreTableSeeder extends Seeder
             'phone' => 4087777777,
             'salesTax' => 9.00
             ],
-            ['name' => 'Store4',
+            ['name' => 'EMQ',
             'address' => '2485 El Camino Real',
             'address2' => '',
             'city' => 'Redwood City',
@@ -53,7 +53,7 @@ class StoreTableSeeder extends Seeder
             'phone' => 4088888888,
             'salesTax' => 9.00
             ],
-            ['name' => 'Store5',
+            ['name' => 'EMQ',
             'address' => '3747 Grand Ave',
             'address2' => '',
             'city' => 'Oakland',
@@ -63,7 +63,7 @@ class StoreTableSeeder extends Seeder
             'phone' => 4081111111,
             'salesTax' => 9.50
             ],
-            ['name' => 'Store6',
+            ['name' => 'EMQ',
             'address' => '43950 Pacific Commons Blvd',
             'address2' => '',
             'city' => 'Fremont',
@@ -73,7 +73,7 @@ class StoreTableSeeder extends Seeder
             'phone' => 4082222222,
             'salesTax' => 9.50
             ],
-            ['name' => 'Store7',
+            ['name' => 'EMQ',
             'address' => '2111 Mission St',
             'address2' => '',
             'city' => 'Santa Cruz',
@@ -83,7 +83,7 @@ class StoreTableSeeder extends Seeder
             'phone' => 4083333333,
             'salesTax' => 8.25
             ],
-            ['name' => 'Store8',
+            ['name' => 'EMQ',
             'address' => '1415 Main St',
             'address2' => '',
             'city' => 'Watsonville',
@@ -93,7 +93,7 @@ class StoreTableSeeder extends Seeder
             'phone' => 4084444444,
             'salesTax' => 8.25
             ],
-            ['name' => 'Store9',
+            ['name' => 'EMQ',
             'address' => '2600 Willow Pass Rd',
             'address2' => '',
             'city' => 'Concord',
@@ -103,7 +103,7 @@ class StoreTableSeeder extends Seeder
             'phone' => 4081112222,
             'salesTax' => 9.00
             ],
-            ['name' => 'Store10',
+            ['name' => 'EMQ',
             'address' => '1871 N Main St',
             'address2' => '',
             'city' => 'Walnut Creek',
@@ -113,7 +113,7 @@ class StoreTableSeeder extends Seeder
             'phone' => 4081113333,
             'salesTax' => 8.50
             ],
-            ['name' => 'Store11',
+            ['name' => 'EMQ',
             'address' => '789 Mission St',
             'address2' => '',
             'city' => 'San Francisco',
@@ -123,7 +123,7 @@ class StoreTableSeeder extends Seeder
             'phone' => 4081114444,
             'salesTax' => 8.75
             ],
-            ['name' => 'Store12',
+            ['name' => 'EMQ',
             'address' => '4950 Mission St',
             'address2' => '',
             'city' => 'San Francisco',
