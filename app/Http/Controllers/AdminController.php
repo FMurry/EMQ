@@ -85,7 +85,7 @@ class AdminController extends Controller
 
     public function changeUserEmail($id)
     {
-
+        
     }
 
     /**
