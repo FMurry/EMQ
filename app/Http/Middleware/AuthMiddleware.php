@@ -15,7 +15,10 @@ class AuthMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if($request->user()->id != 1){
+        if($request->user() == null){
+            return redirect('home');
+        }
+        elseif($request->user()->id != 1){
             return redirect('home');
         }
         return $next($request);
