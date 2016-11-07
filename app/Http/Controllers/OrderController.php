@@ -158,7 +158,7 @@ class OrderController extends Controller
     public function address2html( $name, $obj ){
         $addressHtml = "<center><b>".$name."</b><br>".$obj->address;
         if( $obj->address2 != ""){
-            $addressHtml .= ", ".$obj->address;
+            $addressHtml .= ", ".$obj->address2;
         }
         $addressHtml .= "<br>".$obj->city .", ".$obj->state ." ".$obj->zip."<br>Phone: ".$obj->phone."</center>";
         return $addressHtml;
