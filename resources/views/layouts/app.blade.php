@@ -73,11 +73,11 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/account') }}"><i class="fa fa-btn fa-edit"></i>Account Management</a></li>
                                 <li><a href="{{ url('/account/orders') }}"><i class="fa fa-btn fa-edit"></i>Order History</a></li>
+                                <li><a href="{{ url('/admin/management') }}"><i class="fa fa-btn fa-edit"></i>Admin</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                             <li><a href="{{ url('/cart') }}"><i class="fa fa-btn
                                  fa-shopping-cart"></i>Cart</a></li>
-                            <li><a href="{{ url('/admin/management') }}">Admin</a></li>
                         </li>
                     @else
                         <li class="dropdown">
