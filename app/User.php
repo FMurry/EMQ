@@ -2,6 +2,7 @@
 
 namespace App;
 
+
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -23,4 +24,29 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+        /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'users';
+
+
+    public function admin(){
+        //Relation (Foreign Object, Foreign ID, Local ID)
+        return $this->hasOne('App\Admin', 'user_id', 'id');
+    }
+
+    /*
+    *   Returns admin role level or returns zero.
+    */
+    public function access(){
+        if( $this->admin ){
+            return $this->admin->role;
+        }else{
+            return 0;
+        }
+    }
 }
