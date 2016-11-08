@@ -85,10 +85,10 @@ Route::get('/', 'ProductsController@welcomePageIndex');
 
 Route::group(['middleware' => 'App\Http\Middleware\AuthMiddleware'], function()
 {
-    Route::get('/admin/management', 'AdminController@getAdminAccount')->middleware('auth');
-    Route::get('/admin/users', 'AdminController@getAllUsers')->middleware('auth');
-    Route::get('/admin/orders/{id}', 'AdminController@manageUserOrder')->middleware('auth');
-    Route::get('/admin/stores','AdminController@getStores')->middleware('auth');
+    Route::get('/admin/management', 'AdminController@getAdminAccount');
+    Route::get('/admin/users', 'AdminController@getAllUsers');
+    Route::get('/admin/orders/{id}', 'AdminController@manageUserOrder');
+    Route::get('/admin/stores','AdminController@getStores');
 
 });
 

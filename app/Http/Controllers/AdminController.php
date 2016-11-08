@@ -41,7 +41,7 @@ class AdminController extends Controller
         //     echo "User is not authed";
         //     redirect('/home');
         // }
-    	
+    	return view('admin.management');
     	
     	
     }
