@@ -54,6 +54,7 @@
                     @else
                     <li><a href="{{ url('/home') }}">Home</a></li>
                     <li><a href="{{ url('/shop') }}">Shop</a></li>
+                    <li><a href="{{ url('/storelocator') }}">Store Locator</a></li>
                     @endif
                 </ul>
 
