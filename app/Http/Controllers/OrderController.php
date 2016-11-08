@@ -273,4 +273,8 @@ class OrderController extends Controller
         $store = array("store_id" => $fastest_delivery_store,"delivery_time"=> $fastest_delivery_time);
         return $store;
     }
+
+    public function storeLocatorView(){
+        return view('storelocator');
+    }
 }

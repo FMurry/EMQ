@@ -75,7 +75,7 @@ Route::get('/account/payment/delete/{id}', 'PaymentController@deletePaymentMetho
 Route::get('/process/start', 'CartController@startProcessOrderForm');
 
 Route::post('/process/complete', 'OrderController@completeOrder');
-
+Route::get('/storelocator', 'OrderController@storeLocatorView');
 
 Route::get('/account/orders', 'OrderController@returnOrderHistory');
 Route::get('/account/tracking/{id}', 'OrderController@returnOrderTracking');
@@ -91,5 +91,4 @@ Route::group(['middleware' => 'App\Http\Middleware\AuthMiddleware'], function()
     Route::get('/admin/stores','AdminController@getStores');
 
 });
-
 
