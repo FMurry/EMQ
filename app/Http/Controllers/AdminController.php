@@ -28,13 +28,21 @@ class AdminController extends Controller
     */
     public function getAdminAccount()
     {
-    	if(Auth::user()->id == 1){
-    		return view('admin.management');
-    	}
-    	else{
-    		echo "You're not allowed here";
-    		redirect('/home');
-    	}
+        // if(Auth::check()){
+        //     echo "User is authed";
+        //     if(Auth::user()->id == 1){
+        //         return view('admin.management');
+        //     }
+        //     else{
+        //         redirect('/home');
+        //     }
+        // }
+        // else{
+        //     echo "User is not authed";
+        //     redirect('/home');
+        // }
+    	return view('admin.management');
+    	
     	
     }
 
@@ -85,7 +93,7 @@ class AdminController extends Controller
 
     public function changeUserEmail($id)
     {
-
+        
     }
 
     /**

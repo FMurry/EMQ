@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\DB;
+use App\Admin;
 
 class AuthMiddleware
 {
@@ -15,7 +17,11 @@ class AuthMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if($request->user()->id != 1){
+        if($request->user() == null){
+            return redirect('home');
+        }
+        $admin = Admin::where('user_id', $request->user()->id)->exists();
+        if(!$admin){
             return redirect('home');
         }
         return $next($request);
