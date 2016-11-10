@@ -89,6 +89,8 @@ Route::group(['middleware' => 'App\Http\Middleware\AuthMiddleware'], function()
     Route::get('/admin/users', 'AdminController@getAllUsers');
     Route::get('/admin/orders/{id}', 'AdminController@manageUserOrder');
     Route::get('/admin/stores','AdminController@getStores');
+    Route::get('/admin/products','AdminController@getProducts');
+    Route::get('/admin/product/{id}','AdminController@getProduct');
 
 });
 
