@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Order;
 use App\Store;
+use App\Products;
 
 
 
@@ -106,4 +107,15 @@ class AdminController extends Controller
         return view('admin.stores', ['stores' => $stores]);
     }
 
+    public function getProducts()
+    {
+        $products = Products::all();
+        return view('admin.products', ['products' => $products]);
+    }
+
+    public function getProduct($id)
+    {
+        $product = Products::find($id);
+        return view('admin.product', ['product' => $product]);
+    }
 }

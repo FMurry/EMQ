@@ -50,7 +50,7 @@
                                 <div href="{{ url('/edit') }}" class="panel-heading">Manage Products</div>
                                 <div class="panel-body">
                                     <img src="http://image.flaticon.com/icons/svg/138/138669.svg" alt="Admin" style="width:180px; height:180px; margin: 5px;">
-                                    <a href="#" class="btn btn-default">Manage Products</a><br>
+                                    <a href="{{ url('/admin/products') }}" class="btn btn-default">Manage Products</a><br>
                                 </div>
                             </div>                            
                         </div>
