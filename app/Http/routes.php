@@ -92,5 +92,7 @@ Route::group(['middleware' => 'App\Http\Middleware\AuthMiddleware'], function()
     Route::get('/admin/products','AdminController@getProducts');
     Route::get('/admin/product/{id}','AdminController@getProduct');
 
+    Route::post('/admin/product/update', 'AdminController@updateProduct');
+
 });
 

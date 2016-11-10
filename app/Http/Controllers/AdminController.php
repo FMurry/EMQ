@@ -118,4 +118,40 @@ class AdminController extends Controller
         $product = Products::find($id);
         return view('admin.product', ['product' => $product]);
     }
+
+
+    public function updateProduct(Request $request){
+        // Still need to implement proper validation
+         $this->validate($request, [
+            'product_id' => 'required|max:255',
+            'price' => 'required|max:255',
+            'quantity' => 'required|max:255',
+        ]);
+
+        //Still need to check product id exists
+        //Price is properly formatted
+        //Quantity is a positive integer
+
+        //note: available toggle does not show in request if NOT selected
+        if($request['available']){
+            $request['available'] = "1"; //true
+        }else{
+            $request['available'] = "0"; //false
+        } 
+         echo json_encode($request->all());
+
+
+         //Update Here
+         $product = Products::find( $request['product_id'] );
+         $product->price = $request['price'];
+         $product->quantity = $request['quantity'];
+         $product->available = $request['available'];
+         $product->save();
+
+         //Return to product view.
+
+        $status = "Product has been successfully updated.";
+        return redirect()->action('AdminController@getProduct', ['id' => $request['product_id']])->with('status', $status);
+     }
+
 }
