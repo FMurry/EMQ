@@ -45,25 +45,32 @@ app.controller('listdata',function($scope, $http){
 
 <!-- Stuff I added -->
                   
-      <div class="bs-component" ng-controller="listdata">
+                  <div class="bs-component" ng-controller="listdata">
 
-        <form class="form-inline">
-          <div class="form-group">
-            <label >Category</label>
+                    <form class="form-inline">
+                      <div class="form-group">
 
-              <select name="category" ng-model="search1" class="form-control">
-                <option value="" selected="selected">All Products</option>
-                <option value="PC & Accessories">PC & Accessories</option>
-                <option value="Category 2">Category 2</option>
-                <option value="Category 3">Category 3</option>
-              </select>
+                          <div style="margin: 5px;">
+                            <label >Search</label>
 
-              <label >Search</label>
+                            <input type="text" ng-model="search2" class="form-control" placeholder="EMQ" size="85">          
+                          </div>
 
-            <input type="text" ng-model="search2" class="form-control" placeholder="EMQ" size="85">
+                          <div style="margin: 5px;">
+                            <label >Category</label>
 
-          </div>
-        </form>
+                            <select name="category" ng-model="search1" class="form-control">
+                              <option value="" selected="selected">All Products</option>
+                              <option value="PC & Accessories">PC & Accessories</option>
+                              <option value="Category 2">Category 2</option>
+                              <option value="Category 3">Category 3</option>
+                            </select>
+                            
+                          </div>                        
+
+                      </div>
+                    </form>
+
                     <div class="row" style="margin-top:10px;margin-left:8px; margin-right:10px; text-align: center;">
                       
                         <div class="col-md-4" dir-paginate="product in products|orderBy:sortKey:reverse|filter:search1|filter:search2|itemsPerPage:6">
@@ -73,7 +80,9 @@ app.controller('listdata',function($scope, $http){
                                 </div>
                                 <div class="panel-body">
                                   <div style="margin: 5px auto;">
-                                    <img src="http://localhost/emq/public/product_images/@{{ product.image }}" alt="..." style="max-height: 100px;">                               
+                                    <img src="http://localhost/emq/public/product_images/@{{ product.image }}" alt="..." style="max-height: 100px;">
+                                    <!-- <img src="@{{asset('public/product_images/' . product.image)}}" alt="..." style="max-height: 100px;"> -->
+                                                                   
                                   </div>
                                   <div>
                                     <a href="./product/@{{ product.id }}" class="btn btn-default">View Item</a>
