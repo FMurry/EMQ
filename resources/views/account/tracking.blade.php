@@ -96,8 +96,8 @@
           <tr>
             <td><center>
         <img src='{{asset('/images/store.png')}}'></center></td><td>&nbsp;EMQ Store</td></tr>
-        <tr><td><center><img src='{{asset('/images/house.png')}}'></td><td>&nbsp;Your Home</td></tr>
         <tr><td><center><img src='{{asset('/images/package.png')}}'></center></td><td>&nbsp;Your Package</td></tr>
+        <tr><td><center><img src='{{asset('/images/house.png')}}'></td><td>&nbsp;Your Home</td></tr>
       </table>
        </fieldset>
       </form>
@@ -130,6 +130,7 @@
                 <!-- start of display cost totals -->
                 <div class="row text-center" >
                 <a href="{{ action('OrderController@returnOrderTracking', ['id' => $order->id]) }}" class="btn btn-success"><h4>Estimated Arrival Time: {{ $delivery_estimate }}</h4></a>
+                <br>Attention: Tracking status updates may be delayed.
                 </div>
                 <!-- end of display cost totals -->
             </div><!--end of products row-->

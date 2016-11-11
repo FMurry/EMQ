@@ -23,7 +23,7 @@ class CreateOrderTable extends Migration
             $table->decimal('tax',10,2);
             $table->integer('delivery_time');
             $table->boolean('delivered');
-            $table->timestamp('delivered_at')->nullable();
+            $table->string('delivered_at')->nullable();
 
             $table->nullableTimestamps();
         });

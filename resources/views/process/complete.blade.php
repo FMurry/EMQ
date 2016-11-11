@@ -18,7 +18,7 @@
                 <div class="container-fluid">
                 <div class="row"> <!-- address and payment row -->
 
-                    <h4>Order Date: {{ $order->created_at}}</h4>
+                    <h4>Order Date: {{ $order->created_at->format('l, F jS Y @ h:i A') }}</h4>
                     <div class="col-md-4">
                         <h4>Shipping From:</h4>
                         <address>

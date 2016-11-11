@@ -133,16 +133,17 @@ class OrderController extends Controller
     public function returnOrderHistory(){
         
         $orders = Order::where('user_id', Auth::user()->id )->orderBy('id', 'DESC')->get();
+        $now = Carbon::now();
         foreach ($orders as $order) {
-            OrderController::updateOrderIfDelivered( $order );
+            OrderController::updateOrderIfDelivered( $now, $order );
         }
 
         return view('account.orders', ['orders' => $orders]);
     }
 
-    public function updateOrderIfDelivered( $order ){
+    public function updateOrderIfDelivered( $now, $order ){
         if( $order->delivered == false ){
-            $now= Carbon::now(); //current time
+            //$now= Carbon::now(); //current time
             $current_delivery_time = $now->diffInSeconds($order->created_at);
             if( $current_delivery_time > $order->delivery_time ){
                 /* then order has already been delivered */
@@ -190,21 +191,23 @@ class OrderController extends Controller
                 }else{
                     /* had to place OrderController::returnOrderHistory() code directly, kept getting white screen bug */
                     $orders = Order::where('user_id', Auth::user()->id )->orderBy('id', 'DESC')->get();
+                    $now = Carbon::now();
                     foreach ($orders as $order) {
-                        OrderController::updateOrderIfDelivered( $order );
+                        OrderController::updateOrderIfDelivered( $now, $order );
                     }
                     return view('account.orders', ['orders' => $orders]);
                 }
             }
             /* had to place OrderController::returnOrderHistory() code directly, kept getting white screen bug */
             $orders = Order::where('user_id', Auth::user()->id )->orderBy('id', 'DESC')->get();
+            $now = Carbon::now();
             foreach ($orders as $order) {
-                OrderController::updateOrderIfDelivered( $order );
+                OrderController::updateOrderIfDelivered( $now, $order );
             }
             return view('account.orders', ['orders' => $orders]);
         }
-        //add redirect for illegal user attempt
-        
+
+        return redirect('/');
     }
 
 
