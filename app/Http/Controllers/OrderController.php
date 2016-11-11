@@ -275,6 +275,18 @@ class OrderController extends Controller
     }
 
     public function storeLocatorView(){
-        return view('storelocator');
+        $stores = Store::all();
+
+        $stores_infowindow_array = "";
+        $stores_geocoordinates_array ="";
+        foreach ($stores as $store) {
+            $stores_infowindow_array .= "[\"" .OrderController::address2html( $store->name, $store ) ."\"],\r\n";
+            
+            // Uncomment the line below once geocoordiantes have been seeded in stores.
+            //$stores_geocoordinates_array .= "[" $store->lat .", ". $store->lng ."],\r\n";
+        }
+
+
+        return view('storelocator', ['stores_infowindow_array' => $stores_infowindow_array, 'stores_geocoordinates_array' => $stores_geocoordinates_array]);
     }
 }

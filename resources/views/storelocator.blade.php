@@ -62,6 +62,15 @@
                           [37.784736, -122.403691],
                           [37.719935, -122.438977]
                       ];
+
+                    var stores_geocoordinates = [
+                      {!! $stores_geocoordinates_array !!}
+                    ];
+
+                    var stores_infowindows = [
+                      {!! $stores_infowindow_array !!}
+                    ];
+                    
                     var markers = [];
                     var map;
                     function initMap(){
@@ -90,6 +99,7 @@
                               var marker = new google.maps.Marker({
                                 position: location,
                                 map: map,
+                                icon: 'http://findicons.com/files/icons/2455/web_icons/48/shop.png',
                                 animation: google.maps.Animation.DROP
                               });
                               google.maps.event.addListener(marker, 'click', function() {
