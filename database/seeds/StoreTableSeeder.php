@@ -20,7 +20,7 @@ class StoreTableSeeder extends Seeder
         	'state' => 'California',
         	'zip' => 95050,
         	'country' => 'United States',
-        	'phone' => 4085555555,
+        	'phone' => '(408) 555-5555',
         	'salesTax' => 8.75,
             'lat' => '37.349815',
             'lng' => '-121.960438'
@@ -32,7 +32,7 @@ class StoreTableSeeder extends Seeder
             'state' => 'California',
             'zip' => 95125,
             'country' => 'United States',
-            'phone' => 4086666666,
+            'phone' => '(408) 666-6666',
             'salesTax' => 9.00,
             'lat' => '37.305341',
             'lng' => '-121.863068'
@@ -44,7 +44,7 @@ class StoreTableSeeder extends Seeder
             'state' => 'California',
             'zip' => 94015,
             'country' => 'United States',
-            'phone' => 4087777777,
+            'phone' => '(408) 777-7777',
             'salesTax' => 9.00,
             'lat' => '37.670500',
             'lng' => '-122.471026'
@@ -56,7 +56,7 @@ class StoreTableSeeder extends Seeder
             'state' => 'California',
             'zip' => 94063,
             'country' => 'United States',
-            'phone' => 4088888888,
+            'phone' => '(408) 888-8888',
             'salesTax' => 9.00,
             'lat' => '37.475663',
             'lng' => '-122.217060'
@@ -68,7 +68,7 @@ class StoreTableSeeder extends Seeder
             'state' => 'California',
             'zip' => 94610,
             'country' => 'United States',
-            'phone' => 4081111111,
+            'phone' => '(408) 111-1111',
             'salesTax' => 9.50,
             'lat' => '37.817325',
             'lng' => '-122.245677'
@@ -80,7 +80,7 @@ class StoreTableSeeder extends Seeder
             'state' => 'California',
             'zip' => 94538,
             'country' => 'United States',
-            'phone' => 4082222222,
+            'phone' => '(408) 222-2222',
             'salesTax' => 9.50,
             'lat' => '37.501622',
             'lng' => '-121.968116'
@@ -92,7 +92,7 @@ class StoreTableSeeder extends Seeder
             'state' => 'California',
             'zip' => 95060,
             'country' => 'United States',
-            'phone' => 4083333333,
+            'phone' => '(408) 333-3333',
             'salesTax' => 8.25,
             'lat' => '36.961314',
             'lng' => '-122.045105'
@@ -104,7 +104,7 @@ class StoreTableSeeder extends Seeder
             'state' => 'California',
             'zip' => 95076,
             'country' => 'United States',
-            'phone' => 4084444444,
+            'phone' => '(408) 444-4444',
             'salesTax' => 8.25,
             'lat' => '36.915174',
             'lng' => '-121.773818'
@@ -116,7 +116,7 @@ class StoreTableSeeder extends Seeder
             'state' => 'California',
             'zip' => 94520,
             'country' => 'United States',
-            'phone' => 4081112222,
+            'phone' => '(408) 111-2222',
             'salesTax' => 9.00,
             'lat' => '37.978267',
             'lng' => '-122.028256'
@@ -128,7 +128,7 @@ class StoreTableSeeder extends Seeder
             'state' => 'California',
             'zip' => 94596,
             'country' => 'United States',
-            'phone' => 4081113333,
+            'phone' => '(408) 111-3333',
             'salesTax' => 8.50,
             'lat' => '37.904429',
             'lng' => '-122.064699'
@@ -140,7 +140,7 @@ class StoreTableSeeder extends Seeder
             'state' => 'California',
             'zip' => 94103,
             'country' => 'United States',
-            'phone' => 4081114444,
+            'phone' => '(408) 111-4444',
             'salesTax' => 8.75,
             'lat' => '37.784736',
             'lng' => '-122.403691'
@@ -152,7 +152,7 @@ class StoreTableSeeder extends Seeder
             'state' => 'California',
             'zip' => 94112,
             'country' => 'United States',
-            'phone' => 4081115555,
+            'phone' => '(408) 111-5555',
             'salesTax' => 8.75,
             'lat' => '37.719935',
             'lng' => '-122.438977'
