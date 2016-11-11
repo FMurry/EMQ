@@ -67,7 +67,7 @@
                         var marker = new google.maps.Marker({
                           position: location,
                           map: map,
-                          icon: 'http://findicons.com/files/icons/2455/web_icons/48/shop.png',
+                          icon: '{{asset('/images/store.png')}}',
                           animation: google.maps.Animation.DROP
                         });
                         google.maps.event.addListener(marker, 'click', function() {

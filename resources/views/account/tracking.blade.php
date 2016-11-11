@@ -95,9 +95,9 @@
         <table>
           <tr>
             <td><center>
-        <img src='http://findicons.com/files/icons/2455/web_icons/48/shop.png'></center></td><td> EMQ Store</td></tr>
-        <tr><td><center><img src='http://findicons.com/files/icons/2166/oxygen/48/go_home.png'></td><td> Customers Home</td></tr>
-        <tr><td><center><img src='http://findicons.com/files/icons/1496/world_of_copland_2/32/fedex_truck.png'></center></td><td> Delivery Truck</td></tr>
+        <img src='{{asset('/images/store.png')}}'></center></td><td>&nbsp;EMQ Store</td></tr>
+        <tr><td><center><img src='{{asset('/images/house.png')}}'></td><td>&nbsp;Your Home</td></tr>
+        <tr><td><center><img src='{{asset('/images/package.png')}}'></center></td><td>&nbsp;Your Package</td></tr>
       </table>
        </fieldset>
       </form>
@@ -215,14 +215,14 @@
 
         /* START OF DRAW STORE AND HOUSE MARKERS */
           var marker = markerArray[0] = markerArray[0] || new google.maps.Marker({ 
-            icon: 'http://findicons.com/files/icons/2455/web_icons/48/shop.png'});
+            icon: '{{asset('/images/store.png')}}'});
           marker.setMap(map);
         marker.setPosition(directionResult.routes[0].legs[0].start_location);
         attachInstructionText(
         stepDisplay, marker, document.getElementById('store_prompt').value, map);
 
         var marker = markerArray[1] = markerArray[1] || new google.maps.Marker({ 
-        icon: 'http://findicons.com/files/icons/2166/oxygen/48/go_home.png'});
+        icon: '{{asset('/images/house.png')}}'});
         marker.setMap(map);
         marker.setPosition(directionResult.routes[0].legs[0].end_location);
         attachInstructionText(
@@ -234,7 +234,7 @@
 
         for (var i = 0; i < myRoute.steps.length; i++) {
           var marker = markerArray[2] = markerArray[2] || new google.maps.Marker({ 
-            icon: 'http://findicons.com/files/icons/1496/world_of_copland_2/32/fedex_truck.png'});
+            icon: '{{asset('/images/package.png')}}'});
           marker.setMap(map);
           
 
