@@ -22,8 +22,8 @@ class StoreTableSeeder extends Seeder
         	'country' => 'United States',
         	'phone' => 4085555555,
         	'salesTax' => 8.75,
-            'latitude' => 37.349815,
-            'longitude' => -121.960438
+            'lat' => '37.349815',
+            'lng' => '-121.960438'
         	],
             ['name' => 'EMQ',
             'address' => '2161 Monterey Rd',
@@ -34,8 +34,8 @@ class StoreTableSeeder extends Seeder
             'country' => 'United States',
             'phone' => 4086666666,
             'salesTax' => 9.00,
-            'latitude' => 37.305341,
-            'longitude' => -121.863068
+            'lat' => '37.305341',
+            'lng' => '-121.863068'
             ],
             ['name' => 'EMQ',
             'address' => '133 Serramonte Center',
@@ -46,8 +46,8 @@ class StoreTableSeeder extends Seeder
             'country' => 'United States',
             'phone' => 4087777777,
             'salesTax' => 9.00,
-            'latitude' => 37.670500,
-            'longitude' => -122.471026
+            'lat' => '37.670500',
+            'lng' => '-122.471026'
             ],
             ['name' => 'EMQ',
             'address' => '2485 El Camino Real',
@@ -58,8 +58,8 @@ class StoreTableSeeder extends Seeder
             'country' => 'United States',
             'phone' => 4088888888,
             'salesTax' => 9.00,
-            'latitude' => 37.475663,
-            'longitude' => -122.217060
+            'lat' => '37.475663',
+            'lng' => '-122.217060'
             ],
             ['name' => 'EMQ',
             'address' => '3747 Grand Ave',
@@ -70,8 +70,8 @@ class StoreTableSeeder extends Seeder
             'country' => 'United States',
             'phone' => 4081111111,
             'salesTax' => 9.50,
-            'latitude' => 37.817325,
-            'longitude' => -121.245677
+            'lat' => '37.817325',
+            'lng' => '-122.245677'
             ],
             ['name' => 'EMQ',
             'address' => '43950 Pacific Commons Blvd',
@@ -82,8 +82,8 @@ class StoreTableSeeder extends Seeder
             'country' => 'United States',
             'phone' => 4082222222,
             'salesTax' => 9.50,
-            'latitude' => 37.501622,
-            'longitude' => -121.968116
+            'lat' => '37.501622',
+            'lng' => '-121.968116'
             ],
             ['name' => 'EMQ',
             'address' => '2111 Mission St',
@@ -94,8 +94,8 @@ class StoreTableSeeder extends Seeder
             'country' => 'United States',
             'phone' => 4083333333,
             'salesTax' => 8.25,
-            'latitude' => 36.961314,
-            'longitude' => -122.045105
+            'lat' => '36.961314',
+            'lng' => '-122.045105'
             ],
             ['name' => 'EMQ',
             'address' => '1415 Main St',
@@ -106,8 +106,8 @@ class StoreTableSeeder extends Seeder
             'country' => 'United States',
             'phone' => 4084444444,
             'salesTax' => 8.25,
-            'latitude' => 36.915174,
-            'longitude' => -121.773818
+            'lat' => '36.915174',
+            'lng' => '-121.773818'
             ],
             ['name' => 'EMQ',
             'address' => '2600 Willow Pass Rd',
@@ -118,8 +118,8 @@ class StoreTableSeeder extends Seeder
             'country' => 'United States',
             'phone' => 4081112222,
             'salesTax' => 9.00,
-            'latitude' => 37.978267,
-            'longitude' => -122.028256
+            'lat' => '37.978267',
+            'lng' => '-122.028256'
             ],
             ['name' => 'EMQ',
             'address' => '1871 N Main St',
@@ -130,8 +130,8 @@ class StoreTableSeeder extends Seeder
             'country' => 'United States',
             'phone' => 4081113333,
             'salesTax' => 8.50,
-            'latitude' => 37.904429,
-            'longitude' => -122.064699
+            'lat' => '37.904429',
+            'lng' => '-122.064699'
             ],
             ['name' => 'EMQ',
             'address' => '789 Mission St',
@@ -142,8 +142,8 @@ class StoreTableSeeder extends Seeder
             'country' => 'United States',
             'phone' => 4081114444,
             'salesTax' => 8.75,
-            'latitude' => 37.784736,
-            'longitude' => -122.403691
+            'lat' => '37.784736',
+            'lng' => '-122.403691'
             ],
             ['name' => 'EMQ',
             'address' => '4950 Mission St',
@@ -154,8 +154,8 @@ class StoreTableSeeder extends Seeder
             'country' => 'United States',
             'phone' => 4081115555,
             'salesTax' => 8.75,
-            'latitude' => 37.719935,
-            'longitude' => -122.438977
+            'lat' => '37.719935',
+            'lng' => '-122.438977'
             ]
         ));
     }

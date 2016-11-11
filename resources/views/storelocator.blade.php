@@ -36,21 +36,6 @@
               <div class="panel-heading">Store Locator</div>
                   <div id="map" style="width: 100%; height: 500px; position: relative; overflow;"></div>
                   <script>
-                    var stores = [
-                          [37.349815, -121.960438],
-                          [37.305341, -121.863068],
-                          [37.670500, -122.471026],
-                          [37.475663, -122.217060],
-                          [37.817325, -122.245677],
-                          [37.501622, -121.968116],
-                          [36.961314, -122.045105],
-                          [36.915174, -121.773818],
-                          [37.978267, -122.028256],
-                          [37.904429, -122.064699],
-                          [37.784736, -122.403691],
-                          [37.719935, -122.438977]
-                      ];
-
                     var stores_geocoordinates = [
                       {!! $stores_geocoordinates_array !!}
                     ];
@@ -70,41 +55,26 @@
                       var infowindow = new google.maps.InfoWindow;
                       var geocoder = new google.maps.Geocoder;
 
-                      for (var i = 0; i < stores.length; i++) {
-                        //large delay to make up for geocoding requests to go through
-                        addMarkerWithTimeout(stores[i], i * 100, infowindow, geocoder);
+                      for (var i = 0; i < stores_geocoordinates.length; i++) {
+                        addMarkerWithTimeout(stores_geocoordinates[i], i * 100, infowindow, geocoder, i);
                       }
 
                     }
-                    function addMarkerWithTimeout(store, timeout, infowindow, geocoder) {
-                      //geocoder function commented out for now, doesn't display the address even with full sig. figs
+                    function addMarkerWithTimeout(store, timeout, infowindow, geocoder, index) {
                       window.setTimeout(function() {
-                        /*geocoder.geocode({'location': position}, function(results, status) {
-                          if (status === 'OK') {
-                            if (results[1]) {*/
-                              var location = new google.maps.LatLng(store[0], store[1]);
-                              var location_text = store[0] + ", " + store[1];
-                              var marker = new google.maps.Marker({
-                                position: location,
-                                map: map,
-                                icon: 'http://findicons.com/files/icons/2455/web_icons/48/shop.png',
-                                animation: google.maps.Animation.DROP
-                              });
-                              google.maps.event.addListener(marker, 'click', function() {
-                                // Open an info window when the marker is clicked on, containing the text
-                                // of the step.
-                                //infowindow.setContent(results[1].formatted_address);
-                                infowindow.setContent(location_text);
-                                infowindow.open(map, marker);
-                              });
-                              markers.push(marker);
-                            /*} else {
-                              window.alert('No results found');
-                            }
-                          } else {
-                            window.alert('Geocoder failed due to: ' + status);
-                          }
-                        });*/
+                        var location = new google.maps.LatLng(store[0], store[1]);
+                        var location_text = stores_infowindows[index];
+                        var marker = new google.maps.Marker({
+                          position: location,
+                          map: map,
+                          icon: 'http://findicons.com/files/icons/2455/web_icons/48/shop.png',
+                          animation: google.maps.Animation.DROP
+                        });
+                        google.maps.event.addListener(marker, 'click', function() {
+                          infowindow.setContent(location_text);
+                          infowindow.open(map, marker);
+                        });
+                        markers.push(marker);
                       }, timeout);    
                     }
                   </script>
