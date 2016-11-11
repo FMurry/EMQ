@@ -2,7 +2,6 @@
 
 @section('scripts-head')
     <!-- Start of Scripts Added to Head Section -->
-    <!-- Start of Scripts Added to Head Section -->
     <style>
 
       /* Always set the map height explicitly to define the size of the div
@@ -16,18 +15,7 @@
         margin: 0;
         padding: 0;
       }
-      .controls {
-        margin-top: 10px;
-        border: 1px solid transparent;
-        border-radius: 2px 0 0 2px;
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        height: 32px;
-        outline: none;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-      }
     </style>
-    <!-- End of Scripts Added to Head Section -->
     <!-- End of Scripts Added to Head Section -->
 @endsection
 
