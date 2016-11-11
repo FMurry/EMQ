@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use App\Cart;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -47,6 +47,22 @@ class User extends Authenticatable
             return $this->admin->role;
         }else{
             return 0;
+        }
+    }
+
+    public function cart(){
+        $cart = Cart::where('user_id', $this->id )->get();
+        $total_items = 0;
+        if($cart){
+            foreach ($cart as $item){
+                $total_items += $item->quantity;
+            }
+        }
+
+        if($total_items){
+            return "(". $total_items .")";
+        }else{
+            
         }
     }
 }

@@ -33,8 +33,15 @@
 
                         <div class="col-md-4" style="text-align: center;">
                             <div><img src="{{asset('product_images/' . $product->image)}}" style="width: 100%;"></div>
+
+                            @if( $product->available)
                             <a href="{{ action('CartController@addToCart', ['id' => $product->id]) }}" class="btn btn-primary">Add to Cart</a><br> 
-                            <p>{{ $product->quantity }} left in stock</p>                    
+                            <p>{{ $product->quantity }} left in stock</p>  
+                            @else
+                            <br>
+                            <button type="button" class="btn btn-danger">Item Not Unavailable</button>
+                            @endif
+
                         </div>
                         
                         <div class="col-md-8">
