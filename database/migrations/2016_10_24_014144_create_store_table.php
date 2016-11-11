@@ -23,8 +23,8 @@ class CreateStoreTable extends Migration
             $table->string('country');
             $table->string('phone');
             $table->double('salesTax');
-            $table->double('latitude');
-            $table->double('longitude');
+            $table->string('lat');
+            $table->string('lng');
             $table->nullableTimestamps();
         });
 
