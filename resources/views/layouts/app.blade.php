@@ -51,6 +51,7 @@
                 <ul class="nav navbar-nav">
                     @if (Auth::guest())
                     <li><a href="{{ url('/shop') }}">Shop</a></li>
+                    <li><a href="{{ url('/storelocator') }}">Store Locator</a></li>
                     @else
                     <li><a href="{{ url('/home') }}">Home</a></li>
                     <li><a href="{{ url('/shop') }}">Shop</a></li>
@@ -65,7 +66,7 @@
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
                     <!-- User is an admin-->
-                    @elseif (Auth::user()->access() == 1)
+                    @elseif (Auth::user())
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->name }}<span class="caret"></span>
@@ -73,22 +74,10 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/account') }}"><i class="fa fa-btn fa-edit"></i>Account Management</a></li>
-                                <li><a href="{{ url('/account/orders') }}"><i class="fa fa-btn fa-edit"></i>Order History</a></li>
-                                <li><a href="{{ url('/admin/management') }}"><i class="fa fa-btn fa-edit"></i>Admin</a></li>
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                            </ul>
-                            <li><a href="{{ url('/cart') }}"><i class="fa fa-btn
-                                 fa-shopping-cart"></i>Cart</a></li>
-                        </li>
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }}<span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/account') }}"><i class="fa fa-btn fa-edit"></i>Account Management</a></li>
-                                <li><a href="{{ url('/account/orders') }}"><i class="fa fa-btn fa-edit"></i>Order History</a></li>
+                                <li><a href="{{ url('/account/orders') }}"><i class="fa fa-btn fa-reorder"></i>Order History</a></li>
+                                @if(Auth::user()->access() >= 1)
+                                <li><a href="{{ url('/admin/management') }}"><i class="fa fa-btn fa-gears"></i>Admin</a></li>
+                                @endif
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                             <li><a href="{{ url('/cart') }}"><i class="fa fa-btn
