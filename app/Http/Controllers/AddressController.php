@@ -47,6 +47,12 @@ class AddressController extends Controller
     */
     public function addAddress(Request $request){
 
+        $phone_characters = array("(",")","-");
+        if($request['newPhone']){
+            $request['newPhone'] = str_replace($phone_characters, "", $request['newPhone']);
+        }
+
+
          $this->validate($request, [
             'newFullName' => 'required|max:255',
             'newAddress' => 'required|max:255',
@@ -58,13 +64,15 @@ class AddressController extends Controller
             'newPhone' => 'required|digits:10',
             //'body' => 'required',
         ]);
+        $request['newPhone'] = substr_replace( $request['newPhone'], '-', -4, 0);
+        $request['newPhone'] = substr_replace( $request['newPhone'], ') ', 3, 0);
+        $request['newPhone'] = "(".$request['newPhone'];
 
-        
     	$newFullName = $request['newFullName'];
     	$newAddress = $request['newAddress'];
     	$newAddress2 = $request['newAddress2'];
     	$newCity = $request['newCity'];
-    	$newState = $request['newState'];
+    	$newState = "CA";
     	$newCountry = $request['newCountry'];
     	$newZip = $request['newZip'];
     	$newPhone = $request['newPhone'];

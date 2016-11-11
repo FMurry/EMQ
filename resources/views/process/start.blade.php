@@ -157,9 +157,9 @@
         {{ $total_quantity }}: ${{ $total_price }}<br>
         Shipping & handling: $0.00<br>
         Total before tax: ${{ $total_price }}<br>
-        Estimated tax to be collected: $0.00<br>
+        Estimated tax to be collected: ${{ $estimated_tax }}<br>
         <br>
-        Order total: ${{ $total_price }}<br>
+        Estimated Total: ${{ $estimated_total }}<br>
         <input type="hidden" name="total" value="{{ $total_price }}">
         <br>
         <button type="submit" class="btn btn-primary">Complete Order</a>
