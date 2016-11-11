@@ -10,6 +10,8 @@ use App\Payment; //Import Payment to Controller
 use Illuminate\Support\Facades\Auth;//Needed to use Auth::
 use Illuminate\Support\Facades\DB;//Needed to use DB::
 
+use Carbon\Carbon; //Cleaner Version of Datetime.
+
 class PaymentController extends Controller
 {
     /* Authenticate User IF not Authenticated */
@@ -51,9 +53,18 @@ class PaymentController extends Controller
             'fullNameOnCard' => 'required|max:255',
             'cardNumber' => 'required|digits:16',
             'expirationMonth' => 'required|digits_between:1,12',
-            'expirationYear' => 'required|integer|between:2014,2025',
+            'expirationYear' => 'required|integer|between:2016,2025',
+            'cardSecurityCode' =>  'required|digits_between:1,9999',
             //'body' => 'required',
         ]);
+
+        $current = Carbon::now();
+
+        // Check if payment method is expired.
+        if($request['expirationMonth'] < $current->month && $request['expirationYear'] <= $current->year ){
+            $status = "Payment Method is Expired.";
+            return redirect()->action('PaymentController@addPaymentView')->with('alert', $status);  
+        }
 
         //if(luhnCheck($request['cardNumber'])){
             /* Convert Card Number to Hash to Check Uniqueness on database with Validate */
@@ -87,7 +98,7 @@ class PaymentController extends Controller
         /*}
         else{
             $status = "Invalid Payment Method.";
-            return redirect()->action('PaymentController@addPaymentView')->with('status', $status);
+            return redirect()->action('PaymentController@addPaymentView')->with('alert', $status);
         }*/
 
     }

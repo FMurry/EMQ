@@ -31,21 +31,28 @@
         </ul>
     </div>
 @endif
-
+@if (session('alert'))
+        <div class="alert alert-danger">
+            <ul>
+            <li>{{ session('alert') }}</li>
+            </ul>
+        </div>
+@endif
 
  <form method="POST" action="{{ action('PaymentController@addPaymentMethod') }}" autocomplete="on">
  	{!! csrf_field() !!}
   <div class="form-group">
     <label for="newFullName">Full Name on Card:</label>
-    <input type="text" class="form-control" id="newFullName" name="fullNameOnCard">
+    <input type="text" class="form-control" id="newFullName" name="fullNameOnCard" placeholder="Enter Full Name">
     
     <label for="newFullName">Card Number:</label>
-    <input type="text" class="form-control" id="newFullName" name="cardNumber">
+    <input type="text" class="form-control" id="newFullName" name="cardNumber" placeholder="Enter Card Number">
 
     <div class="row">
         <div class="col-xs-2">
             <label for="newFullName">Expiration Month:</label>
             <select class="form-control" id="expirationMonth" name="expirationMonth">
+                <option></option>
                 <option>01</option>
                 <option>02</option>
                 <option>03</option>
@@ -63,8 +70,7 @@
         <div class="col-xs-2">
             <label for="newFullName">Expiration Year:</label>
             <select class="form-control" id="expirationYear" name="expirationYear">
-                <option>2014</option>
-                <option>2015</option>
+                <option></option>
                 <option>2016</option>
                 <option>2017</option>
                 <option>2018</option>
@@ -76,6 +82,10 @@
                 <option>2024</option>
                 <option>2025</option>
             </select>
+        </div>
+        <div class="col-xs-3">
+            <label for="newFullName">Card Security Code:</label>
+            <input type="text" class="form-control" id="cardSecurity" name="cardSecurityCode" placeholder="Enter CSV number">
         </div>
 </div>
 

@@ -49,10 +49,10 @@
                             </div>
                             <div class="col-md-2" style="text-align: center;">
                                 <h6>Quantity: {{ $item->quantity }}</h6>
-                                <a href="{{ action('CartController@addToCart', ['id' => $item->product_id]) }}" class="btn btn-success">
+                                <a href="{{ action('CartController@addToCart', ['id' => $item->product_id]) }}" class="btn btn-default">
                                     <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
                                 </a>
-                                <a href="{{ action('CartController@removeFromCart', ['id' => $item->product_id]) }}" class="btn btn-danger">
+                                <a href="{{ action('CartController@removeFromCart', ['id' => $item->product_id]) }}" class="btn btn-default">
                                     <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
                                 </a>
                             </div>                         

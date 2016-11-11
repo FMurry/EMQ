@@ -47,7 +47,7 @@
                         <div class="col-md-8">
                             <!-- Product ID: {{ $product->id }} <br> Displayed For Debugging - Remove Later -->
                             <h3>Price: ${{ $product->price }}</h3>
-                            Produced: {{ stripslashes($product->brand) }} |
+                            Brand: {{ stripslashes($product->brand) }} |
                             Category: {{ stripslashes($product->category) }} <br>
                             Description:<br> {!! stripslashes($product->description) !!} <br>
                             
