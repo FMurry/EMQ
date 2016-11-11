@@ -13,6 +13,8 @@ use App\Cart; //Import Cart to Controller
 use App\Payment;
 use App\Address;
 
+use App\Store;
+
 use Illuminate\Support\Facades\Auth;//Needed to use Auth::
 use Illuminate\Support\Facades\DB;//Needed to use DB::
 
@@ -130,7 +132,13 @@ class CartController extends Controller
             $status = "Your Cart is Empty.";
             return redirect()->action('CartController@getCart')->with('status', $status);
         }else{
-            return view('process.start', ['paymentMethods' => $paymentMethods, 'addresses' => $addresses, 'total_price' => $total['price'], 'total_quantity' => $total['quantity']]);
+            return view('process.start', ['paymentMethods' => $paymentMethods, 
+                'addresses' => $addresses, 
+                'total_price' => $total['price'], 
+                'total_quantity' => $total['quantity'],
+                'estimated_tax' => $total['estimated_tax'],
+                'estimated_total' => $total['estimated_total'],
+                ]);
         }
     }
 
@@ -148,6 +156,14 @@ class CartController extends Controller
 
     public function cartTotal(){
         $cart = Cart::where('user_id', Auth::user()->id )->get();
+
+        $stores = Store::all();
+        $tax_estimate = 0;
+        foreach ($stores as $store) {
+            $tax_estimate += $store->salesTax;
+        }
+        $tax_estimate = $tax_estimate / count($stores);
+
         $total_price = 0;
         $total_items = 0;
         foreach ($cart as $item){
@@ -159,7 +175,12 @@ class CartController extends Controller
         }else{
             $total_items = $total_items." item";
         }
-        $total = array("price" => $total_price,"quantity"=> $total_items);
+
+        $estimated_tax = ( $total_price * ($tax_estimate / 100));
+        $estimated_tax = number_format($estimated_tax, 2, '.', '');
+        $estimated_total = $total_price + $estimated_tax;
+
+        $total = array("price" => $total_price,"quantity"=> $total_items,"estimated_tax" => $estimated_tax,"estimated_total" => $estimated_total);
         return $total;
     }
 }

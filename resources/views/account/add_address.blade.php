@@ -18,7 +18,7 @@
 
 <!-- Stuff I added -->
 @if (count($errors) > 0)
-    <div class="alert alert-info">
+    <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
@@ -59,7 +59,7 @@
 
     <label for="newPhone">Phone</label>
     <input type="text" class="form-control" id="newPhone" name="newPhone" placeholder="Enter Phone Number">
-    <span id="helpBlock" class="help-block"><em>Ex: 1234567890, etc.</em></span>
+    <span id="helpBlock" class="help-block"><em>Ex: 123-456-7890</em></span>
   </div>
   
   <button type="submit" class="btn btn-primary">Submit</button>
