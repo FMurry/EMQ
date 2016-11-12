@@ -169,44 +169,45 @@ class OrderController extends Controller
         //add error checking for non-ids
         $order = Order::find( $id );
 
+        if($order){
+            /* if Order belongs to Customer */
+            if( $order->user_id == Auth::user()->id ){
 
-        /* if Order belongs to Customer */
-        if( $order->user_id == Auth::user()->id ){
 
 
+                if( $order->delivered == false ){
 
-            if( $order->delivered == false ){
+                    $now= Carbon::now(); //current time
+                    $current_delivery_time = $now->diffInSeconds($order->created_at);
 
-                $now= Carbon::now(); //current time
-                $current_delivery_time = $now->diffInSeconds($order->created_at);
-
-                if( $current_delivery_time < $order->delivery_time){
-                    $home = $order->address->address.",".$order->address->city.",".$order->address->state." ".$order->address->zip.",".$order->address->country;
-                    $store = $order->store->address.",".$order->store->city.",".$order->store->state." ".$order->store->zip.",".$order->store->country;
-                    $delivery_estimate = $order->created_at->addSeconds( $order->delivery_time );
-                    
-                    $homeAddress = OrderController::address2html($order->address->fullName, $order->address);
-                    $storeAddress = OrderController::address2html($order->store->name, $order->store);
-                    return view('account.tracking', ['customer_address' => $home, 'store_address' => $store, 'current_delivery_time' => $current_delivery_time, 'order' => $order, 'delivery_estimate' => $delivery_estimate->format('l, F jS Y @ h:i A') , 'homeAddressHTML' => $homeAddress, 'storeAddressHTML' => $storeAddress]);
-                }else{
-                    /* had to place OrderController::returnOrderHistory() code directly, kept getting white screen bug */
-                    $orders = Order::where('user_id', Auth::user()->id )->orderBy('id', 'DESC')->get();
-                    $now = Carbon::now();
-                    foreach ($orders as $order) {
-                        OrderController::updateOrderIfDelivered( $now, $order );
+                    if( $current_delivery_time < $order->delivery_time){
+                        $home = $order->address->address.",".$order->address->city.",".$order->address->state." ".$order->address->zip.",".$order->address->country;
+                        $store = $order->store->address.",".$order->store->city.",".$order->store->state." ".$order->store->zip.",".$order->store->country;
+                        $delivery_estimate = $order->created_at->addSeconds( $order->delivery_time );
+                        
+                        $homeAddress = OrderController::address2html($order->address->fullName, $order->address);
+                        $storeAddress = OrderController::address2html($order->store->name, $order->store);
+                        return view('account.tracking', ['customer_address' => $home, 'store_address' => $store, 'current_delivery_time' => $current_delivery_time, 'order' => $order, 'delivery_estimate' => $delivery_estimate->format('l, F jS Y @ h:i A') , 'homeAddressHTML' => $homeAddress, 'storeAddressHTML' => $storeAddress]);
+                    }else{
+                        /* had to place OrderController::returnOrderHistory() code directly, kept getting white screen bug */
+                        $orders = Order::where('user_id', Auth::user()->id )->orderBy('id', 'DESC')->get();
+                        $now = Carbon::now();
+                        foreach ($orders as $order) {
+                            OrderController::updateOrderIfDelivered( $now, $order );
+                        }
+                        return view('account.orders', ['orders' => $orders]);
                     }
-                    return view('account.orders', ['orders' => $orders]);
                 }
+                /* had to place OrderController::returnOrderHistory() code directly, kept getting white screen bug */
+                $orders = Order::where('user_id', Auth::user()->id )->orderBy('id', 'DESC')->get();
+                $now = Carbon::now();
+                foreach ($orders as $order) {
+                    OrderController::updateOrderIfDelivered( $now, $order );
+                }
+                return view('account.orders', ['orders' => $orders]);
             }
-            /* had to place OrderController::returnOrderHistory() code directly, kept getting white screen bug */
-            $orders = Order::where('user_id', Auth::user()->id )->orderBy('id', 'DESC')->get();
-            $now = Carbon::now();
-            foreach ($orders as $order) {
-                OrderController::updateOrderIfDelivered( $now, $order );
-            }
-            return view('account.orders', ['orders' => $orders]);
         }
-
+        
         return redirect('/');
     }
 
