@@ -16,7 +16,7 @@
 
 @section('content')
 <ol class="breadcrumb">
-  <li><a href="http://localhost/emq/public/account">Account Management</a></li>
+  <li><a href="./">Account Management</a></li>
   <li class="active">Payment Methods</li>
 </ol>
 

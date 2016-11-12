@@ -2,7 +2,7 @@
 
 @section('content')
 <ol class="breadcrumb">
-  <li><a href="http://localhost/emq/public/account">Account Management</a></li>
+  <li><a href="./account">Account Management</a></li>
   <li class="active">Edit Account Details</li>
 </ol>
 

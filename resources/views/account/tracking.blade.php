@@ -64,8 +64,8 @@
 
 @section('content')
 <ol class="breadcrumb">
-  <li><a href="http://localhost/emq/public/account">Account Management</a></li>
-  <li><a href="http://localhost/emq/public/account/orders">Order History</a></li>
+  <li><a href="../">Account Management</a></li>
+  <li><a href="../orders">Order History</a></li>
   <li class="active">Order Tracking</li>
 </ol>
 
