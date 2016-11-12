@@ -20,6 +20,11 @@
 
 
 @section('content')
+<ol class="breadcrumb">
+  <li><a href="../management">Admin Management</a></li>
+  <li><a href="../products">Products</a></li>
+  <li class="active">Product</li>
+</ol>
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">

@@ -2,8 +2,8 @@
 
 @section('content')
 <ol class="breadcrumb">
-  <li><a href="http://localhost/emq/public/account">Account Management</a></li>
-  <li><a href="http://localhost/emq/public/account/payment">Payment Methods</a></li>
+  <li><a href="../">Account Management</a></li>
+  <li><a href="../payment">Payment Methods</a></li>
   <li class="active">Add New Payment Method</li>
 </ol>
 
