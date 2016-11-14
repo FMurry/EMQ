@@ -31,6 +31,22 @@ class OrderController extends Controller
         $this->middleware('auth');
     }
 
+    public function cartTotal(){
+        $cart = Cart::where('user_id', Auth::user()->id )->get();
+
+        $total_price = 0;
+        $total_items = 0;
+        foreach ($cart as $item){
+            $total_items += $item->quantity;
+            $total_price += $item->product->price * $item->quantity;
+        }
+
+
+
+        $total = array("cost" => $total_price,"quantity"=> $total_items);
+        return $total;
+    }
+
     /**
     * Stores the user's order into DB
     * @param Request The request received
@@ -39,20 +55,32 @@ class OrderController extends Controller
     public function completeOrder(Request $request){
 
         $this->validate($request, [
-            'address' => 'required|integer|exists:address,id',//Can be hacked, need to validate address belongs to user
-            'payment' => 'required|integer|exists:payment,id',//Can be hacked, need to validate payment method belongs to user
-            'total' => 'required',
+            'address' => 'required|integer|exists:address,id',
+            'payment' => 'required|integer|exists:payment,id',
         ]);
 
+        $a = Address::find( $request['address'] );
+        $p = Payment::find( $request['payment'] );
+        if( $a->user_id == Auth::user()->id && $p->user_id == Auth::user()->id){
+            $total = OrderController::cartTotal();
 
-    	$order = new Order;
-    	$address_id = $request['address'];
-    	$payment_id = $request['payment'];
-    	$cost = $request['total'];
-    	$this->createOrder($order,Auth::user()->id,$payment_id,$address_id,$cost);
-        //$data = json_encode($request->all());
+            //check if cart is empty, in case they went to previous page after checking out and tried to check out again
+            if( $total['quantity'] == 0 ){
+                //cart is empty
+                $status = "Your Cart is Empty.";
+                return redirect()->action('CartController@getCart')->with('status', $status);
+            }
+        	$order = new Order;
+        	$address_id = $request['address'];
+        	$payment_id = $request['payment'];
+        	$cost = $total['cost'];
+        	$this->createOrder($order,Auth::user()->id,$payment_id,$address_id,$cost);
+            //$data = json_encode($request->all());
 
-        return view('process.complete', ['order' => $order]);
+            return view('process.complete', ['order' => $order]);
+        }
+        $status = "Invalid Input Detected.";
+        return redirect()->action('CartController@getCart')->with('status', $status);
     }
 
 

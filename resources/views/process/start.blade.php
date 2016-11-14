@@ -160,7 +160,7 @@
         Estimated tax to be collected: ${{ $estimated_tax }}<br>
         <br>
         Estimated Total: ${{ $estimated_total }}<br>
-        <input type="hidden" name="total" value="{{ $total_price }}">
+
         <br>
         <button type="submit" class="btn btn-primary">Complete Order</a>
     
