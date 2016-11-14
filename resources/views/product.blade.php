@@ -39,7 +39,7 @@
                             <p>{{ $product->quantity }} left in stock</p>  
                             @else
                             <br>
-                            <button type="button" class="btn btn-danger">Item Not Unavailable</button>
+                            <button type="button" class="btn btn-danger">Item Not Available</button>
                             @endif
 
                         </div>

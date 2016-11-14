@@ -57,7 +57,7 @@ class CartController extends Controller
         if($product){
 
             // IF product is Available, quantity > 0
-            if( $product->isAvailable() ){
+            if( $product->isAvailable() && $product->available){
 
                 // Retrieve User Cart Entry with Product
                 $cartExist = DB::table('cart')->where('user_id', $user_id )->where('product_id', $product_id )->first();
