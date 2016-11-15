@@ -53,9 +53,9 @@
                             <input type="number" name="your_awesome_parameter" id="some_id" class="rating" data-clearable="remove" value="0"/>
 
                             <a href="#"><p>No reviews</p></a>
-                            <input class="rating" data-max="5" data-min="1" id="some_id" name="your_awesome_parameter" type="number" value="0" />
                             @else
                             <input class="rating" data-max="5" data-min="1" id="some_id" name="your_awesome_parameter" type="number" value="{{ round($data['rating']) }}" />
+                            {{$data['rating']}}
                             <a href="#"><p>
                             {{ $data['count'] }} Reviews</p></a>
                             @endif
