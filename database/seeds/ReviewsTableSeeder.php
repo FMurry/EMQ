@@ -38,13 +38,32 @@ class ReviewsTableSeeder extends Seeder
         $review5->product_id = 0;
         $review5->review = "Amazing Product!";
 
+        
+
         $reviews = [$review1,$review2,$review3,$review4,$review5];
 
         //For 16 Products.....
         for ($i=1; $i < 16; $i++) { 
             //For 10 times per product
             for ($j=0; $j <10 ; $j++) {
-                $review = $reviews[rand(0,4)];
+                //This product Sucks
+                if($i == 1){
+                    $review = $reviews[rand(0,1)];
+                    $review->product_id = $i; 
+                    DB::table('reviews')->insert([
+                        'rating' => $review->rating,
+                        'product_id' => $review->product_id,
+                        'user_id' => 1,
+                        'review' => $review->review
+                    ]);  
+                }
+                //No reviews for this product
+                elseif($i == 2){
+
+                }
+                //Product reviews are random
+                elseif ($i < 10) {
+                   $review = $reviews[rand(0,4)];
                 $review->product_id = $i; 
                 DB::table('reviews')->insert([
                         'rating' => $review->rating,
@@ -52,6 +71,19 @@ class ReviewsTableSeeder extends Seeder
                         'user_id' => 1,
                         'review' => $review->review
                     ]);
+            
+                }
+                //These products are amazing (product_id >= 10)
+                else{
+                $review = $reviews[rand(3,4)];
+                $review->product_id = $i; 
+                DB::table('reviews')->insert([
+                        'rating' => $review->rating,
+                        'product_id' => $review->product_id,
+                        'user_id' => 1,
+                        'review' => $review->review
+                    ]);
+                }
             }
         }
 
