@@ -32,4 +32,16 @@ class ReviewController extends Controller
     		return $total/count($reviews);
     	}
     }
+
+    /**
+    *   Gets Top 5 reviews based on how helpful they were
+    *
+    **/
+    public static function getPopularReviews($product_id){
+        $reviews = Review::where('product_id', $product_id)
+        ->orderBy('helpful','desc')
+        ->take(5)
+        ->get();
+        return $reviews;
+    }
 }
