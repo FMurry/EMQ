@@ -104,6 +104,7 @@
         </div>
         <hr>
     @endforeach
+    <center>{{ $orders->links() }}</center>
 @else
 <center><h3>No Current Order History.</h3>
     <h4>Lets go shopping!</h4>

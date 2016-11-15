@@ -160,7 +160,7 @@ class OrderController extends Controller
     */
     public function returnOrderHistory(){
         
-        $orders = Order::where('user_id', Auth::user()->id )->orderBy('id', 'DESC')->get();
+        $orders = Order::where('user_id', Auth::user()->id )->orderBy('id', 'DESC')->paginate(4);
         $now = Carbon::now();
         foreach ($orders as $order) {
             OrderController::updateOrderIfDelivered( $now, $order );
