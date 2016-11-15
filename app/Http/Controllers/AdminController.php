@@ -12,11 +12,12 @@ use App\User;
 use App\Order;
 use App\Store;
 use App\Products;
-
+use App\Admin;
 
 
 class AdminController extends Controller
 {
+    
     //
 	public function __construct()
     {
@@ -66,14 +67,17 @@ class AdminController extends Controller
             case "users":
                 //$users = User::all();
                 $users = User::get();
-                foreach ($users as $user) {
-                    $user['access'] = $user->access();
-                }
+                if(Auth::user()->access() == 3){
+                    foreach ($users as $user) {
+                        $user['access'] = $user->access();
+                    }
+                }   
                 return response()->json(['users' => $users]);
             case "products":
-                $products = Products::get(['id','productName','quantity','brand','image','price','available','category']);
-                return response()->json(['products' => $products]);
-
+                if(Auth::user()->access() >= 2){
+                    $products = Products::get(['id','productName','quantity','brand','image','price','available','category']);
+                    return response()->json(['products' => $products]);
+                }
             /*
             *   Returns NULL as no data path was referenced
             */
@@ -81,6 +85,60 @@ class AdminController extends Controller
                 return "no data specified";
         }
     }
+
+    public function userAccessView($id){
+        if( Auth::user()->access() == 3 ){
+            $user = User::find($id);
+            if($user){
+                if(Auth::user()->access() == 3){
+                    return view('admin.access', ['user' => $user]);
+                }
+            }
+        }
+        return redirect('/');
+    }
+
+    public function updateUserAccess(Request $request){
+        if( Auth::user()->access() == 3 ){
+             $this->validate($request, [
+                'user_id' => 'required|integer',
+                'email' => 'required|max:255',
+                'access_level' => 'required|integer|between:0,3',
+            ]);
+            $user = User::find($request['user_id']);
+            if($user){
+                if($user->email == $request['email']){
+
+                    if($user->access() > 0){//Admin object already exists
+                        if( $request['access_level'] > 0 ){
+                            $admin = Admin::where('user_id', $user->id )->first();
+                            $admin->user_id = $request['user_id'];
+                            $admin->role = $request['access_level'];
+                            $admin->save();
+                        }elseif($request['access_level'] == 0){
+                            $admin = Admin::where('user_id', $user->id )->first();
+                            $admin->delete();
+                        }
+                    }else{//Admin object does not exist
+                        if( $request['access_level'] > 0 ){
+                            $admin = new Admin;
+                            $admin->user_id = $request['user_id'];
+                            $admin->role = $request['access_level'];
+                            $admin->save();
+                        }
+                    }
+
+                    $status = "User (".$user->name.") has been successfully updated.";
+                    return redirect()->action('AdminController@userAccessView', ['user' => $user])->with('status', $status);
+                }
+                    $alert = "Emails did not match.";
+                    return redirect()->action('AdminController@userAccessView', ['user' => $user])->with('alert', $alert);
+            }
+
+        }
+        return redirect('/');
+    }
+
     public function getUser($id)
     {
         $user = User::find($id);
@@ -138,9 +196,11 @@ class AdminController extends Controller
     }
 
     public function getProduct($id)
-    {
-        $product = Products::find($id);
-        return view('admin.product', ['product' => $product]);
+    {   
+        if(Auth::user()->access() >= 2){
+            $product = Products::find($id);
+            return view('admin.product', ['product' => $product]);
+        }
     }
 
 

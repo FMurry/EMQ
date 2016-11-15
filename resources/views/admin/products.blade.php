@@ -35,7 +35,7 @@ app.controller('listdata',function($scope, $http){
 @section('content')
 <ol class="breadcrumb">
   <li><a href="./management">Admin Management</a></li>
-  <li class="active">Product</li>
+  <li class="active">Manage Products</li>
 </ol>
 <div class="container">
     <div class="row">

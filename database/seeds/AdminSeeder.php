@@ -15,7 +15,7 @@ class AdminSeeder extends Seeder
         DB::table('admins')->delete();
         DB::table('admins')->insert([
         	'user_id' => 1,
-        	'role' => 1
+        	'role' => 3
         ]);
 
     }
