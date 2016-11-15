@@ -4,7 +4,14 @@
 
 @section('scripts-head')
     <!-- Start of Scripts Added to Head Section -->
-
+<style>
+.modal.modal-wide .modal-dialog {
+  width: 80%;
+}
+.modal-wide .modal-body {
+  overflow-y: auto;
+}
+</style>
     <!-- End of Scripts Added to Head Section -->
 @endsection
 
@@ -32,7 +39,7 @@
                     <div class="row" style="padding: 20px;">
 
                         <div class="col-md-4" style="text-align: center;">
-                            <div><img src="{{asset('product_images/' . $product->image)}}" style="width: 100%;"></div>
+                            <div data-toggle="modal" data-target="#myModal"><img src="{{asset('product_images/' . $product->image)}}" style="width: 100%;"></div>
 
                             @if( $product->available)
                             <a href="{{ action('CartController@addToCart', ['id' => $product->id]) }}" class="btn btn-primary">Add to Cart</a><br> 
@@ -55,7 +62,30 @@
                         </div>
                     
                     </div>
+<!-- Modal -->
+<div id="myModal" class="modal modal-wide fade" role="dialog">
+  <div class="modal-dialog">
 
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{ stripslashes($product->productName) }}</h4>
+      </div>
+      <div class="modal-body">
+        <img src="{{asset('product_images/' . $product->image)}}" style="width: 100%;">
+      </div>
+      <div class="modal-footer">
+            @if( $product->available)
+    <a href="{{ action('CartController@addToCart', ['id' => $product->id]) }}" class="btn btn-primary">Add to Cart</a>
+    @endif
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- End of Modal -->
 
 <!-- Stuff I added -->
 
