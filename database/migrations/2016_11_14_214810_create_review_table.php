@@ -12,14 +12,14 @@ class CreateReviewTable extends Migration
      */
     public function up()
     {
-        if(!Shema::hasTable('reviews')){
+        if(!Schema::hasTable('reviews')){
             Schema::create('reviews', function (Blueprint $table) {
                 $table->increments('id');
                 $table->integer('rating');
                 $table->integer('product_id');
                 $table->integer('user_id');
                 $table->string('review');
-                $table->nullableTimestamp();
+                $table->nullableTimestamps();
             });
         }
     }
