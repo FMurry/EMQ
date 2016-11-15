@@ -85,6 +85,7 @@ app.controller('listdata',function($scope, $http){
                                                                    
                                   </div>
                                   <div>
+                                    <label>$@{{ product.price}}</label><br>
                                     <a href="./product/@{{ product.id }}" class="btn btn-default">View Item</a>
                                   </div>
                                 </div>
