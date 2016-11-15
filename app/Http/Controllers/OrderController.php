@@ -159,13 +159,14 @@ class OrderController extends Controller
     * @return view returns account.orders view
     */
     public function returnOrderHistory(){
-        
-        $orders = Order::where('user_id', Auth::user()->id )->orderBy('id', 'DESC')->paginate(4);
+        //First check ALL orders to see if they arrived.
+        $orders = Order::where('user_id', Auth::user()->id )->orderBy('id', 'DESC')->get();
         $now = Carbon::now();
         foreach ($orders as $order) {
             OrderController::updateOrderIfDelivered( $now, $order );
         }
-
+        //safe to paginate now.
+        $orders = Order::where('user_id', Auth::user()->id )->orderBy('id', 'DESC')->paginate(4);
         return view('account.orders', ['orders' => $orders]);
     }
 

@@ -89,12 +89,21 @@
                 <!-- end of display cost totals -->
             </div><!--end of products row-->
 
-        
+            <!--Track Order button-->
+            <div class="row text-center">
+                @if($order->delivered == false)
+                <h4>Currently Out for Delivery</h4>
+                @else
+                <h4>Successfully Delivered On: {{ $order->delivered_at }}</h4>
+                @endif
+            </div>
+            <!--End of Track Order button-->
 
         </div>
     </div>
     <hr>
 @endforeach
+<center>{{ $orders->links() }}</center>
 <!-- Stuff I added -->
 </div></div>
 
