@@ -22,8 +22,11 @@ class ProductsController extends Controller
     public function getProduct($id)
     {
     	$product = Products::find($id);
-        $rating = ReviewController::calculateAverage($id);
-    	return view('product', ['product' => $product],['rating' => $rating]);
+        if($product){
+            $rating = ReviewController::calculateAverage($id);
+        	return view('product', ['product' => $product],['rating' => $rating]);
+        }
+        return redirect('/');
     }
 
     public function welcomePageIndex(){
@@ -32,8 +35,8 @@ class ProductsController extends Controller
     }
     public function shopPublicIndex()
     {
-        $products = Products::all();
-        return view('shop', ['products' => $products]);
+
+        return view('shop');
     }
     /**
     * Testing to see if Form can Update Database
@@ -47,7 +50,7 @@ class ProductsController extends Controller
     		->where('id', Auth::user()->id)
     		->update(['name' => $newFullName]); //Update database entry
 
-    	return view('/home');
+    	return redirect('/home');
 
     }
 
