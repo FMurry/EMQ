@@ -79,7 +79,7 @@ class OrderController extends Controller
 
             return view('process.complete', ['order' => $order]);
         }
-        $status = "Invalid Input Detected.";
+        $status = "Illegal Input Detected.";
         return redirect()->action('CartController@getCart')->with('status', $status);
     }
 
