@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\Products; //Import Products to Controller
+use App\Review;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Auth;//Needed to use Auth::
 use Illuminate\Support\Facades\DB;//Needed to use DB::
 
@@ -20,8 +22,8 @@ class ProductsController extends Controller
     public function getProduct($id)
     {
     	$product = Products::find($id);
-
-    	return view('product', ['product' => $product]);
+        $rating = ReviewController::calculateAverage($id);
+    	return view('product', ['product' => $product],['rating' => $rating]);
     }
 
     public function welcomePageIndex(){
@@ -48,4 +50,5 @@ class ProductsController extends Controller
     	return view('/home');
 
     }
+
 }
