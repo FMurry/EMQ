@@ -34,13 +34,13 @@ app.controller('listdata',function($scope, $http){
 @section('content')
 <ol class="breadcrumb">
   <li><a href="./management">Admin Management</a></li>
-  <li class="active">View Users</li>
+  <li class="active">Manage Users</li>
 </ol>
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">View Users</div>
+                <div class="panel-heading">Manage Users</div>
 
                 <div class="panel-body">
                     
@@ -68,9 +68,11 @@ app.controller('listdata',function($scope, $http){
               <th ng-click="sort('email')">E-Mail
                 <span class="glyphicon sort-icon" ng-show="sortKey=='email'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
               </th>
+              @if(Auth::user()->access() == 3)
               <th ng-click="sort('access')">Access Level
                 <span class="glyphicon sort-icon" ng-show="sortKey=='access'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
               </th>
+              @endif
               <th >Manage
                 <span class="glyphicon sort-icon" ng-show="sortKey=='quantity'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
               </th>
@@ -82,10 +84,12 @@ app.controller('listdata',function($scope, $http){
               <td>@{{user.id}}</td>
               <td>@{{user.name}}</a></td>
               <td>@{{user.email}}</td>
+              @if(Auth::user()->access() == 3)
               <td>@{{user.access}}</td>
+              @endif
               <td><a href="./orders/@{{ user.id }}">View User Orders</a>
                 <!-- This access level will be modified so admin lvl 3 can only see this option. -->
-                @if(Auth::user()->access() == 1)
+                @if(Auth::user()->access() == 3)
                 <br><a href="./access/@{{ user.id }}">Manage Access Level</a>
                 @endif
               </td>

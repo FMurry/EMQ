@@ -94,6 +94,9 @@ Route::group(['middleware' => 'App\Http\Middleware\AuthMiddleware'], function()
 
     Route::post('/admin/product/update', 'AdminController@updateProduct');
 
+    Route::get('/admin/access/{id}','AdminController@userAccessView');
+    Route::post('/admin/access/update', 'AdminController@updateUserAccess');
+
     /* API */
     Route::get('/admin/api', 'AdminController@apiController');
 });

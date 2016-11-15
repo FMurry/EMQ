@@ -27,7 +27,7 @@
                                 </div>
                             </div>                            
                         </div>
-
+                        @if(Auth::user()->access() >= 2)
                         <div class="col-md-3">
                             <div class="panel panel-warning" style="margin: 10px;">
                                 <div href="{{ url('/edit') }}" class="panel-heading">Manage Products</div>
@@ -37,7 +37,7 @@
                                 </div>
                             </div>                            
                         </div>
-
+                        @endif
                         <div class="col-md-3">
                             <div class="panel panel-warning" style="margin: 10px;">
                                 <div href="{{ url('/edit') }}" class="panel-heading">View Stores</div>
