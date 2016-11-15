@@ -11,6 +11,9 @@ class ReviewController extends Controller
 {
     //
 
+	public function getReviews($product_id){
+		return view('/');
+	}
 	public function reviewCount($product_id){
 		return count(Review::where('product_id',$product_id)->get());
 	}
