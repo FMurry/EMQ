@@ -14,6 +14,7 @@ use App\Store;
 use App\Products;
 use App\Admin;
 
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -162,6 +163,22 @@ class AdminController extends Controller
         }
     }
 
+    public function updateOrderIfDelivered( $now, $order ){
+        if( $order->delivered == false ){
+            //$now= Carbon::now(); //current time
+            $current_delivery_time = $now->diffInSeconds($order->created_at);
+            if( $current_delivery_time > $order->delivery_time ){
+                /* then order has already been delivered */
+                /* generate delivered_at timestamp */
+                $delivered_at = $order->created_at->addSeconds( $order->delivery_time )->format('l, F jS Y @ h:i A');
+                $order->delivered_at = $delivered_at;
+                $order->delivered = true;
+                $order->save();
+            }
+        }
+    }
+
+
     /**
     *   Returns the manage user order view
     *   @param $id The id of the user
@@ -169,8 +186,15 @@ class AdminController extends Controller
     */
     public function manageUserOrder($id)
     {
-
+        //First check ALL orders to see if they arrived.
         $orders = Order::where('user_id', $id)->orderBy('id', 'DESC')->get();
+        $now = Carbon::now();
+        foreach ($orders as $order) {
+            AdminController::updateOrderIfDelivered( $now, $order );
+        }
+        //safe to paginate now.
+        $orders = Order::where('user_id', Auth::user()->id )->orderBy('id', 'DESC')->paginate(4);
+
         return view('admin.orders', ['orders' => $orders]);
     }
 
@@ -191,8 +215,10 @@ class AdminController extends Controller
 
     public function getProducts()
     {
-        $products = Products::all();
-        return view('admin.products', ['products' => $products]);
+        if(Auth::user()->access() >= 2){
+            return view('admin.products');
+        }
+        return redirect('/');
     }
 
     public function getProduct($id)
@@ -201,6 +227,7 @@ class AdminController extends Controller
             $product = Products::find($id);
             return view('admin.product', ['product' => $product]);
         }
+        return redirect('/');
     }
 
 

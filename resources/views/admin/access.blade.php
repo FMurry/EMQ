@@ -20,7 +20,7 @@
 @section('content')
 <ol class="breadcrumb">
   <li><a href="../management">Admin Management</a></li>
-  <li><a href="../products">Manage Users</a></li>
+  <li><a href="../users">Manage Users</a></li>
   <li class="active">User</li>
 </ol>
 <div class="container">
