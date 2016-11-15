@@ -11,6 +11,10 @@
 .modal-wide .modal-body {
   overflow-y: auto;
 }
+
+.reviewStar{
+    color: orange;
+}
 </style>
     <!-- End of Scripts Added to Head Section -->
 @endsection

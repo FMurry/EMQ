@@ -55,17 +55,16 @@ class ReviewController extends Controller
         for ($i=0; $i < 5 ; $i++) { 
            
             if($rating-$i >=1.00){
-                $htmlString .="<i class=\"fa fa-star\"></i>";
+                $htmlString .="<i class=\"fa fa-star fa-1x reviewStar\"></i>";
             }
             elseif($rating-$i <= 0.00){
-                $htmlString .="<i class=\"fa fa-star-o\"></i>";
+                $htmlString .="<i class=\"fa fa-star-o fa-1x reviewStar\"></i>";
             }
             else{
-                $htmlString .="<i class=\"fa fa-star-half-o\"></i>";
+                $htmlString .="<i class=\"fa fa-star-half-o fa-1x reviewStar\"></i>";
                 }
             
         }
-        var_dump($htmlString);
         return $htmlString;
     }
 }
