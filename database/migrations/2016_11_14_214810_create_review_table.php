@@ -31,6 +31,6 @@ class CreateReviewTable extends Migration
      */
     public function down()
     {
-        Shema::dropIfExists('reviews');
+        Schema::dropIfExists('reviews');
     }
 }
