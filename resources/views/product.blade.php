@@ -50,11 +50,10 @@
                             @endif
 
                             @if($data['rating']==0)
-                            <input type="number" name="your_awesome_parameter" id="some_id" class="rating" data-clearable="remove" value="0"/>
-
+                            {!! $data['stars'] !!}
                             <a href="#"><p>No reviews</p></a>
                             @else
-                            <input class="rating" data-max="5" data-min="1" id="some_id" name="your_awesome_parameter" type="number" value="{{ round($data['rating']) }}" />
+                            {!! $data['stars'] !!}
                             {{$data['rating']}}
                             <a href="#"><p>
                             {{ $data['count'] }} Reviews</p></a>
