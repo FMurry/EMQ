@@ -49,6 +49,11 @@
                             <button type="button" class="btn btn-danger">Item Not Available</button>
                             @endif
 
+                            @if($rating==0)
+                            <a href="#"><p>No reviews</p></a>
+                            @else
+                            <a href="#"><p>{{$rating}}</p></a>
+                            @endif
                         </div>
                         
                         <div class="col-md-8">
