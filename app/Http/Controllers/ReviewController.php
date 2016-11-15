@@ -44,4 +44,28 @@ class ReviewController extends Controller
         ->get();
         return $reviews;
     }
+
+    /**
+    *   Algorithm that relates stars to numerical values
+    * @param the average numerical rating (float)
+    * @return the html code for stars
+    */
+    public static function createStars($rating){
+        $htmlString = "";
+        for ($i=0; $i < 5 ; $i++) { 
+           
+            if($rating-$i >=1.00){
+                $htmlString .="<i class=\"fa fa-star\"></i>";
+            }
+            elseif($rating-$i <= 0.00){
+                $htmlString .="<i class=\"fa fa-star-o\"></i>";
+            }
+            else{
+                $htmlString .="<i class=\"fa fa-star-half-o\"></i>";
+                }
+            
+        }
+        var_dump($htmlString);
+        return $htmlString;
+    }
 }

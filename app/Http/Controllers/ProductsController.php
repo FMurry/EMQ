@@ -25,10 +25,12 @@ class ProductsController extends Controller
         if($product){
             $rating = ReviewController::calculateAverage($id);
             $count = ReviewController::reviewCount($id);
+            $stars = ReviewController::createStars($rating);
             $data = array(
                 'product' => $product,
                 'rating' => $rating,
-                'count' => $count);
+                'count' => $count,
+                'stars' => $stars);
         	return view('product', ['data' => $data]);
         }
         return redirect('/');
