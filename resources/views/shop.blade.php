@@ -80,7 +80,7 @@ app.controller('listdata',function($scope, $http){
                                 </div>
                                 <div class="panel-body">
                                   <div style="margin: 5px auto;">
-                                    <img src="http://localhost/emq/public/product_images/@{{ product.image }}" alt="..." style="max-height: 100px;">
+                                    <img src="./product_images/@{{ product.image }}" alt="..." style="max-height: 100px;">
                                     <!-- <img src="@{{asset('public/product_images/' . product.image)}}" alt="..." style="max-height: 100px;"> -->
                                                                    
                                   </div>
