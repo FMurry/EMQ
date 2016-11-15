@@ -64,7 +64,11 @@ class AdminController extends Controller
             *   Returns Data in JSON encoded format
             */
             case "users":
-                $users = User::all();
+                //$users = User::all();
+                $users = User::get();
+                foreach ($users as $user) {
+                    $user['access'] = $user->access();
+                }
                 return response()->json(['users' => $users]);
             case "products":
                 $products = Products::get(['id','productName','quantity','brand','image','price','available','category']);
