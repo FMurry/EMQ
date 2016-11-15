@@ -193,7 +193,7 @@ class AdminController extends Controller
             AdminController::updateOrderIfDelivered( $now, $order );
         }
         //safe to paginate now.
-        $orders = Order::where('user_id', Auth::user()->id )->orderBy('id', 'DESC')->paginate(4);
+        $orders = Order::where('user_id', $id )->orderBy('id', 'DESC')->paginate(4);
 
         return view('admin.orders', ['orders' => $orders]);
     }
