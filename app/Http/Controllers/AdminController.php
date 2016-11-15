@@ -57,6 +57,26 @@ class AdminController extends Controller
         return view('admin.users', ['users' => $users]);
     }
 
+    public function apiController(Request $request) {
+        switch($request->data) {
+
+            /*
+            *   Returns Data in JSON encoded format
+            */
+            case "users":
+                $users = User::all();
+                return response()->json(['users' => $users]);
+            case "products":
+                $products = Products::get(['id','productName','quantity','brand','image','price','available','category']);
+                return response()->json(['products' => $products]);
+
+            /*
+            *   Returns NULL as no data path was referenced
+            */
+            default:
+                return "no data specified";
+        }
+    }
     public function getUser($id)
     {
         $user = User::find($id);
