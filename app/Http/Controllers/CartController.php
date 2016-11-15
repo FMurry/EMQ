@@ -82,7 +82,7 @@ class CartController extends Controller
             return redirect()->action('CartController@getCart')->with('status', $status);
         }
         //return "Error, This Product Doesn't Exist.";
-        $status = "Error, This Product Doesn't Exist.";
+        $status = "Error: Product Does Not Exist.";
         return redirect()->action('CartController@getCart')->with('status', $status);
     }
 
