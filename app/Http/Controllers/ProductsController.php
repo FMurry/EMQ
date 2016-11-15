@@ -24,7 +24,12 @@ class ProductsController extends Controller
     	$product = Products::find($id);
         if($product){
             $rating = ReviewController::calculateAverage($id);
-        	return view('product', ['product' => $product],['rating' => $rating]);
+            $count = ReviewController::reviewCount($id);
+            $data = array(
+                'product' => $product,
+                'rating' => $rating,
+                'count' => $count);
+        	return view('product', ['data' => $data]);
         }
         return redirect('/');
     }

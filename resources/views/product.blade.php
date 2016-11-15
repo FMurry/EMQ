@@ -30,7 +30,7 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-warning">
-                <div class="panel-heading"><h3>{{ stripslashes($product->productName) }}</h3></div>
+                <div class="panel-heading"><h3>{{ stripslashes($data['product']->productName) }}</h3></div>
 
                 <div class="panel-body">
                     
@@ -39,29 +39,34 @@
                     <div class="row" style="padding: 20px;">
 
                         <div class="col-md-4" style="text-align: center;">
-                            <div data-toggle="modal" data-target="#myModal"><img src="{{asset('product_images/' . $product->image)}}" style="width: 100%;"></div>
+                            <div data-toggle="modal" data-target="#myModal"><img src="{{asset('product_images/' . $data['product']->image)}}" style="width: 100%;"></div>
 
-                            @if( $product->available)
-                            <a href="{{ action('CartController@addToCart', ['id' => $product->id]) }}" class="btn btn-primary">Add to Cart</a><br> 
-                            <p>{{ $product->quantity }} left in stock</p>  
+                            @if( $data['product']->available)
+                            <a href="{{ action('CartController@addToCart', ['id' => $data['product']->id]) }}" class="btn btn-primary">Add to Cart</a><br> 
+                            <p>{{ $data['product']->quantity }} left in stock</p>  
                             @else
                             <br>
                             <button type="button" class="btn btn-danger">Item Not Available</button>
                             @endif
 
-                            @if($rating==0)
+                            @if($data['rating']==0)
+                            <input type="number" name="your_awesome_parameter" id="some_id" class="rating" data-clearable="remove" value="0"/>
+
                             <a href="#"><p>No reviews</p></a>
+                            <input class="rating" data-max="5" data-min="1" id="some_id" name="your_awesome_parameter" type="number" value="0" />
                             @else
-                            <a href="#"><p>{{$rating}}</p></a>
+                            <input class="rating" data-max="5" data-min="1" id="some_id" name="your_awesome_parameter" type="number" value="{{ round($data['rating']) }}" />
+                            <a href="#"><p>
+                            {{ $data['count'] }} Reviews</p></a>
                             @endif
                         </div>
                         
                         <div class="col-md-8">
-                            <!-- Product ID: {{ $product->id }} <br> Displayed For Debugging - Remove Later -->
-                            <h3>Price: ${{ $product->price }}</h3>
-                            Brand: {{ stripslashes($product->brand) }} |
-                            Category: {{ stripslashes($product->category) }} <br>
-                            Description:<br> {!! stripslashes($product->description) !!} <br>
+                            <!-- Product ID: {{ $data['product']->id }} <br> Displayed For Debugging - Remove Later -->
+                            <h3>Price: ${{ $data['product']->price }}</h3>
+                            Brand: {{ stripslashes($data['product']->brand) }} |
+                            Category: {{ stripslashes($data['product']->category) }} <br>
+                            Description:<br> {!! stripslashes($data['product']->description) !!} <br>
                             
                             
                         </div>
@@ -75,14 +80,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">{{ stripslashes($product->productName) }}</h4>
+        <h4 class="modal-title">{{ stripslashes($data['product']->productName) }}</h4>
       </div>
       <div class="modal-body">
-        <img src="{{asset('product_images/' . $product->image)}}" style="width: 100%;">
+        <img src="{{asset('product_images/' . $data['product']->image)}}" style="width: 100%;">
       </div>
       <div class="modal-footer">
-            @if( $product->available)
-    <a href="{{ action('CartController@addToCart', ['id' => $product->id]) }}" class="btn btn-primary">Add to Cart</a>
+            @if( $data['product']->available)
+    <a href="{{ action('CartController@addToCart', ['id' => $data['product']->id]) }}" class="btn btn-primary">Add to Cart</a>
     @endif
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
