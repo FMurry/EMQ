@@ -72,7 +72,7 @@
                                     </div>
                                     <div class="panel-body">
                                       <div style="margin: 5px auto;">
-                                        <img src="http://localhost/emq/public/product_images/{{ $current_product->image }}" alt="..." style="max-height: 100px; max-width: 100%; margin: 5px auto;">                               
+                                        <img src="./product_images/{{ $current_product->image }}" alt="..." style="max-height: 100px; max-width: 100%; margin: 5px auto;">                               
                                       </div>
                                       <div>
                                         <a href="./product/{{ $current_product->id }}" class="btn btn-default">View Item</a>
@@ -105,7 +105,7 @@
                                     </div>
                                     <div class="panel-body">
                                       <div style="margin: 5px auto;">
-                                        <img src="http://localhost/emq/public/product_images/{{ $current_product->image }}" alt="..." style="max-height: 100px; max-width: 100%; margin: 5px auto;">                               
+                                        <img src="./product_images/{{ $current_product->image }}" alt="..." style="max-height: 100px; max-width: 100%; margin: 5px auto;">                               
                                       </div>
                                       <div>
                                         <a href="./product/{{ $current_product->id }}" class="btn btn-default">View Item</a>
@@ -138,7 +138,7 @@
                                     </div>
                                     <div class="panel-body">
                                       <div style="margin: 5px auto;">
-                                        <img src="http://localhost/emq/public/product_images/{{ $current_product->image }}" alt="..." style="max-height: 100px; max-width: 100%; margin: 5px auto;">                               
+                                        <img src="./product_images/{{ $current_product->image }}" alt="..." style="max-height: 100px; max-width: 100%; margin: 5px auto;">                               
                                       </div>
                                       <div>
                                         <a href="./product/{{ $current_product->id }}" class="btn btn-default">View Item</a>

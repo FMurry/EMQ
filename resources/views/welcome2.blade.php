@@ -48,10 +48,10 @@
                     <h1 style="width: 100%; text-align: center;">Take a look at these EMQ exclusive deals!</h1>
                     <div class="slide-wrapper" style="text-align: center">
                         <div class="deals-slick" style="width: 90%; margin: 0px auto;">
-                          <img src="http://localhost/emq/public/deal_images/emq-deal-01.jpg" alt="" style="">
-                          <img src="http://localhost/emq/public/deal_images/emq-deal-02.jpg" alt="" style="">
-                          <img src="http://localhost/emq/public/deal_images/emq-deal-03.jpg" alt="" style="">
-                          <img src="http://localhost/emq/public/deal_images/emq-deal-04.jpg" alt="" style="">
+                          <img src="./deal_images/emq-deal-01.jpg" alt="" style="">
+                          <img src="./deal_images/emq-deal-02.jpg" alt="" style="">
+                          <img src="./deal_images/emq-deal-03.jpg" alt="" style="">
+                          <img src="./deal_images/emq-deal-04.jpg" alt="" style="">
                         </div>                        
                     </div>
 
@@ -68,7 +68,7 @@
                                         <div class="panel-body" style="text-align: center">
                                             <div style="margin: 5px auto;"></div>
                                           <div style="height: 100px;">
-                                            <img src="http://localhost/emq/public/product_images/{{ $product->image }}" alt="..." style="max-height: 100px; max-width: 100%; margin: 5px auto;">                               
+                                            <img src="./product_images/{{ $product->image }}" alt="..." style="max-height: 100px; max-width: 100%; margin: 5px auto;">                               
                                           </div>
                                           <div>
                                             <a href="./product/{{ $product->id }}" class="btn btn-default">View Item</a>
@@ -98,7 +98,7 @@
                                     </div>
                                     <div class="panel-body">
                                       <div style="margin: 5px auto;">
-                                        <img src="http://localhost/emq/public/product_images/{{ $current_product->image }}" alt="..." style="max-height: 100px; max-width: 100%; margin: 5px auto;">                               
+                                        <img src="./product_images/{{ $current_product->image }}" alt="..." style="max-height: 100px; max-width: 100%; margin: 5px auto;">                               
                                       </div>
                                       <div>
                                         <a href="./product/{{ $current_product->id }}" class="btn btn-default">View Item</a>
