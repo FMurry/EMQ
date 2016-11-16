@@ -4,8 +4,8 @@
 
 
 <?php
-//START OF PHP LOGIC CODE
 
+//	MODIFY BOTH OF THESE VALUES
 const CATEGORY = "PC & Accessories";
 const SAVE2FILE = "products.txt";
 
@@ -41,13 +41,23 @@ if(isset($_POST["url"] )){
 	$doc->loadHTML( $homepage );
 	$xpath = new DOMXPath( $doc );
 	// Returns Price
-	$p = trim( $xpath->query( '//span[@id="priceblock_ourprice"]' )[0]->nodeValue );
+
+	//$p = trim( $xpath->query( '//span[@id="priceblock_ourprice"]' )[0]->nodeValue );
+	foreach( $xpath->query( '//span[@id="priceblock_ourprice"]' ) as $node ){
+		$p = addslashes( trim($node->nodeValue) );
+	}
 
 	// Returns Brand
-	$b = addslashes( trim( $xpath->query( '//a[@id="brand"]' )[0]->nodeValue ) );
+	foreach( $xpath->query( '//a[@id="brand"]' ) as $node ){
+		$b = addslashes( trim($node->nodeValue) );
+	}
+	//$b = addslashes( trim( $xpath->query( '//a[@id="brand"]' )[0]->nodeValue ) );
 
 	// Returns Product Title
-	$t = addslashes( trim( $xpath->query( '//span[@id="productTitle"]' )[0]->nodeValue ) );
+	foreach( $xpath->query( '//span[@id="productTitle"]' ) as $node ){
+		$t = addslashes( trim($node->nodeValue) );
+	}
+	//$t = addslashes( trim( $xpath->query( '//span[@id="productTitle"]' )[0]->nodeValue ) );
 
 	echo "===============================================<br>";
 	$counter = 0;
@@ -90,10 +100,10 @@ if(isset($_POST["url"] )){
 	$i = random_text().".jpg";//generate random image name
 
 	//print results
-	$results = $t . "]]<br>";
-	$results .= $c . "]]<br>";
-	$results .= $b . "]]<br>";
-	$results .= $p . "]]<br>";
+	$results = "Title: [[".$t . "]]<br>";
+	$results .= "Category: [[".$c . "]]<br>";
+	$results .= "Brand: [[".$b . "]]<br>";
+	$results .= "Price: [[".$p . "]]<br>";
 
 	/*
 	$desc = "<ul>";
