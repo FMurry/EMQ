@@ -72,7 +72,8 @@
                                     </div>
                                     <div class="panel-body">
                                       <div style="margin: 5px auto;">
-                                        <img src="./product_images/{{ $current_product->image }}" alt="..." style="max-height: 100px; max-width: 100%; margin: 5px auto;">                               
+                                        
+                                        <img src="{{asset('/product_images/' . $current_product->image)}}" alt="..." style="max-height: 100px; max-width: 100%; margin: 5px auto;">                             
                                       </div>
                                       <div>
                                         <label>${{ $current_product->price}}</label><br>
@@ -106,7 +107,7 @@
                                     </div>
                                     <div class="panel-body">
                                       <div style="margin: 5px auto;">
-                                        <img src="./product_images/{{ $current_product->image }}" alt="..." style="max-height: 100px; max-width: 100%; margin: 5px auto;">                               
+                                        <img src="{{asset('/product_images/' . $current_product->image)}}" alt="..." style="max-height: 100px; max-width: 100%; margin: 5px auto;">                              
                                       </div>
                                       <div>
                                         <label>${{ $current_product->price}}</label><br>
@@ -140,7 +141,7 @@
                                     </div>
                                     <div class="panel-body">
                                       <div style="margin: 5px auto;">
-                                        <img src="./product_images/{{ $current_product->image }}" alt="..." style="max-height: 100px; max-width: 100%; margin: 5px auto;">                               
+                                        <img src="{{asset('/product_images/' . $current_product->image)}}" alt="..." style="max-height: 100px; max-width: 100%; margin: 5px auto;">                            
                                       </div>
                                       <div>
                                         <label>${{ $current_product->price}}</label><br>
