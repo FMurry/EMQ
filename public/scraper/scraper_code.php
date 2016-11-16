@@ -46,7 +46,16 @@ if(isset($_POST["url"] )){
 	foreach( $xpath->query( '//span[@id="priceblock_ourprice"]' ) as $node ){
 		$p = addslashes( trim($node->nodeValue) );
 	}
-
+	if(!$p){
+			foreach( $xpath->query( '//span[@id="priceblock_saleprice"]' ) as $node ){
+				$p = addslashes( trim($node->nodeValue) );
+			}
+	}
+	if(!$p){
+			foreach( $xpath->query( '//span[@id="priceblock_dealprice"]' ) as $node ){
+				$p = addslashes( trim($node->nodeValue) );
+			}
+	}
 	// Returns Brand
 	foreach( $xpath->query( '//a[@id="brand"]' ) as $node ){
 		$b = addslashes( trim($node->nodeValue) );
