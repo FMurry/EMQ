@@ -71,6 +71,7 @@
                                             <img src="./product_images/{{ $product->image }}" alt="..." style="max-height: 100px; max-width: 100%; margin: 5px auto;">                               
                                           </div>
                                           <div>
+                                            <label>${{ $product->price}}</label><br>
                                             <a href="./product/{{ $product->id }}" class="btn btn-default">View Item</a>
                                           </div>
                                         </div>
@@ -101,6 +102,7 @@
                                         <img src="./product_images/{{ $current_product->image }}" alt="..." style="max-height: 100px; max-width: 100%; margin: 5px auto;">                               
                                       </div>
                                       <div>
+                                        <label>${{ $product->price}}</label><br>
                                         <a href="./product/{{ $current_product->id }}" class="btn btn-default">View Item</a>
                                       </div>
                                     </div>
