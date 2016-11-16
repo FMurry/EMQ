@@ -1,3 +1,4 @@
+<?php
 /*
 *	Scraper Tested and Approved with: FIREFOX, CHROME
 *	
@@ -87,3 +88,4 @@ Extra CAR_ELECTRONICS{
 *	categories grabbed from the following URL
 *	https://www.amazon.com/electronics-store/b/ref=sd_allcat_elec_hub?ie=UTF8&node=172282
 */
+?>
