@@ -102,7 +102,7 @@ class AdminController extends Controller
     public function updateUserAccess(Request $request){
         if( Auth::user()->access() == 3 ){
              $this->validate($request, [
-                'user_id' => 'required|integer',
+                'user_id' => 'required|integer|exists:users,id',
                 'email' => 'required|max:255',
                 'access_level' => 'required|integer|between:0,3',
             ]);
@@ -234,9 +234,9 @@ class AdminController extends Controller
     public function updateProduct(Request $request){
         // Still need to implement proper validation
          $this->validate($request, [
-            'product_id' => 'required|max:255',
-            'price' => 'required|max:255',
-            'quantity' => 'required|max:255',
+            'product_id' => 'required|integer|exists:products,id',
+            'price' => 'required|numeric|min:1.00',
+            'quantity' => 'required|integer|min:0',
         ]);
 
         //Still need to check product id exists
@@ -254,7 +254,7 @@ class AdminController extends Controller
 
          //Update Here
          $product = Products::find( $request['product_id'] );
-         $product->price = $request['price'];
+         $product->price = number_format($request['price'], 2, '.', '');;
          $product->quantity = $request['quantity'];
          $product->available = $request['available'];
          $product->save();
