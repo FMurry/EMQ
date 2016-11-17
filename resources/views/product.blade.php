@@ -6,7 +6,7 @@
     <!-- Start of Scripts Added to Head Section -->
 <style>
 .modal.modal-wide .modal-dialog {
-  width: 80%;
+  width: 70%;
 }
 .modal-wide .modal-body {
   overflow-y: auto;
@@ -61,7 +61,7 @@
 
                         <div class="col-md-4" style="text-align: center;">
                             <div data-toggle="modal" data-target="#myModal"><img src="{{asset('product_images/' . $data['product']->image)}}" style="width: 100%;"></div>
-
+                            <br>
                             @if( $data['product']->available)
                             <a href="{{ action('CartController@addToCart', ['id' => $data['product']->id]) }}" class="btn btn-primary">Add to Cart</a><br> 
                             <p>{{ $data['product']->quantity }} left in stock</p>  
