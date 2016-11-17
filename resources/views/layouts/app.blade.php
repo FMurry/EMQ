@@ -99,7 +99,7 @@
     }
 </style>
 <div class="fixedLeft">
-    <center><img src="images/physics.svg" style="width: 80px;">
+    <center><img src="{{asset('images/physics.svg')}}" style="width: 80px;">
     <br><label><font size="6" color="orange">E</font><font size="6" color="red">M</font><font size="6" color="orange">Q</font></label></center>
 </div>
     @yield('content')
