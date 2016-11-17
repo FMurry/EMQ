@@ -31,7 +31,7 @@ class ReviewController extends Controller
     			$total += $review->rating;
     		}
 
-    		return $total/count($reviews);
+    		return round( ($total/count($reviews)) , 1);
     	}
     }
 
