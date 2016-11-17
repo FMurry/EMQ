@@ -44,7 +44,6 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Welcome</div>
                 <div class="panel-body">
-                    
                     <h1 style="width: 100%; text-align: center;">Take a look at these EMQ exclusive deals!</h1>
                     <div class="slide-wrapper" style="text-align: center">
                         <div class="deals-slick" style="width: 90%; margin: 0px auto;">

@@ -28,13 +28,11 @@ app.controller('listdata',function($scope, $http){
   }
 });
     </script>
-
     <!-- End of Scripts Added to Body Section -->
 @endsection
 
 
 @section('content')
-
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
@@ -42,7 +40,6 @@ app.controller('listdata',function($scope, $http){
                 <div class="panel-heading">Shop</div>
 
                 <div class="panel-body">
-
 <!-- Stuff I added -->
                   
                   <div class="bs-component" ng-controller="listdata">
