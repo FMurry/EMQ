@@ -83,6 +83,8 @@ Route::get('/account/tracking/{id}', 'OrderController@returnOrderTracking');
 Route::get('/welcome', 'ProductsController@welcomePageIndex');
 Route::get('/', 'ProductsController@welcomePageIndex');
 
+Route::post('/review/post', 'ReviewController@leaveReview');
+
 Route::group(['middleware' => 'App\Http\Middleware\AuthMiddleware'], function()
 {
     Route::get('/admin/management', 'AdminController@getAdminAccount');

@@ -22,6 +22,10 @@ class Products extends Model
         }
         return false;
     }
-
+    
+    public function reviews(){
+        //Relation (Foreign Object, Foreign ID, Local ID)
+        return $this->hasMany('App\Review', 'product_id', 'id');
+    }
 
 }
