@@ -2,8 +2,8 @@
 
 @section('content')
 <ol class="breadcrumb">
-  <li><a href="../">Account Management</a></li>
-  <li><a href="../address">Address Book</a></li>
+  <li><a href="{{ url('/account') }}">Account Management</a></li>
+  <li><a href="{{ url('/account/address') }}">Address Book</a></li>
   <li class="active">Add New Address</li>
 </ol>
 

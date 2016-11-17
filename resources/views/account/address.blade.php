@@ -16,7 +16,7 @@
 
 @section('content')
 <ol class="breadcrumb">
-  <li><a href="./">Account Management</a></li>
+  <li><a href="{{ url('/account') }}">Account Management</a></li>
   <li class="active">Address Book</li>
 </ol>
 

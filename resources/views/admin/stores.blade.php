@@ -2,7 +2,7 @@
 
 @section('content')
 <ol class="breadcrumb">
-  <li><a href="./management">Admin Management</a></li>
+  <li><a href="{{ url('/admin/management') }}">Admin Management</a></li>
   <li class="active">View Stores</li>
 </ol>
 <div class="container">
