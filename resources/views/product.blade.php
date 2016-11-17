@@ -107,13 +107,7 @@
                       <tbody>
                         @foreach( $reviews as $review)
                         <tr><td>
-                        @for($i=0; $i < 5; $i++)
-                            @if($i <= $review->rating )
-                            <i class="fa fa-star fa-1x reviewStar"></i>
-                            @else
-                            <i class="fa fa-star-o fa-1x reviewStar"></i>
-                            @endif
-                        @endfor
+                        {!! $review->getStars() !!}
                         <br><i>{{ $review->review }}</i>
                         <br>By <b>{{ $review->user->name }}</b> on @if($review->created_at){{ $review->created_at->format('F j, Y') }}@endif</b><br>
                         </td></tr>
