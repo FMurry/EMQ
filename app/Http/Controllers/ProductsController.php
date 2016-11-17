@@ -26,12 +26,13 @@ class ProductsController extends Controller
             $rating = ReviewController::calculateAverage($id);
             $count = ReviewController::reviewCount($id);
             $stars = ReviewController::createStars($rating);
+            $reviews = Review::where('product_id', $id )->orderBy('id', 'DESC')->get();
             $data = array(
                 'product' => $product,
                 'rating' => $rating,
                 'count' => $count,
                 'stars' => $stars);
-        	return view('product', ['data' => $data]);
+        	return view('product', ['data' => $data, 'reviews' => $reviews]);
         }
         return redirect('/');
     }

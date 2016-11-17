@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use App\Review;
 
+use Illuminate\Support\Facades\Auth;
+
 class ReviewController extends Controller
 {
     //
@@ -33,6 +35,22 @@ class ReviewController extends Controller
     	}
     }
 
+
+    public function leaveReview(Request $request){
+         $this->validate($request, [
+            'product_id' => 'required|integer|exists:products,id',
+            'review' => 'required|max:255',
+            'rating' => 'required|integer|between:1,5',
+        ]);
+        $review = new Review;
+        $review->rating = $request['rating'];
+        $review->product_id = $request['product_id'];
+        $review->user_id = Auth::user()->id;
+        $review->review = $request['review'];
+        $review->save();
+        $status = "Your Review Has Been Submitted.";
+        return redirect()->action('ProductsController@getProduct', ['id' => $request['product_id'] ])->with('status', $status);
+    }
     /**
     *   Gets Top 5 reviews based on how helpful they were
     *
