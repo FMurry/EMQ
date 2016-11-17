@@ -38,7 +38,6 @@
           });
         });
     </script>
-
     <!-- End of Scripts Added to Body Section -->
 @endsection
 
@@ -51,7 +50,6 @@
                 <div class="panel-heading">Home</div>
 
                 <div class="panel-body">
-
 <!-- Stuff I added -->
                   
                   <h3 style="width: 100%;">Recommended for You!</h3>

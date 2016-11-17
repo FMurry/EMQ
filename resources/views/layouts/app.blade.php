@@ -91,6 +91,17 @@
     </nav>
 
     @yield('scripts-body')
+<style>
+    div.fixedLeft{
+        position: fixed;
+        bottom: 20px;
+        left: 35px;
+    }
+</style>
+<div class="fixedLeft">
+    <center><img src="images/physics.svg" style="width: 80px;">
+    <br><label><font size="6" color="orange">E</font><font size="6" color="red">M</font><font size="6" color="orange">Q</font></label></center>
+</div>
     @yield('content')
 
     <!-- JavaScripts -->
