@@ -64,8 +64,8 @@
 
 @section('content')
 <ol class="breadcrumb">
-  <li><a href="../">Account Management</a></li>
-  <li><a href="../orders">Order History</a></li>
+  <li><a href="{{ url('/account') }}">Account Management</a></li>
+  <li><a href="{{ url('/account/orders') }}">Order History</a></li>
   <li class="active">Order Tracking</li>
 </ol>
 

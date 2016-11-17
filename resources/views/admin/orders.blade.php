@@ -2,8 +2,8 @@
 
 @section('content')
 <ol class="breadcrumb">
-  <li><a href="../management">Admin Management</a></li>
-  <li><a href="../users">Users</a></li>
+  <li><a href="{{ url('/admin/management') }}">Admin Management</a></li>
+  <li><a href="{{ url('/admin/users') }}">Users</a></li>
   <li class="active">Order History</li>
 </ol>
 
