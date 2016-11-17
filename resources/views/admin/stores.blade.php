@@ -25,10 +25,10 @@
                                 <div class="panel-body">
                                   <div style="margin: 5px auto;">
                                     <div>
-                                      Address: {{ $store-> address}}
+                                      {{ $store-> address}}
                                     </div>
                                     <div>
-                                      City: {{ $store->city}}
+                                      {{ $store->city}}, {{ $store->state}} {{ $store->zip}}
                                     </div>
                                     <div>
                                       Phone: {{ $store->phone}}
