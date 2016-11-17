@@ -5,6 +5,7 @@
 @section('scripts-head')
     <!-- Start of Scripts Added to Head Section -->
 <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <!-- End of Scripts Added to Head Section -->
 @endsection
@@ -13,7 +14,11 @@
 
 @section('scripts-body')
     <!-- Start of Scripts Added to Body Section -->
-
+<script>
+  $(function() {
+    $('#toggle-one').bootstrapToggle();
+  })
+</script>
     <!-- End of Scripts Added to Body Section -->
 @endsection
 
@@ -65,9 +70,9 @@
                             <h3>Price: $ <input type="text"  name="price" value="{{ $product->price }}" size="8"></h3>
                             <h3>Quantity: <input type="text" name="quantity" value="{{ $product->quantity }}" size="6"></h3>
                             @if( $product->available == 1)
-                            <h3>List Item: <input type="checkbox" name="available" checked data-toggle="toggle" ></h3><!-- should be a toogle button here, couldn't get css/bootstrap to cooperate -->
+                            <h3>List Item: <input id="toggle-one" type="checkbox" name="available" checked data-toggle="toggle" ></h3><!-- should be a toogle button here, couldn't get css/bootstrap to cooperate -->
                             @else
-                            <h3>List Item: <input type="checkbox" name="available" data-toggle="toggle"></h3><!-- should be a toogle button here, couldn't get css/bootstrap to cooperate -->
+                            <h3>List Item: <input id="toggle-one" type="checkbox" name="available" data-toggle="toggle"></h3><!-- should be a toogle button here, couldn't get css/bootstrap to cooperate -->
                             @endif
                             Brand: {{ stripslashes($product->brand) }} |
                             Category: {{ stripslashes($product->category) }} <br>
