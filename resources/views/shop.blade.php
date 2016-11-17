@@ -58,11 +58,16 @@ app.controller('listdata',function($scope, $http){
 
                             <select name="category" ng-model="search1" class="form-control">
                               <option value="" selected="selected">All Products</option>
+                              <option value="Office Electronics">Office Electronics</option>
+                              <option value="Computer Parts & Components">Computer Parts & Components</option>
                               <option value="PC & Accessories">PC & Accessories</option>
-                              <option value="Category 2">Category 2</option>
-                              <option value="Category 3">Category 3</option>
+                              <option value="Camera & Video">Camera & Video</option>
+                              <option value="TVs & Accessories">TVs & Accessories</option>
+                              <option value="Bluetooth & Wireless Speakers">Bluetooth & Wireless Speakers</option>
+                              <option value="Video Games">Video Games</option>
                             </select>
                             
+
                           </div>                        
 
                       </div>
@@ -70,16 +75,16 @@ app.controller('listdata',function($scope, $http){
 
                     <div class="row" style="margin-top:10px;margin-left:8px; margin-right:10px; text-align: center;">
                       
-                        <div class="col-md-4" dir-paginate="product in products|orderBy:sortKey:reverse|filter:search1|filter:search2|itemsPerPage:6">
+                        <div class="col-md-4" dir-paginate="product in products|orderBy:sortKey:reverse|filter:search1|filter:search2|itemsPerPage:9">
                             <div class="panel panel-warning" style="margin: 10px;">
                                 <div class="panel-heading" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
                                 @{{ product.productName }}
                                 </div>
-                                <div class="panel-body">
+                                <div class="panel-body" style="text-align:center">
                                   <div style="margin: 5px auto;">
-                                    <img src="{{asset('/product_images')}}/@{{ product.image }}" alt="..." style="max-height: 100px;">
-                                    
-                                                                   
+                                    <div style="height: 100px;">
+                                    <img src="{{asset('/product_images')}}/@{{ product.image }}" alt="..."  style="max-height: 100px; max-width: 80%; margin: 5px auto;">                         
+                                    </div>
                                   </div>
                                   <div>
                                     <label>$@{{ product.price}}</label><br>

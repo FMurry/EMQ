@@ -50,19 +50,25 @@ app.controller('listdata',function($scope, $http){
       <div class="bs-component" ng-controller="listdata">
         <form class="form-inline">
           <div class="form-group">
+           <div style="margin: 5px;">
+             
+              <label >Search</label>
+              <input type="text" ng-model="search2" class="form-control" placeholder="EMQ" size="85">
+            </div>
+            <div style="margin: 5px;">
             <label >Category</label>
 
               <select name="category" ng-model="search1" class="form-control">
                 <option value="" selected="selected">All Products</option>
+                <option value="Office Electronics">Office Electronics</option>
+                <option value="Computer Parts & Components">Computer Parts & Components</option>
                 <option value="PC & Accessories">PC & Accessories</option>
-                <option value="Category 2">Category 2</option>
-                <option value="Category 3">Category 3</option>
+                <option value="Camera & Video">Camera & Video</option>
+                <option value="TVs & Accessories">TVs & Accessories</option>
+                <option value="Bluetooth & Wireless Speakers">Bluetooth & Wireless Speakers</option>
+                <option value="Video Games">Video Games</option>
               </select>
-
-              <label >Search</label>
-
-            <input type="text" ng-model="search2" class="form-control" placeholder="EMQ" size="85">
-
+            </div>
           </div>
         </form>
         <table class="table table-striped table-hover">
