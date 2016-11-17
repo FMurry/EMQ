@@ -27,6 +27,7 @@ app.controller('listdata',function($scope, $http){
     $scope.reverse = !$scope.reverse; //if true make it false and vice versa
   }
 });
+
     </script>
     <!-- End of Scripts Added to Body Section -->
 @endsection
@@ -67,7 +68,14 @@ app.controller('listdata',function($scope, $http){
                               <option value="Video Games">Video Games</option>
                             </select>
                             
+                            <label >&nbsp;Sort By</label>
 
+                            <select name="searchby"  class="form-control" ng-change="sort(keyname)" ng-model="keyname">
+                              <option value="" selected="selected"></option>
+                              <option value="productName">Product Name</option>
+                              <option value="brand">Brand</option>
+                              <option value="category">Category</option>
+                            </select>
                           </div>                        
 
                       </div>
@@ -75,7 +83,7 @@ app.controller('listdata',function($scope, $http){
 
                     <div class="row" style="margin-top:10px;margin-left:8px; margin-right:10px; text-align: center;">
                       
-                        <div class="col-md-4" dir-paginate="product in products|orderBy:sortKey:reverse|filter:search1|filter:search2|itemsPerPage:9">
+                        <div class="col-md-4" dir-paginate="product in products|orderBy:sortKey|filter:search1|filter:search2|itemsPerPage:9">
                             <div class="panel panel-warning" style="margin: 10px;">
                                 <div class="panel-heading" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
                                 @{{ product.productName }}
