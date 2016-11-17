@@ -151,7 +151,7 @@
             <option value="4">&#9733;&#9733;&#9733;&#9733;&#9734;</option>
             <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
         </select>
-        <textarea name="review" rows="5" cols="50" class="form-control" autocomplete="off"></textarea>
+        <textarea name="review" rows="5" cols="50" class="form-control" autocomplete="off" placeholder="Write your review here..."></textarea>
         <center>
       </div>
       <div class="modal-footer">
