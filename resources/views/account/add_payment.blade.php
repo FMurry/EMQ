@@ -49,7 +49,7 @@
     <input type="text" class="form-control" id="newFullName" name="cardNumber" placeholder="Enter Card Number">
 
     <div class="row">
-        <div class="col-xs-2">
+        <div class="col-md-2">
             <label for="newFullName">Expiration Month:</label>
             <select class="form-control" id="expirationMonth" name="expirationMonth">
                 <option></option>
@@ -67,7 +67,7 @@
                 <option>12</option>
             </select>
         </div>
-        <div class="col-xs-2">
+        <div class="col-md-2">
             <label for="newFullName">Expiration Year:</label>
             <select class="form-control" id="expirationYear" name="expirationYear">
                 <option></option>
@@ -83,7 +83,7 @@
                 <option>2025</option>
             </select>
         </div>
-        <div class="col-xs-3">
+        <div class="col-md-3">
             <label for="newFullName">Card Security Code:</label>
             <input type="text" class="form-control" id="cardSecurity" name="cardSecurityCode" placeholder="Enter CSV number">
         </div>
