@@ -48,20 +48,16 @@ class HomeController extends Controller
                 'confirmNewPassword' => 'required|min:6',
             ]);
 
-            $currentPw = $request['currentPassword'];
-            $newPw = Hash::make($request['newPassword']);
+
 
             //Check if current password matches account password
-            if( !Hash::check($currentPw,Auth::user()->password) ){
+            // Hash::check( new_plain_text_password , current_hashed_password )
+            if( !Hash::check($request['currentPassword'] ,Auth::user()->password) ){
                 $status = "Your current password did not match your account password.";
                 return redirect('edit')->with('alert', $status);
             }
-            //rehash if made dirty?
-            if(Hash::needsRehash($newPw)){
-                $newPw = Hash::make($request['newPassword']);
-            }
             $user = Auth::user();
-            $user->password = $newPw;
+            $user->password = Hash::make($request['newPassword']);
             $user->save();
             $status = "Your Password has been updated.";
             return redirect('edit')->with('success', $status);
@@ -79,6 +75,9 @@ class HomeController extends Controller
             $status = "Your E-mail has been updated.";
             return redirect('edit')->with('success', $status);
         }
+        /*  Change Name
+        *   Check if Change Name field is not blank.
+        */
         if( $request['fullName'] != ""){
              $this->validate($request, [
                 'fullName' => 'required|max:255',

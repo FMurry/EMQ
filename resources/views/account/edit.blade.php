@@ -52,7 +52,7 @@
       <div class="panel-body">
         <div style="margin-left: 20px;">
         <h4>Full Name: {{Auth::user()->name }}</h4>
-        <h4>Email: {{Auth::user()->email }}</h4>
+        <h4>E-mail: {{Auth::user()->email }}</h4>
         <h4>Member Since: {{Auth::user()->created_at->format('F j, Y') }}</h4>
         </div>
       </div>
