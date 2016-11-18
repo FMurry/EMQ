@@ -33,8 +33,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-warning">
-                <div class="panel-heading"><h3>{{ stripslashes($product->productName) }}</h3></div>
+            <div class="panel panel-danger">
+                <div class="panel-heading"><h3><font color="black">{{ stripslashes($product->productName) }}</font></h3></div>
 
                 <div class="panel-body">
                     
@@ -60,19 +60,16 @@
                     <div class="row" style="padding: 20px;">
 
                         <div class="col-md-4" style="text-align: center;">
-                            <div><img src="{{asset('product_images/' . $product->image)}}" style="width: 100%;"></div>
-                            <!--<a href="{{ action('CartController@addToCart', ['id' => $product->id]) }}" class="btn btn-primary">Add to Cart</a><br> 
-                            <p>{{ $product->quantity }} left in stock</p>-->                 
+                            <div><img src="{{asset('product_images/' . $product->image)}}" style="width: 100%;"></div>                 
                         </div>
                         
                         <div class="col-md-8">
-                            <!-- Product ID: {{ $product->id }} <br> Displayed For Debugging - Remove Later -->
-                            <h3>Price: $ <input type="text"  name="price" value="{{ $product->price }}" size="8"></h3>
-                            <h3>Quantity: <input type="text" name="quantity" value="{{ $product->quantity }}" size="6"></h3>
+                            <h3>Price: <b>$</b> <input type="number"  name="price" value="{{ $product->price }}" style="width: 131px;"></h3>
+                            <h3>Quantity: <input type="number" name="quantity" value="{{ $product->quantity }}" style="width: 110px;"></h3>
                             @if( $product->available == 1)
-                            <h3>List Item: <input id="toggle-one" type="checkbox" name="available" checked data-toggle="toggle" ></h3><!-- should be a toogle button here, couldn't get css/bootstrap to cooperate -->
+                            <h3>List Item: <input id="toggle-one" type="checkbox" name="available" checked data-toggle="toggle" ></h3>
                             @else
-                            <h3>List Item: <input id="toggle-one" type="checkbox" name="available" data-toggle="toggle"></h3><!-- should be a toogle button here, couldn't get css/bootstrap to cooperate -->
+                            <h3>List Item: <input id="toggle-one" type="checkbox" name="available" data-toggle="toggle"></h3>
                             @endif
                             Brand: {{ stripslashes($product->brand) }} |
                             Category: {{ stripslashes($product->category) }} <br>
