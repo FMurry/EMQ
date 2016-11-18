@@ -22,7 +22,7 @@
                             <div class="panel panel-warning" style="margin: 10px;">
                                 <div class="panel-heading">Manage Users</div>
                                 <div class="panel-body">
-                                    <img src="{{asset('images/m_users.svg')}}" alt="User" style="width:180px; height:180px; margin: 5px;">
+                                    <img src="{{asset('images/m_users.svg')}}" alt="User" style="width:100%; margin: 10px 0px;">
                                     <a href="{{ action('AdminController@getAllUsers') }}" class="btn btn-default">Manage Users</a><br>                              
                                 </div>
                             </div>                            
@@ -32,7 +32,7 @@
                             <div class="panel panel-warning" style="margin: 10px;">
                                 <div href="{{ url('/edit') }}" class="panel-heading">Manage Products</div>
                                 <div class="panel-body">
-                                    <img src="{{asset('images/m_products.svg')}}" alt="Admin" style="width:180px; height:180px; margin: 5px;">
+                                    <img src="{{asset('images/m_products.svg')}}" alt="Admin" style="width:100%; margin: 10px 0px;">
                                     <a href="{{ url('/admin/products') }}" class="btn btn-default">Manage Products</a><br>
                                 </div>
                             </div>                            
@@ -42,7 +42,7 @@
                             <div class="panel panel-warning" style="margin: 10px;">
                                 <div href="{{ url('/edit') }}" class="panel-heading">View Stores</div>
                                 <div class="panel-body">
-                                    <img src="{{asset('images/m_stores.svg')}}" alt="Admin" style="width:180px; height:180px; margin: 5px;">
+                                    <img src="{{asset('images/m_stores.svg')}}" alt="Admin" style="width:100%; margin: 10px 0px;">
                                     <a href="{{ action('AdminController@getStores') }}" class="btn btn-default">View Stores</a><br>
                                 </div>
                             </div>                            
