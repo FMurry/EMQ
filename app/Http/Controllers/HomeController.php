@@ -41,7 +41,7 @@ class HomeController extends Controller
         /*  Change Password
         *   check if Change Password fields are not blank.
         */  
-        if($request['currentPassword'] != "" && $request['newPassword'] != "" && $request['confirmNewPassword'] != ""){
+        if($request['currentPassword'] != "" || $request['newPassword'] != "" || $request['confirmNewPassword'] != ""){
              $this->validate($request, [
                 'currentPassword' => 'required|min:6',
                 'newPassword' => 'required|min:6|same:confirmNewPassword',
@@ -51,10 +51,12 @@ class HomeController extends Controller
             $currentPw = $request['currentPassword'];
             $newPw = Hash::make($request['newPassword']);
 
+            //Check if current password matches account password
             if( !Hash::check($currentPw,Auth::user()->password) ){
                 $status = "Your current password did not match your account password.";
                 return redirect('edit')->with('alert', $status);
             }
+            //rehash if made dirty?
             if(Hash::needsRehash($newPw)){
                 $newPw = Hash::make($request['newPassword']);
             }
