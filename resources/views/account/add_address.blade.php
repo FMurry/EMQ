@@ -58,7 +58,7 @@
     <input type="text" class="form-control" id="newCountry" name="newCountry" value ="United States" readonly="readonly">
 
     <label for="newPhone">Phone</label>
-    <input type="text" class="form-control" id="newPhone" name="newPhone" placeholder="Enter Phone Number">
+    <input type="tel" class="form-control" id="newPhone" name="newPhone" placeholder="Enter Phone Number">
     <span id="helpBlock" class="help-block"><em>Ex: 123-456-7890</em></span>
   </div>
   

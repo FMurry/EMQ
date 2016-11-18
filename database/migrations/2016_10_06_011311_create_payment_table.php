@@ -16,7 +16,7 @@ class CreatePaymentTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->string('nameOnCard');
-            $table->string('cardNumber')->unique();
+            $table->string('cardNumber');
             $table->integer('lastFour');
             $table->integer('expMonth');
             $table->integer('expYear');

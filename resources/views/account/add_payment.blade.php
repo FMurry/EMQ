@@ -46,7 +46,7 @@
     <input type="text" class="form-control" id="newFullName" name="fullNameOnCard" placeholder="Enter Full Name">
     
     <label for="newFullName">Card Number:</label>
-    <input type="text" class="form-control" id="newFullName" name="cardNumber" placeholder="Enter Card Number">
+    <input type="number" class="form-control" id="newFullName" name="cardNumber" placeholder="Enter Card Number">
 
     <div class="row">
         <div class="col-md-2">
@@ -85,7 +85,7 @@
         </div>
         <div class="col-md-3">
             <label for="newFullName">Card Security Code:</label>
-            <input type="text" class="form-control" id="cardSecurity" name="cardSecurityCode" placeholder="Enter CSV number">
+            <input type="number" class="form-control" id="cardSecurity" name="cardSecurityCode" placeholder="Enter CSV number">
         </div>
 </div>
 

@@ -54,7 +54,7 @@ class PaymentController extends Controller
             'cardNumber' => 'required|digits:16',
             'expirationMonth' => 'required|digits_between:1,12',
             'expirationYear' => 'required|integer|between:2016,2025',
-            'cardSecurityCode' =>  'required|digits_between:1,9999',
+            'cardSecurityCode' =>  'required|integer|between:1,9999',
             //'body' => 'required',
         ]);
 
@@ -73,9 +73,15 @@ class PaymentController extends Controller
                 $request['cardNumber'] = sha1($request['cardNumber']);
             }
 
-            $this->validate($request, [
-                'cardNumber' => 'unique:payment',
-            ]);
+            $cc = Payment::where('cardNumber', $request['cardNumber'] )->first();
+            //Check that the user is not entering the same card twice.
+            
+            if( $cc ){
+                if( $cc->user_id == Auth::user()->id){
+                    $status = "Duplicate Payment Method Detected.";
+                    return redirect()->action('PaymentController@addPaymentView')->with('alert', $status);  
+                }
+            }
 
         	$nameOnCard = $request['fullNameOnCard'];
     		$cardNumber = $request['cardNumber'];
