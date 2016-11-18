@@ -39,7 +39,7 @@ Route::get('/edit', function () {
 
 //testing
 //Route::post('/change', ['uses' => 'ProductsController@changeName']);
-Route::post('/change', 'ProductsController@changeName');
+Route::post('/change', 'HomeController@updateAccountDetails');
 Route::post('/addpayment', 'PaymentController@addPaymentMethod');
 Route::post('/addaddress', 'AddressController@addAddress');
 
