@@ -20,21 +20,66 @@
             infinite: true,
             autoplay: true,
             autoplaySpeed: 3000,
-            pauseOnHover: true
+            pauseOnHover: true,
+            responsive: [
+            {
+              breakpoint: 670,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+              }
+            }]
           });
           $('.history-slick').slick({
             slidesToShow: 3,
             infinite: true,
             autoplay: true,
             autoplaySpeed: 3000,
-            pauseOnHover: true
+            pauseOnHover: true,
+            responsive: [
+            {
+              breakpoint: 670,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+              }
+            }]
           });
           $('.similar-slick').slick({
             slidesToShow: 3,
             infinite: true,
             autoplay: true,
             autoplaySpeed: 3000,
-            pauseOnHover: true
+            pauseOnHover: true,
+            responsive: [
+            {
+              breakpoint: 670,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+              }
+            }]
           });
         });
     </script>
