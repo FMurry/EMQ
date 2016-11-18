@@ -71,7 +71,7 @@
         <br>
         <label>Enter New Password:</label><input type="password" class="form-control" name="newPassword" placeholder="Enter your new password here..."></br>
         <label>Confirm New Password:</label><input type="password" class="form-control"  name="confirmNewPassword" placeholder="Make sure they match!"></br>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Update</button>
       </div>
     </div>
   </div>
@@ -85,7 +85,7 @@
     <div id="collapse3" class="panel-collapse collapse">
       <div class="panel-body">
         <label>Enter New E-mail:</label><input type="email" class="form-control" name="email" placeholder="Enter your new e-mail here..."></br>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Update</button>
       </div>
     </div>
   </div>
@@ -99,7 +99,7 @@
     <div id="collapse4" class="panel-collapse collapse">
       <div class="panel-body">
         <label>Enter New Full Name:</label><input type="text" class="form-control" name="fullName" placeholder="Enter your new full name here..."></br>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Update</button>
       </div>
     </div>
   </div>
