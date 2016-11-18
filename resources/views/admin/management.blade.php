@@ -18,7 +18,7 @@
                     <div class="row" style="width: 100%; text-align: center;">
 
 
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="panel panel-warning" style="margin: 10px;">
                                 <div class="panel-heading">Manage Users</div>
                                 <div class="panel-body">
@@ -28,7 +28,7 @@
                             </div>                            
                         </div>
                         @if(Auth::user()->access() >= 2)
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="panel panel-warning" style="margin: 10px;">
                                 <div href="{{ url('/edit') }}" class="panel-heading">Manage Products</div>
                                 <div class="panel-body">
@@ -38,7 +38,7 @@
                             </div>                            
                         </div>
                         @endif
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="panel panel-warning" style="margin: 10px;">
                                 <div href="{{ url('/edit') }}" class="panel-heading">View Stores</div>
                                 <div class="panel-body">
