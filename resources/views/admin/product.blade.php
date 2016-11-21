@@ -64,7 +64,7 @@
                         </div>
                         
                         <div class="col-md-8">
-                            <h3>Price: <b>$</b> <input type="number"  name="price" value="{{ $product->price }}" style="width: 131px;"></h3>
+                            <h3>Price: <b>$</b> <input type="text"  name="price" value="{{ $product->price }}" style="width: 131px;"></h3>
                             <h3>Quantity: <input type="number" name="quantity" value="{{ $product->quantity }}" style="width: 110px;"></h3>
                             @if( $product->available == 1)
                             <h3>List Item: <input id="toggle-one" type="checkbox" name="available" checked data-toggle="toggle" ></h3>
