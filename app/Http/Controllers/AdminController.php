@@ -13,6 +13,7 @@ use App\Order;
 use App\Store;
 use App\Products;
 use App\Admin;
+use App\AdminLog;
 
 use Carbon\Carbon;
 
@@ -66,19 +67,31 @@ class AdminController extends Controller
             *   Returns Data in JSON encoded format
             */
             case "users":
-                //$users = User::all();
-                $users = User::get();
                 if(Auth::user()->access() == 3){
+                    $users = User::get();
                     foreach ($users as $user) {
                         $user['access'] = $user->access();
                     }
+                    return response()->json(['users' => $users]);
                 }   
-                return response()->json(['users' => $users]);
+                return "access denied";
+
+            case "log":
+                if(Auth::user()->access() == 3){
+                    $admin_log = AdminLog::all();
+                    foreach ($admin_log as $entry) {
+                        //$user['access'] = $user->access();
+                    }
+                    return response()->json(['log' => $admin_log]);
+                }   
+                return "access denied";
+
             case "products":
                 if(Auth::user()->access() >= 2){
                     $products = Products::get(['id','productName','quantity','brand','image','price','available','category']);
                     return response()->json(['products' => $products]);
                 }
+                return "access denied";
             /*
             *   Returns NULL as no data path was referenced
             */
@@ -128,6 +141,11 @@ class AdminController extends Controller
                             $admin->save();
                         }
                     }
+
+                    $log = new AdminLog;
+                    $log->user_id = Auth::user()->id;
+                    $log->message = "[User Update]: user_id: ".$user->id. ", e-mail: ".$user->email.", access_level: ".$request['access_level'];
+                    $log->save();
 
                     $status = "User (".$user->name.") has been successfully updated.";
                     return redirect()->action('AdminController@userAccessView', ['user' => $user])->with('status', $status);
@@ -249,15 +267,37 @@ class AdminController extends Controller
         }else{
             $request['available'] = "0"; //false
         } 
-         echo json_encode($request->all());
+
+        $log_message = "";
+        //Update Here
+        $product = Products::find( $request['product_id'] );
+        $new_price_formatted = number_format($request['price'], 2, '.', '');
+
+        if($product->price != $new_price_formatted){
+            $log_message .= "price_update: ".$new_price_formatted;
+        }
+        $product->price = $new_price_formatted;
+
+        
+        if($product->quantity != $request['quantity']){
+            if($log_message){ $log_message.=", ";}
+            $log_message .= "quantity_update: ".$request['quantity'];
+        }
+        $product->quantity = $request['quantity'];
+
+        if($product->available != $request['available']){
+            if($log_message){ $log_message.=", ";}
+            $log_message .= "listed_update: ".$request['available'];
+        }
+        $product->available = $request['available'];
+        $product->save();
 
 
-         //Update Here
-         $product = Products::find( $request['product_id'] );
-         $product->price = number_format($request['price'], 2, '.', '');;
-         $product->quantity = $request['quantity'];
-         $product->available = $request['available'];
-         $product->save();
+
+        $log = new AdminLog;
+        $log->user_id = Auth::user()->id;
+        $log->message = "[Product Update]: product_id: ".$product->id. ", ".$log_message;
+        $log->save();
 
          //Return to product view.
 
