@@ -121,6 +121,35 @@ class CartController extends Controller
         $status = "Item Not In Cart.";
         return redirect()->action('CartController@getCart')->with('status', $status);
     }
+    public function deleteFromCart($product_id){
+
+        $user_id = Auth::user()->id;
+        $cartExist = DB::table('cart')->where('user_id', $user_id )->where('product_id', $product_id )->first();
+
+        if($cartExist){
+            $cart = Cart::find( $cartExist->id );
+
+            //Restore Products quantity
+            $product = Products::find($product_id);
+            if( $cart->quantity > 1){
+                for($i = 1; $i <= $cart->quantity; $i++){
+                    $product->increment('quantity');
+                }
+            }else{
+                $product->increment('quantity');
+            }
+            //Delete Cart Table Row
+            $cart->delete();
+            
+            $product->save();
+            //return "Item Successfully Removed from Cart.";
+            $status = "Successfully Removed from Cart.";
+            return redirect()->action('CartController@getCart')->with('status', $status);
+        }
+        //return "Item Not In Cart.";
+        $status = "Item Not In Cart.";
+        return redirect()->action('CartController@getCart')->with('status', $status);
+    }
 
     /* temporarily placed here, will eventually be moved to OrderController */
     public function startProcessOrderForm(){

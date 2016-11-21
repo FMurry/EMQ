@@ -46,7 +46,7 @@ Route::post('/addaddress', 'AddressController@addAddress');
 
 Route::get('/addtocart/{product_id}', 'CartController@addToCart');
 Route::get('/removefromcart/{product_id}', 'CartController@removeFromCart');
-
+Route::get('/deletefromcart/{product_id}', 'CartController@deleteFromCart');
 
 
 Route::get('/cart', 'CartController@getCart');
