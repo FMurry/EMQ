@@ -55,6 +55,9 @@
                                 <a href="{{ action('CartController@removeFromCart', ['id' => $item->product_id]) }}" class="btn btn-default">
                                     <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
                                 </a>
+                                <a href="{{ action('CartController@deleteFromCart', ['id' => $item->product_id]) }}" class="btn btn-default">
+                                    Delete From Cart
+                                </a>
                             </div>                         
                         </div>
                     @endforeach
