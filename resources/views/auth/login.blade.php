@@ -53,8 +53,9 @@
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-sign-in"></i> Login
                                 </button>
+                                &nbsp;&nbsp;&nbsp;<a href="{{ url('/register') }}" class="btn btn-default"><i class="fa fa-btn fa-user"></i>Become an EMQ member</a>
 
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+                                <!-- <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a> -->
                             </div>
                         </div>
                     </form>
