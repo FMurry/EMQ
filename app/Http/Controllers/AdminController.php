@@ -67,21 +67,21 @@ class AdminController extends Controller
             *   Returns Data in JSON encoded format
             */
             case "users":
+                $users = User::get();
                 if(Auth::user()->access() == 3){
-                    $users = User::get();
                     foreach ($users as $user) {
                         $user['access'] = $user->access();
                     }
-                    return response()->json(['users' => $users]);
-                }   
-                return "access denied";
-
+                }
+                return response()->json(['users' => $users]);
+                
             case "log":
                 if(Auth::user()->access() == 3){
-                    $admin_log = AdminLog::all();
-                    foreach ($admin_log as $entry) {
-                        //$user['access'] = $user->access();
-                    }
+                    $admin_log = AdminLog::orderBy('id', 'DESC')->get();
+                    
+                    /*foreach ($admin_log as $entry) {
+                        $admin_log['admin_email'] = $entry->user->email;
+                    }*/
                     return response()->json(['log' => $admin_log]);
                 }   
                 return "access denied";
@@ -235,6 +235,14 @@ class AdminController extends Controller
     {
         if(Auth::user()->access() >= 2){
             return view('admin.products');
+        }
+        return redirect('/');
+    }
+
+    public function getLog()
+    {
+        if(Auth::user()->access() >= 3){
+            return view('admin.log');
         }
         return redirect('/');
     }
