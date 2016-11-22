@@ -42,6 +42,10 @@ class ReviewController extends Controller
             'review' => 'required|max:255',
             'rating' => 'required|integer|between:1,5',
         ]);
+        $old_review = Review::where('product_id',$request['product_id'])->where('user_id',Auth::user()->id)->first();
+        if($old_review){
+            $old_review->delete();
+        }
         $review = new Review;
         $review->rating = $request['rating'];
         $review->product_id = $request['product_id'];
