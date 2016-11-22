@@ -104,6 +104,9 @@
     <hr>
 @endforeach
 <center>{{ $orders->links() }}</center>
+@if( count($orders) == 0)
+<center><h3>No Order History Available.</h3>
+@endif
 <!-- Stuff I added -->
 </div></div>
 
