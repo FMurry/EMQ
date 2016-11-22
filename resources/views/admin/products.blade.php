@@ -75,6 +75,9 @@ app.controller('listdata',function($scope, $http){
           <thead>
             <tr>
               <th >
+                <span class="glyphicon sort-icon" ng-show="sortKey=='productName'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+              </th>
+              <th ng-click="sort('id')">Id
                 <span class="glyphicon sort-icon" ng-show="sortKey=='id'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
               </th>
               <th ng-click="sort('productName')">Product
@@ -99,8 +102,9 @@ app.controller('listdata',function($scope, $http){
           </thead>
           <tbody>
             <tr dir-paginate="product in products|orderBy:sortKey:reverse|filter:search1|filter:search2|itemsPerPage:10">
-              
+      
               <td><img src="{{asset('product_images')}}/@{{product.image}}" style="width: 100px;"></td>
+              <td>@{{product.id}}</td>
               <td><a href="./product/@{{ product.id }}">@{{product.productName}}</a></td>
               <td>$@{{product.price}}</td>
               <td>@{{product.quantity}}</td>
