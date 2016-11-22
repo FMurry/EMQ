@@ -123,6 +123,11 @@ class AdminController extends Controller
             if($user){
                 if($user->email == $request['email']){
 
+                    if($request['user_id'] == 1){
+                        $alert = "Request Denied.";
+                        return redirect()->action('AdminController@userAccessView', ['user' => $user])->with('alert', $alert);
+                    }
+
                     if($user->access() > 0){//Admin object already exists
                         if( $request['access_level'] > 0 ){
                             $admin = Admin::where('user_id', $user->id )->first();
