@@ -218,22 +218,10 @@ class OrderController extends Controller
                         $storeAddress = OrderController::address2html($order->store->name, $order->store);
                         return view('account.tracking', ['customer_address' => $home, 'store_address' => $store, 'current_delivery_time' => $current_delivery_time, 'order' => $order, 'delivery_estimate' => $delivery_estimate->format('l, F jS Y @ h:i A') , 'homeAddressHTML' => $homeAddress, 'storeAddressHTML' => $storeAddress]);
                     }else{
-                        /* had to place OrderController::returnOrderHistory() code directly, kept getting white screen bug */
-                        $orders = Order::where('user_id', Auth::user()->id )->orderBy('id', 'DESC')->get();
-                        $now = Carbon::now();
-                        foreach ($orders as $order) {
-                            OrderController::updateOrderIfDelivered( $now, $order );
-                        }
-                        return view('account.orders', ['orders' => $orders]);
+                        return redirect('/account/orders');
                     }
                 }
-                /* had to place OrderController::returnOrderHistory() code directly, kept getting white screen bug */
-                $orders = Order::where('user_id', Auth::user()->id )->orderBy('id', 'DESC')->get();
-                $now = Carbon::now();
-                foreach ($orders as $order) {
-                    OrderController::updateOrderIfDelivered( $now, $order );
-                }
-                return view('account.orders', ['orders' => $orders]);
+                return redirect('/account/orders');
             }
         }
         
