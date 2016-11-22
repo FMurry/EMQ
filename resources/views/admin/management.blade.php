@@ -43,7 +43,7 @@
                                 <div class="panel-heading">View Stores</div>
                                 <div class="panel-body">
                                     <img src="{{asset('images/m_stores.svg')}}" alt="Log" style="width:100%; max-height: 280px; margin: 10px 0px;">
-                                    <a href="{{ action('AdminController@getLog') }}" class="btn btn-default">View Stores</a><br>
+                                    <a href="{{ url('/admin/stores') }}" class="btn btn-default">View Stores</a><br>
                                 </div>
                             </div>                            
                         </div>

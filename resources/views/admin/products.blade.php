@@ -105,7 +105,7 @@ app.controller('listdata',function($scope, $http){
       
               <td><img src="{{asset('product_images')}}/@{{product.image}}" style="width: 100px;"></td>
               <td>@{{product.id}}</td>
-              <td><a href="./product/@{{ product.id }}">@{{product.productName}}</a></td>
+              <td><a href="{{url('admin/product')}}/@{{ product.id }}">@{{product.productName}}</a></td>
               <td>$@{{product.price}}</td>
               <td>@{{product.quantity}}</td>
               <td>@{{product.available}}</td>

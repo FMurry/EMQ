@@ -87,10 +87,10 @@ app.controller('listdata',function($scope, $http){
               @if(Auth::user()->access() == 3)
               <td>@{{user.access}}</td>
               @endif
-              <td><a href="./orders/@{{ user.id }}">View User Orders</a>
+              <td><a href="{{url('admin/orders')}}/@{{ user.id }}">View User Orders</a>
                 <!-- This access level will be modified so admin lvl 3 can only see this option. -->
                 @if(Auth::user()->access() == 3)
-                <br><a href="./access/@{{ user.id }}">Manage Access Level</a>
+                <br><a href="{{url('admin/access')}}/@{{ user.id }}">Manage Access Level</a>
                 @endif
               </td>
 
