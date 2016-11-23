@@ -3,13 +3,20 @@
 
 @section('scripts-head')
     <!-- Start of Scripts Added to Head Section -->
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <!-- End of Scripts Added to Head Section -->
 @endsection
 
 @section('scripts-body')
     <!-- Start of Scripts Added to Body Section -->
-
+<script>
+   $(function(){
+     $(".submitBtn").click(function () {
+       $(".submitBtn").attr("disabled", true);
+       $('#yourFormId').submit();
+     });
+   });
+</script>
     <!-- End of Scripts Added to Body Section -->
 @endsection
 
@@ -76,7 +83,7 @@
         </ul>
     </div>
 @endif
- <form method="POST" action="{{ action('OrderController@completeOrder') }}">
+ <form method="POST" id="yourFormId" action="{{ action('OrderController@completeOrder') }}">
     {!! csrf_field() !!}
   <div class="form-group">          
 
@@ -162,7 +169,7 @@
         Estimated Total: ${{ $estimated_total }}<br>
 
         <br>
-        <button type="submit" class="btn btn-primary">Complete Order</a>
+        <input type="submit" class="btn btn-primary submitBtn" onclick="this.value='Processing Order...';" value="Complete Order">
     
         </div>
     </div>
