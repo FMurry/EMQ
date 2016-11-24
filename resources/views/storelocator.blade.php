@@ -33,7 +33,7 @@
       <div class="col-md-10 col-md-offset-1">
           <div class="panel panel-default">
               <div class="panel-heading">Store Locator</div>
-                  <div id="map" style="width: 100%; height: 500px; position: relative; overflow;"></div>
+                  <div id="map" style="width: 100%; height: 550px; position: relative; overflow;"></div>
                   <script>
                     var stores_geocoordinates = [
                       {!! $stores_geocoordinates_array !!}
@@ -49,7 +49,7 @@
                       // Create a map and center it on SJSU.
                       map = new google.maps.Map(document.getElementById('map'), {
                         zoom: 9,
-                        center: {lat: 37.635, lng: -121.881}
+                        center: {lat: 37.501622, lng: -121.968116}
                       });
                       var infowindow = new google.maps.InfoWindow;
                       var geocoder = new google.maps.Geocoder;
