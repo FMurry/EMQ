@@ -1,5 +1,25 @@
 @extends('layouts.app')
 
+@section('scripts-head')
+    <!-- Start of Scripts Added to Head Section -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- End of Scripts Added to Head Section -->
+@endsection
+
+@section('scripts-body')
+    <!-- Start of Scripts Added to Body Section -->
+<script>
+   $(function(){
+     $(".submitBtn").click(function () {
+       //$(".submitBtn").attr("disabled", true);
+       $('#submit-control').html("<img src='{{asset('images/loading.gif')}}' />&nbsp;&nbsp;&nbsp;<input type=\"button\" class=\"btn btn-primary\"  value=\"Verifying...\">");
+       $('#Add-Address').submit();
+     });
+   });
+</script>
+    <!-- End of Scripts Added to Body Section -->
+@endsection
+
 @section('content')
 <ol class="breadcrumb">
   <li><a href="{{ url('/account') }}">Account Management</a></li>
@@ -26,43 +46,51 @@
         </ul>
     </div>
 @endif
-
- <form method="POST" action="{{ action('AddressController@addAddress') }}">
+@if (session('alert'))
+        <div class="alert alert-danger">
+            <ul>
+            <li>{{ session('alert') }}</li>
+            </ul>
+        </div>
+@endif
+ <form method="POST" id="Add-Address" action="{{ action('AddressController@addAddress') }}">
  	{!! csrf_field() !!}
   <div class="form-group">
-    <label for="newFullName">Full Name:</label>
-    <input type="text" class="form-control" id="newFullName" name="newFullName" placeholder="Enter Full Name">
+    <label for="FullName">Full Name:</label>
+    <input type="text" class="form-control" id="FullName" name="FullName" placeholder="Enter Full Name" >
 
-    <label for="newAddress">Address</label>
-    <input type="text" class="form-control" id="newAddress" name="newAddress" placeholder="Enter Number and Street">
+    <label for="Address">Address</label>
+    <input type="text" class="form-control" id="Address" name="Address" placeholder="Enter Number and Street" >
 
-    <label for="newAddress2">Address Line 2</label>
-    <input type="text" class="form-control" id="newAddress2" name="newAddress2" placeholder="Apt., Unit #, etc.">
+    <label for="Address2">Address Line 2</label>
+    <input type="text" class="form-control" id="Address2" name="Address2" placeholder="Apt., Unit #, etc." >
 
     <div class="row">
         <div class="col-xs-3">
-            <label for="newCity">City</label>
-            <input type="text" class="form-control" id="newCity" name="newCity" placeholder="Enter City">
+            <label for="City">City</label>
+            <input type="text" class="form-control" id="City" name="City" placeholder="Enter City" >
         </div>
         <div class="col-xs-3">
-            <label for="newState">State</label>
-            <input type="text" class="form-control" id="newState" name="newState" value ="California" readonly="readonly">
+            <label for="State">State</label>
+            <input type="text" class="form-control" id="State" name="State" value ="California" readonly="readonly">
         </div>
         <div class="col-xs-3">
-            <label for="newZip">Zip</label>
-            <input type="text" class="form-control" id="newZip" name="newZip" placeholder="Enter Zipcode">
+            <label for="Zip">Zip</label>
+            <input type="text" class="form-control" id="Zip" name="Zip" placeholder="Enter Zipcode" >
         </div>
     </div>
     
-    <label for="newCountry">Country</label>
-    <input type="text" class="form-control" id="newCountry" name="newCountry" value ="United States" readonly="readonly">
+    <label for="Country">Country</label>
+    <input type="text" class="form-control" id="Country" name="Country" value ="United States" readonly="readonly">
 
-    <label for="newPhone">Phone</label>
-    <input type="tel" class="form-control" id="newPhone" name="newPhone" placeholder="Enter Phone Number">
+    <label for="Phone">Phone</label>
+    <input type="tel" class="form-control" id="Phone" name="Phone" placeholder="Enter Phone Number" >
     <span id="helpBlock" class="help-block"><em>Ex: 123-456-7890</em></span>
   </div>
   
-  <button type="submit" class="btn btn-primary">Submit</button>
+    <div id="submit-control">
+        <input type="button" class="btn btn-primary submitBtn" value="Submit">
+    </div>
 </form>
 
 <!-- Stuff I added -->

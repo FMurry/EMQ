@@ -1,5 +1,24 @@
 @extends('layouts.app')
 
+@section('scripts-head')
+    <!-- Start of Scripts Added to Head Section -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- End of Scripts Added to Head Section -->
+@endsection
+
+@section('scripts-body')
+    <!-- Start of Scripts Added to Body Section -->
+<script>
+   $(function(){
+     $(".submitBtn").click(function () {
+       $('#submit-control').html("<img src='{{asset('images/loading.gif')}}' />&nbsp;&nbsp;&nbsp;<input type=\"button\" class=\"btn btn-primary\"  value=\"Verifying...\">");
+       $('#Process-Payment').submit();
+     });
+   });
+</script>
+    <!-- End of Scripts Added to Body Section -->
+@endsection
+
 @section('content')
 <ol class="breadcrumb">
   <li><a href="{{ url('/account') }}">Account Management</a></li>
@@ -39,7 +58,7 @@
         </div>
 @endif
 
- <form method="POST" action="{{ action('PaymentController@addPaymentMethod') }}" autocomplete="on">
+ <form method="POST" id="Process-Payment" action="{{ action('PaymentController@addPaymentMethod') }}" autocomplete="on">
  	{!! csrf_field() !!}
   <div class="form-group">
     <label for="newFullName">Full Name on Card:</label>
@@ -90,9 +109,9 @@
 </div>
 
 <br>
-<div class="">
-    <button type="submit" class="btn btn-primary">Submit</button>
-</div>
+    <div id="submit-control">
+        <input type="button" class="btn btn-primary submitBtn" value="Submit">
+    </div>
 </form>
 
 <!-- Stuff I added -->

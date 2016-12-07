@@ -47,47 +47,82 @@ class AddressController extends Controller
     */
     public function addAddress(Request $request){
 
-        $phone_characters = array("(",")","-");
-        if($request['newPhone']){
-            $request['newPhone'] = str_replace($phone_characters, "", $request['newPhone']);
+        $phone_characters = array("(",")","-"," ");
+        if($request['Phone']){
+            $request['Phone'] = str_replace($phone_characters, "", $request['Phone']);
         }
 
 
          $this->validate($request, [
-            'newFullName' => 'required|max:255',
-            'newAddress' => 'required|max:255',
-            'newAddress2' => 'max:255',
-            'newCity' => 'required|max:255',
-            'newState' => 'required|max:255',
-            'newCountry' => 'required|max:255',
-            'newZip' => 'required|digits:5',
-            'newPhone' => 'required|digits:10',
-            //'body' => 'required',
+            'FullName' => 'required|max:255',
+            'Address' => 'required|max:255',
+            'Address2' => 'max:255',
+            'City' => 'required|max:255',
+            'State' => 'required|max:255',
+            'Country' => 'required|max:255',
+            'Zip' => 'required|digits:5',
+            'Phone' => 'required|digits:10',
         ]);
-        $request['newPhone'] = substr_replace( $request['newPhone'], '-', -4, 0);
-        $request['newPhone'] = substr_replace( $request['newPhone'], ') ', 3, 0);
-        $request['newPhone'] = "(".$request['newPhone'];
+        $request['Phone'] = substr_replace( $request['Phone'], '-', -4, 0);
+        $request['Phone'] = substr_replace( $request['Phone'], ') ', 3, 0);
+        $request['Phone'] = "(".$request['Phone'];
 
-    	$newFullName = $request['newFullName'];
-    	$newAddress = $request['newAddress'];
-    	$newAddress2 = $request['newAddress2'];
-    	$newCity = $request['newCity'];
-    	$newState = "CA";
-    	$newCountry = $request['newCountry'];
-    	$newZip = $request['newZip'];
-    	$newPhone = $request['newPhone'];
-    	$address = new Address;
+    	$FullName = $request['FullName'];
+    	$Address = $request['Address'];
+    	$Address2 = $request['Address2'];
+    	$City = $request['City'];
+    	$State = "CA"; //Manually Set to prevent post parameters injection
+    	$Country = "United States"; //Manually Set to prevent post parameters injection
+    	$Zip = $request['Zip'];
+    	$Phone = $request['Phone'];
+    	
+        //convert address to gmaps friendly address
+        $fullAddress = $Address.",+".$City.",+".$State."+".$Zip;
+        $fullAddress=str_replace(" ","+",$fullAddress);
+        //using google maps geocode service to validate address
+        $jsonp = json_decode(file_get_contents("https://maps.googleapis.com/maps/api/geocode/json?address=".$fullAddress."&key=AIzaSyCz2mUMKWxhHnmrCZoVYiWjwPwu3PUCPYs")); 
+        $status = $jsonp->results[0]->geometry->location_type;
+        //checking to see that address exists explicitly
+        if($status != "ROOFTOP"){
+            $alert = "Invalid Address, Please enter full address correctly.";
+            return redirect()->action("AddressController@addAddressView")->with('alert',$alert);
+        }
+        // google maps returns valid if address has minor incorrect permutations (i.e. mispelled words or wrong zip code).
+        // variables are reassigned with google maps corrected values.
+        foreach ($jsonp->results[0]->address_components as $address_element) {
+            switch($address_element->types[0]){
+                case "premise": //Don't accept location guess made by google maps.
+                    $alert = "Invalid Address, Please enter full address correctly.";
+                    return redirect()->action("AddressController@addAddressView")->with('alert',$alert);
+                    break;
+                case "street_number":
+                    $Address = $address_element->long_name;
+                    break;
+                case "route":
+                    $Address .= " ".$address_element->short_name;
+                    break;
+                case "locality":
+                    $City = $address_element->long_name;
+                    break;
+                case "postal_code":
+                    $Zip = $address_element->long_name;
+                    break;
+            }
+        }
+        
+
+        $address = new Address;
     	$address->user_id = Auth::user()->id;
-    	$address->fullName = $newFullName;
-    	$address->address = $newAddress;
-    	$address->address2 = $newAddress2;
-    	$address->city = $newCity;
-    	$address->state = $newState;
-    	$address->country = $newCountry;
-    	$address->zip = $newZip;
-    	$address->phone = $newPhone;
+    	$address->fullName = $FullName;
+    	$address->address = $Address;
+    	$address->address2 = $Address2;
+    	$address->city = $City;
+    	$address->state = $State;
+    	$address->country = $Country;
+    	$address->zip = $Zip;
+    	$address->phone = $Phone;
     	$address->save();
-
+        
     	$status = "Successfully added Address";
     	return redirect()->action("AddressController@getAddress")->with('status',$status);
 

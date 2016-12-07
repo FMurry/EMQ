@@ -19,7 +19,6 @@
   <li><a href="{{ url('/account') }}">Account Management</a></li>
   <li class="active">Address Book</li>
 </ol>
-
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
