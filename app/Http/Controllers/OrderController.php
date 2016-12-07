@@ -74,10 +74,18 @@ class OrderController extends Controller
         	$address_id = $request['address'];
         	$payment_id = $request['payment'];
         	$cost = $total['cost'];
-        	$this->createOrder($order,Auth::user()->id,$payment_id,$address_id,$cost);
-            //$data = json_encode($request->all());
-
+        	OrderController::createOrder($order,Auth::user()->id,$payment_id,$address_id,$cost);
+            //duplicate order detected
+            if(count($order->products) == 0){
+                $order->address->delete();
+                $order->payment->delete();
+                $order->delete();
+                $status = "Cart is Empty.";
+                return redirect()->action('CartController@getCart')->with('status', $status);
+            }
             return view('process.complete', ['order' => $order]);
+
+            
         }
         $status = "Illegal Input Detected.";
         return redirect()->action('CartController@getCart')->with('status', $status);
