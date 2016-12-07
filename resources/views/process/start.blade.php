@@ -13,7 +13,7 @@
    $(function(){
      $(".submitBtn").click(function () {
        //$(".submitBtn").attr("disabled", true);
-       $('#submit-control').html("<img src='{{asset('images/loading.gif')}}' />&nbsp;&nbsp;&nbsp;<input type=\"button\" class=\"btn btn-primary\"  value=\"Processing Order...\">");
+       $('#submit-control').html("<img src=\"{{asset('images/loading.gif')}}\">&nbsp;&nbsp;&nbsp;<input type=\"button\" class=\"btn btn-primary\"  value=\"Processing Order...\">");
        $('#Process-Order').submit();
      });
    });

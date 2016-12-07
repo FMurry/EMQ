@@ -3,6 +3,7 @@
 @section('scripts-head')
     <!-- Start of Scripts Added to Head Section -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
     <!-- End of Scripts Added to Head Section -->
 @endsection
 
@@ -11,7 +12,7 @@
 <script>
    $(function(){
      $(".submitBtn").click(function () {
-       $('#submit-control').html("<img src='{{asset('images/loading.gif')}}' />&nbsp;&nbsp;&nbsp;<input type=\"button\" class=\"btn btn-primary\"  value=\"Verifying...\">");
+       $('#submit-control').html("<img src='{{asset('/images/loading.gif')}}' />&nbsp;&nbsp;&nbsp;<input type=\"button\" class=\"btn btn-primary\"  value=\"Verifying...\">");
        $('#Process-Payment').submit();
      });
    });
