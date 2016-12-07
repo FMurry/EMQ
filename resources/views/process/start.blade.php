@@ -12,8 +12,9 @@
 <script>
    $(function(){
      $(".submitBtn").click(function () {
-       $(".submitBtn").attr("disabled", true);
-       $('#yourFormId').submit();
+       //$(".submitBtn").attr("disabled", true);
+       $('#submit-control').html("<img src='{{asset('images/loading.gif')}}' />&nbsp;&nbsp;&nbsp;<input type=\"button\" class=\"btn btn-primary\"  value=\"Processing Order...\">");
+       $('#Process-Order').submit();
      });
    });
 </script>
@@ -83,7 +84,7 @@
         </ul>
     </div>
 @endif
- <form method="POST" id="yourFormId" action="{{ action('OrderController@completeOrder') }}">
+ <form method="POST" id="Process-Order" action="{{ action('OrderController@completeOrder') }}">
     {!! csrf_field() !!}
   <div class="form-group">          
 
@@ -169,8 +170,9 @@
         Estimated Total: ${{ $estimated_total }}<br>
 
         <br>
-        <input type="submit" class="btn btn-primary submitBtn" onclick="this.value='Processing Order...';" value="Complete Order">
-    
+        <div id="submit-control">
+            <input type="button" class="btn btn-primary submitBtn" value="Complete Order">
+        </div>
         </div>
     </div>
   </div>

@@ -3,6 +3,7 @@
 
 @section('scripts-head')
     <!-- Start of Scripts Added to Head Section -->
+    <meta http-equiv="refresh" content="30">
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
