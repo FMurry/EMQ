@@ -9,6 +9,7 @@ use App\Http\Controllers\OrderProductsController;
 use App\Cart;
 use App\Address;
 use App\Payment;
+use App\Products; //added
 use App\Order; //Import Payment to Controller
 use App\OrderPayment; 
 use App\OrderAddress; //Import Payment to Controller
@@ -19,7 +20,6 @@ use Illuminate\Support\Facades\Auth;//Needed to use Auth::
 use Illuminate\Support\Facades\DB;//Needed to use DB::
 
 use Carbon\Carbon;
-
 class OrderController extends Controller
 {
     /**
@@ -70,24 +70,53 @@ class OrderController extends Controller
                 $status = "Your Cart is Empty.";
                 return redirect()->action('CartController@getCart')->with('status', $status);
             }
+            /* start of stuff i added */
+            $cart = Cart::where('user_id', Auth::user()->id )->get();
+            $inventory_errors = false;
+            //needed to use associative array to keep track of cart quantity of THIS instance.
+            //to avoid race condition if user tries to check out from two browsers at the same time.
+            $item_instance_quantity = array();
+            foreach ($cart as $item){
+                $item_instance_quantity[$item->id] = $item->quantity;
+                if( $item->quantity > $item->product->quantity ){
+                    $item->quantity = $item->product->quantity;
+                    $item->save();
+                    $inventory_errors = true;
+                }
+            }
+            if( $inventory_errors ){
+                $status = "We apologize for the inconvenience, some cart items have been changed to reflect most recent inventory.";
+                return redirect()->action('CartController@getCart')->with('status', $status);
+            }
+            //process was successfull
+            foreach ($cart as $item) {
+                if($item->quantity == 0){
+                    $item->delete();
+                }else{
+                    $item->product->quantity = $item->product->quantity - $item->quantity;
+                    $item->product->save();
+                }
+            }
+
+            /* end of stuff i added */
         	$order = new Order;
         	$address_id = $request['address'];
         	$payment_id = $request['payment'];
         	$cost = $total['cost'];
-        	OrderController::createOrder($order,Auth::user()->id,$payment_id,$address_id,$cost);
+        	OrderController::createOrder($order,Auth::user()->id,$payment_id,$address_id,$cost, $item_instance_quantity);
             //duplicate order detected
             if(count($order->products) == 0){
                 $order->address->delete();
                 $order->payment->delete();
                 $order->delete();
-                $status = "Cart is Empty.";
+                $status = "Your Cart is Empty.";
                 return redirect()->action('CartController@getCart')->with('status', $status);
             }
             return view('process.complete', ['order' => $order]);
 
             
         }
-        $status = "Illegal Input Detected.";
+        $status = "Error: Illegal Input Detected.";
         return redirect()->action('CartController@getCart')->with('status', $status);
     }
 
@@ -101,7 +130,7 @@ class OrderController extends Controller
     *@param $cost The cost of the order
     *
     */
-    public function createOrder($order,$user_id,$payment_id,$address_id,$cost){
+    public function createOrder($order,$user_id,$payment_id,$address_id,$cost, &$item_instance_quantity){
         /* Returns associate array of nearest store with store_id and delivery_time */
         $nearest_store = OrderController::returnStoreAndDeliveryTime( $address_id );
 
@@ -122,7 +151,7 @@ class OrderController extends Controller
 
         $order->total = $order->cost + $order->tax;
     	$order->save();
-    	$this->migrateCartToOrderHistory($order->id);
+    	$this->migrateCartToOrderHistory($order->id, $item_instance_quantity);
 
     }
 
@@ -242,7 +271,7 @@ class OrderController extends Controller
     * @param $order_id The id of the order
     *
     */
-    public function migrateCartToOrderHistory( $order_id ){
+    public function migrateCartToOrderHistory( $order_id , &$item_instance_quantity){
 
         $cart = Cart::where('user_id', Auth::user()->id )->get();
 
@@ -251,7 +280,7 @@ class OrderController extends Controller
 	    	$order_product->order_id = $order_id;
 	    	$order_product->product_id = $item->product->id;
 	    	$order_product->price = $item->product->price;
-	    	$order_product->quantity = $item->quantity;
+	    	$order_product->quantity = $item_instance_quantity[$item->id];//$item->quantity;
 	    	$order_product->save(); //save item into order history
 	    	$item->delete(); //delete item from cart
         }

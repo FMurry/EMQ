@@ -146,7 +146,7 @@ class AddressController extends Controller
             }
         }
     	else{
-    		$status = "Error: Address Not removed";
+    		$status = "Error: Illegal Input Detected.";
     		return redirec()->action("AddressController@getAddress")->with('status',$status);
     	}
     }
