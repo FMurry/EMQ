@@ -117,13 +117,15 @@ class PaymentController extends Controller
     	$paymentMethod = Payment::find( $id );
 
     	if( $paymentMethod ){
-
-    		$paymentMethod->delete();
-    		$status = "Successfully Removed Payment Method.";
-            return redirect()->action('PaymentController@getPaymentMethods')->with('status', $status);
-
+            if( $paymentMethod->user_id == Auth::user()->id){
+        		$paymentMethod->delete();
+        		$status = "Successfully Removed Payment Method.";
+                return redirect()->action('PaymentController@getPaymentMethods')->with('status', $status);
+            }else{
+                $status = "Error: Illegal Input Detected.";
+                return redirect()->action('PaymentController@getPaymentMethods')->with('status', $status);
+            }
     	}else{
-
     		$status = "Error: Payment Method Does Not Exist.";
             return redirect()->action('PaymentController@getPaymentMethods')->with('status', $status);
     	}

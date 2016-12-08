@@ -136,10 +136,15 @@ class AddressController extends Controller
     public function removeAddress($id){
     	$address = Address::find($id);
     	if($address){
-    		$address->delete();
-    		$status = "Successfully removed Address";
-    		return redirect()->action("AddressController@getAddress")->with('status',$status);
-    	}
+            if( $address->user_id == Auth::user()->id){
+        		$address->delete();
+        		$status = "Successfully removed Address";
+        		return redirect()->action("AddressController@getAddress")->with('status',$status);
+        	}else{
+                $status = "Error: Illegal Input Detected.";
+                return redirect()->action("AddressController@getAddress")->with('status',$status);
+            }
+        }
     	else{
     		$status = "Error: Address Not removed";
     		return redirec()->action("AddressController@getAddress")->with('status',$status);

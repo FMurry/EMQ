@@ -12,8 +12,8 @@
 <script>
    $(function(){
      $(".submitBtn").click(function () {
-       //$(".submitBtn").attr("disabled", true);
-       $('#submit-control').html("<img src=\"{{asset('images/loading.gif')}}\">&nbsp;&nbsp;&nbsp;<input type=\"button\" class=\"btn btn-primary\"  value=\"Processing Order...\">");
+       $('#loading').show();
+       $('#submit-control').html("&nbsp;&nbsp;&nbsp;<input type=\"button\" class=\"btn btn-primary\"  value=\"Processing Order...\">");
        $('#Process-Order').submit();
      });
    });
@@ -170,7 +170,8 @@
         Estimated Total: ${{ $estimated_total }}<br>
 
         <br>
-        <div id="submit-control">
+        <img id="loading" src="{{asset('/images/loading.gif')}}" hidden>
+        <div id="submit-control" style="display:inline;">
             <input type="button" class="btn btn-primary submitBtn" value="Complete Order">
         </div>
         </div>
