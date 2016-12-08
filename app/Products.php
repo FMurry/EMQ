@@ -16,8 +16,8 @@ class Products extends Model
 
     public function isAvailable(){
         if( $this->available && $this->quantity > 0 ){
-            $this->quantity--;
-            $this->save(); //Need to always save changes.
+            //$this->quantity--;
+            //$this->save(); //Need to always save changes.
             return true;
         }
         return false;

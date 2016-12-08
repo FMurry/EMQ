@@ -126,7 +126,7 @@ class PaymentController extends Controller
                 return redirect()->action('PaymentController@getPaymentMethods')->with('status', $status);
             }
     	}else{
-    		$status = "Error: Payment Method Does Not Exist.";
+    		$status = "Error: Illegal Input Detected.";
             return redirect()->action('PaymentController@getPaymentMethods')->with('status', $status);
     	}
     }

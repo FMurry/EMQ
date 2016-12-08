@@ -60,11 +60,18 @@ class CartController extends Controller
             if( $product->isAvailable()){
 
                 // Retrieve User Cart Entry with Product
-                $cartExist = DB::table('cart')->where('user_id', $user_id )->where('product_id', $product_id )->first();
+                $item = Cart::where('user_id', $user_id )->where('product_id', $product_id )->first();
 
-                if($cartExist){
+                if($item){
                     // Cart entry with product exists, incrementing quantity
-                    $cart = Cart::find( $cartExist->id )->increment('quantity');
+                    if($item->quantity < $product->quantity){
+                        $item->increment('quantity');
+                        $item->save();
+                    }else{
+                        $status = "Sorry, This Item is temporarily Out of Stock or Unavailable.";
+                        return redirect()->action('CartController@getCart')->with('status', $status);
+                    }
+                    
                 }else{
                     // cart entry doesn't exist. Creating entry
                     $cart = new Cart;
@@ -78,7 +85,7 @@ class CartController extends Controller
                 //return "Successfully Added to Cart.";
             }
             //return "Sorry, This Item is Temporarily Unavailable.";
-            $status = "Sorry, This Item is Temporarily Unavailable.";
+            $status = "Sorry, This Item is temporarily Out of Stock or Unavailable.";
             return redirect()->action('CartController@getCart')->with('status', $status);
         }
         //return "Error, This Product Doesn't Exist.";
@@ -110,9 +117,9 @@ class CartController extends Controller
             }
 
             //Restore Products quantity +1
-            $product = Products::find($product_id);
-            $product->increment('quantity');
-            $product->save();
+            //$product = Products::find($product_id);
+            //$product->increment('quantity');
+            //$product->save();
             //return "Item Successfully Removed from Cart.";
             $status = "Successfully Removed from Cart.";
             return redirect()->action('CartController@getCart')->with('status', $status);
@@ -130,6 +137,7 @@ class CartController extends Controller
             $cart = Cart::find( $cartExist->id );
 
             //Restore Products quantity
+            /*
             $product = Products::find($product_id);
             if( $cart->quantity > 1){
                 for($i = 1; $i <= $cart->quantity; $i++){
@@ -137,11 +145,11 @@ class CartController extends Controller
                 }
             }else{
                 $product->increment('quantity');
-            }
+            }*/
             //Delete Cart Table Row
             $cart->delete();
             
-            $product->save();
+            //$product->save();
             //return "Item Successfully Removed from Cart.";
             $status = "Successfully Removed from Cart.";
             return redirect()->action('CartController@getCart')->with('status', $status);
