@@ -11,8 +11,8 @@
 <script>
    $(function(){
      $(".submitBtn").click(function () {
-       //$(".submitBtn").attr("disabled", true);
-       $('#submit-control').html("<img src='{{asset('images/loading.gif')}}' />&nbsp;&nbsp;&nbsp;<input type=\"button\" class=\"btn btn-primary\"  value=\"Verifying...\">");
+       $('#loading').show();
+       $('#submit-control').html("&nbsp;&nbsp;&nbsp;<input type=\"button\" class=\"btn btn-primary\"  value=\"Verifying...\">");
        $('#Add-Address').submit();
      });
    });
@@ -88,7 +88,8 @@
     <span id="helpBlock" class="help-block"><em>Ex: 123-456-7890</em></span>
   </div>
   
-    <div id="submit-control">
+    <img id="loading" src="{{asset('/images/loading.gif')}}" hidden>
+    <div id="submit-control" style="display:inline;">
         <input type="button" class="btn btn-primary submitBtn" value="Submit">
     </div>
 </form>

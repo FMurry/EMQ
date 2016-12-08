@@ -12,7 +12,8 @@
 <script>
    $(function(){
      $(".submitBtn").click(function () {
-       $('#submit-control').html("<img src='{{asset('/images/loading.gif')}}' />&nbsp;&nbsp;&nbsp;<input type=\"button\" class=\"btn btn-primary\"  value=\"Verifying...\">");
+       $('#loading').show();
+       $('#submit-control').html("&nbsp;&nbsp;&nbsp;<input type=\"button\" class=\"btn btn-primary\"  value=\"Verifying...\">");
        $('#Process-Payment').submit();
      });
    });
@@ -110,7 +111,9 @@
 </div>
 
 <br>
-    <div id="submit-control">
+    
+    <img id="loading" src="{{asset('/images/loading.gif')}}" hidden>
+    <div id="submit-control" style="display:inline;">
         <input type="button" class="btn btn-primary submitBtn" value="Submit">
     </div>
 </form>
