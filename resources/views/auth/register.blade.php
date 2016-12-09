@@ -1,6 +1,27 @@
 @extends('layouts.app')
 
+@section('scripts-head')
+    <!-- Start of Scripts Added to Head Section -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- End of Scripts Added to Head Section -->
+@endsection
+
+
+
+@section('scripts-body')
+    <!-- Start of Scripts Added to Body Section -->
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();
+});
+</script>
+    <!-- End of Scripts Added to Body Section -->
+@endsection
+
 @section('content')
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -11,10 +32,11 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                            <label for="name" class="col-md-4 control-label">Display Name</label>
+
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
+                                <input id="name" type="text" class="form-control" name="name" value="{{ trim(old('name')) }}" >
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
