@@ -78,15 +78,15 @@ class HomeController extends Controller
         /*  Change Name
         *   Check if Change Name field is not blank.
         */
-        if( $request['fullName'] != ""){
-            $request['fullName'] = trim($request['fullName']);
+        if( $request['displayName'] != ""){
+            $request['displayName'] = trim($request['displayName']);
              $this->validate($request, [
-                'fullName' => 'required|max:255',
+                'displayName' => "required|regex:/^([a-zA-Z]+[.']{0,1}\s{0,1})*$/|max:35",
             ]);
             $user = Auth::user();
-            $user->name = $request['fullName'];
+            $user->name = $request['displayName'];
             $user->save();
-            $status = "Your Name has been updated.";
+            $status = "Your Display Name has been updated.";
             return redirect('edit')->with('success', $status);
         }
         $status = "No Input Detected.";

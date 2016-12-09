@@ -60,7 +60,7 @@ return [
     'not_in'               => 'The selected :attribute is invalid.',
     'numeric'              => 'The :attribute must be a number.',
     'present'              => 'The :attribute field must be present.',
-    'regex'                => 'The :attribute must contain a uppercase letter (A-Z), lowercase letter (a-z), digit (0-9), and symbol ( ! . ? , $ # @ % ).',
+    'regex'                => 'The :attribute must match some pattern.',
     'required'             => 'The :attribute field is required.',
     'required_if'          => 'The :attribute field is required when :other is :value.',
     'required_unless'      => 'The :attribute field is required unless :other is in :values.',
@@ -94,6 +94,18 @@ return [
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
+        ],
+        'name' => [
+            'regex' => 'The :attribute field must start with a letter (a-z) and can contain letters (a-z), spaces, periods(.) and apostrophes(\') in common english format.',
+        ],
+        'displayName' => [
+            'regex' => 'The :attribute field must start with a letter (a-z) and can contain letters (a-z), spaces, periods(.) and apostrophes(\') in common english format.',
+        ],
+        'password' => [
+            'regex' => 'The :attribute must contain a uppercase letter (A-Z), lowercase letter (a-z), digit (0-9), and symbol ( ! . ? , $ # @ % ).',
+        ],
+        'newPassword' => [
+            'regex' => 'The :attribute must contain a uppercase letter (A-Z), lowercase letter (a-z), digit (0-9), and symbol ( ! . ? , $ # @ % ).',
         ],
     ],
 

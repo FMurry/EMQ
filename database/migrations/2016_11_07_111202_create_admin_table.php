@@ -12,12 +12,14 @@ class CreateAdminTable extends Migration
      */
     public function up()
     {
-        Schema::create('admins', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('role');
-            $table->nullableTimestamps();
-        });
+        if(!Schema::hasTable('admins')){
+            Schema::create('admins', function (Blueprint $table) {
+                $table->increments('id');
+                $table->integer('user_id');
+                $table->integer('role');
+                $table->nullableTimestamps();
+            });
+        }
     }
 
     /**
@@ -27,6 +29,6 @@ class CreateAdminTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admins');
+        //Schema::dropIfExists('admins');
     }
 }

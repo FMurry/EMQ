@@ -51,7 +51,7 @@
     <div id="collapse1" class="panel-collapse collapse in">
       <div class="panel-body">
         <div style="margin-left: 20px;">
-        <h4>Full Name: {{Auth::user()->name }}</h4>
+        <h4>Display Name: {{Auth::user()->name }}</h4>
         <h4>E-mail: {{Auth::user()->email }}</h4>
         <h4>Member Since: {{Auth::user()->created_at->format('F j, Y') }}</h4>
         </div>
@@ -93,12 +93,12 @@
     <div class="panel-heading">
       <h4 class="panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
-        Change Name</a>
+        Change Display Name</a>
       </h4>
     </div>
     <div id="collapse4" class="panel-collapse collapse">
       <div class="panel-body">
-        <label>Enter New Full Name:</label><input type="text" class="form-control" name="fullName" placeholder="Enter your new full name here..."></br>
+        <label>Enter New Display Name:</label><input type="text" class="form-control" name="displayName" placeholder="Enter your new display name here..."></br>
         <button type="submit" class="btn btn-primary">Update</button>
       </div>
     </div>
