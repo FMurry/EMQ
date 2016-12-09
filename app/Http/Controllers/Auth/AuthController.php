@@ -48,10 +48,11 @@ class AuthController extends Controller
      */
     protected function validator(array $data)
     {
+        $data['name'] = trim($data['name']);
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|min:6|regex:/^.*(?=.{3,})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.?,$#@%]).*$/|confirmed',
         ]);
     }
 

@@ -44,7 +44,7 @@ class HomeController extends Controller
         if($request['currentPassword'] != "" || $request['newPassword'] != "" || $request['confirmNewPassword'] != ""){
              $this->validate($request, [
                 'currentPassword' => 'required|min:6',
-                'newPassword' => 'required|min:6|same:confirmNewPassword',
+                'newPassword' => 'required|min:6|regex:/^.*(?=.{3,})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.?,$#@%]).*$/|same:confirmNewPassword',
                 'confirmNewPassword' => 'required|min:6',
             ]);
 
@@ -79,6 +79,7 @@ class HomeController extends Controller
         *   Check if Change Name field is not blank.
         */
         if( $request['fullName'] != ""){
+            $request['fullName'] = trim($request['fullName']);
              $this->validate($request, [
                 'fullName' => 'required|max:255',
             ]);
