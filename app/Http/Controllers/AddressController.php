@@ -81,6 +81,12 @@ class AddressController extends Controller
         $fullAddress=str_replace(" ","+",$fullAddress);
         //using google maps geocode service to validate address
         $jsonp = json_decode(file_get_contents("https://maps.googleapis.com/maps/api/geocode/json?address=".$fullAddress."&key=AIzaSyCz2mUMKWxhHnmrCZoVYiWjwPwu3PUCPYs")); 
+        
+        $status = $jsonp->status;
+        if($status == "ZERO_RESULTS"){
+            $alert = "Invalid Address, Please enter full address correctly.";
+            return redirect()->action("AddressController@addAddressView")->with('alert',$alert);
+        }
         $status = $jsonp->results[0]->geometry->location_type;
         //checking to see that address exists explicitly
         if($status != "ROOFTOP"){
