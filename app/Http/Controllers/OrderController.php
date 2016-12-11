@@ -76,8 +76,13 @@ class OrderController extends Controller
             //needed to use associative array to keep track of cart quantity of THIS instance.
             //to avoid race condition if user tries to check out from two browsers at the same time.
             $item_instance_quantity = array();
+            //needed to use arrays to restore product quantity if a race condition occurs.
+            $product_id_array = array();
+            $cart_quantity_array = array();
             foreach ($cart as $item){
                 $item_instance_quantity[$item->id] = $item->quantity;
+                array_push($product_id_array, $item->product->id);
+                array_push($cart_quantity_array, $item->quantity);
                 if( $item->quantity > $item->product->quantity ){
                     $item->quantity = $item->product->quantity;
                     $item->save();
@@ -104,12 +109,18 @@ class OrderController extends Controller
         	$payment_id = $request['payment'];
         	$cost = $total['cost'];
         	OrderController::createOrder($order,Auth::user()->id,$payment_id,$address_id,$cost, $item_instance_quantity);
-            //duplicate order detected
+            //race condition, duplicate order detected with zero inventory.
             if(count($order->products) == 0){
                 $order->address->delete();
                 $order->payment->delete();
                 $order->delete();
                 $status = "Your Cart is Empty.";
+                //restore product inventory that was removed from race condition.
+                for($i=0; $i < sizeof($product_id_array); $i++){
+                    $p = Products::find($product_id_array[$i]);
+                    $p->quantity = $p->quantity + $cart_quantity_array[$i];
+                    $p->save();
+                }
                 return redirect()->action('CartController@getCart')->with('status', $status);
             }
             return view('process.complete', ['order' => $order]);
