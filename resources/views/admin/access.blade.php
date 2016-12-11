@@ -66,7 +66,7 @@
                         <div >
                             <center>
                             <label>User ID:&nbsp;</label><a href="" class="btn btn-default">{{ $user->id }}</a><br><br>
-                            <label>Full Name:&nbsp;</label><a href="" class="btn btn-default">{{ $user->name }}</a><br><br>
+                            <label>Display Name:&nbsp;</label><a href="" class="btn btn-default">{{ $user->name }}</a><br><br>
                             <label>E-mail:&nbsp;</label><a href="" class="btn btn-default">{{ $user->email }}</a><br><br>
                             <label>Current Access Level:&nbsp;</label><a href="" class="btn btn-default">{{ $user->access() }}</a><br>
                             </center>
