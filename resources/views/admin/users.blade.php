@@ -62,7 +62,7 @@ app.controller('listdata',function($scope, $http){
               <th ng-click="sort('id')">Id
                 <span class="glyphicon sort-icon" ng-show="sortKey=='id'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
               </th>
-              <th ng-click="sort('name')">Full Name
+              <th ng-click="sort('name')">Display Name
                 <span class="glyphicon sort-icon" ng-show="sortKey=='name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
               </th>
               <th ng-click="sort('email')">E-Mail
