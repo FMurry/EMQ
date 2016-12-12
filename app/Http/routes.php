@@ -88,6 +88,9 @@ Route::post('/review/post', 'ReviewController@leaveReview');
 Route::group(['middleware' => 'App\Http\Middleware\AuthMiddleware'], function()
 {
     Route::get('/admin/management', 'AdminController@getAdminAccount');
+    Route::get('/admin', function () {
+        return redirect('/admin/management');
+    });
     Route::get('/admin/users', 'AdminController@getAllUsers');
     Route::get('/admin/log', 'AdminController@getLog');
     Route::get('/admin/orders/{id}', 'AdminController@manageUserOrder');
@@ -104,3 +107,11 @@ Route::group(['middleware' => 'App\Http\Middleware\AuthMiddleware'], function()
     Route::get('/admin/api', 'AdminController@apiController');
 });
 
+
+//final route evaluation, junk URL redirect
+Route::get('/{junk_url}', function () {
+    return redirect('/');
+});
+Route::get('/{junk_url}/{more_junk_url}', function () {
+    return redirect('/');
+});
