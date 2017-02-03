@@ -10,7 +10,6 @@
                 <div class="panel-heading">About us</div>
 
                 <div class="panel-body">
-                Nothing here yet
                   <div class="row">
                     <div class="col-md-4">
                      Frederic Murry
