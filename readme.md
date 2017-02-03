@@ -1,6 +1,6 @@
 # EMQ - Electronic Retail Store
 
-![alt text](http://emqelectronics.tk/images/physics.svg "EMQ")
+![alt text](http://emqelectronics.tk/images/physics.svg =250x250)
 
 Emmanuel Mendoza, Frederic Murry, David Navarro, Michael Nguyen, Ha Nguyen
 
