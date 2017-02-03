@@ -8,4 +8,4 @@ San Jose State University - Fall 2016 - CS 160 - Software Engineering
 
 A fictional electronic retail store web application. User can an account and begin shopping and tracking their deliveries.
 
-Vistit the demo (here)['http://emqelectronics.tk/']
+Vistit the demo [here]('http://emqelectronics.tk/')
